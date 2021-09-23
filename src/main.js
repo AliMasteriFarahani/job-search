@@ -7,14 +7,9 @@ import './assets/css/all.css'
 import './assets/css/animate.min.css'
 import './assets/css/custom.css'
 
-import './assets/js/bootstrap.min.js'
-// import './assets/js/popper.min.js'  // added in dependencies 
+import './assets/js/bootstrap.min.js' 
 import './assets/js/all.min.js'
 
-
-
-  //import './assets/plugins/custom-select/css/custom-select.css'
-//  import './assets/plugins/custom-select/js/custom-select.js'
 
 
 import VueRouter from "vue-router";
