@@ -13,6 +13,10 @@
         </div>
         <div class="row">
           <div class="col">
+                    <transition
+          appear
+          enter-active-class="animate__animated animate__pulse"
+        >
             <span class="d-flex justify-content-center">
               <span
                 @click="switchLoginRegister('AppLogin')"
@@ -38,6 +42,7 @@
                 >ثبت نام</span
               >
             </span>
+            </transition>
           </div>
         </div>
         <div class="row">

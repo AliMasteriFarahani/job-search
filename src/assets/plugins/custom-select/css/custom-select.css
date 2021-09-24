@@ -31,6 +31,8 @@
     direction: rtl;
     width: 100%;
     position: relative !important;
+    box-sizing: border-box !important;
+    
 }
 
 
@@ -41,10 +43,12 @@
     align-items: center !important;
     display: flex !important;
     padding-right: 1rem !important;
+    box-sizing: border-box !important;
     font-size: .90rem;
     color: #7d7d7d;
     border: 1px solid #e6e6e6;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .custom-select-container {
@@ -52,7 +56,8 @@
     position: absolute;
     z-index: 800 !important;
     border: 1px solid #e6e6e6;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px ;
+    box-sizing: border-box !important;
 }
 
 
