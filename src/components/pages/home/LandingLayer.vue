@@ -41,7 +41,7 @@
                                 <div class="custom-select" title="دسته بندی شغلی" data-search-box='true'>
                                     <select>
                                         <option value="0">همه دسته بندی ها</option>
-                                        <option value="1">برنامه نویس وب</option>
+                                        <option selected value="1">برنامه نویس وب</option>
                                         <option value="2">طراح سایت</option>
                                         <option value="3">گرافیست</option>
                                         <option value="4">تایپیست</option>

@@ -96,7 +96,6 @@ export const customSelectMixin = {
           let customSelectItems = document.createElement("DIV");
           customSelectItems.classList.add("custom-select-items");
           customSelectItemContainer.appendChild(customSelectItems);
-          console.log(element.childNodes);
           element.insertBefore(customSelectContainer, element.childNodes[1]);
         });
       }

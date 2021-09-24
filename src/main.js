@@ -11,7 +11,6 @@ import './assets/js/bootstrap.min.js'
 import './assets/js/all.min.js'
 
 
-
 import VueRouter from "vue-router";
 import { Routes } from "./Routes/Routes.js";
 
