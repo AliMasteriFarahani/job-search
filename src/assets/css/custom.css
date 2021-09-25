@@ -121,6 +121,10 @@ a {
   outline: none !important;
   box-shadow: none !important;
 }
+/* --- heights --- */
+.min-h-70vh{
+  min-height: 70vh !important;
+}
 /* ---  fonts size : --- */
 .font-73 {
   font-size: 0.73rem !important;
@@ -165,6 +169,9 @@ a {
 }
 .font-num-is{
   font-family: 'iransanse-num' !important;
+}
+.font-md-is{
+  font-family: "iransanse-md" !important;
 }
 
 /* ---  z-index :  --- */
