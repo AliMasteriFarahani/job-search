@@ -5,15 +5,15 @@
                 <nav class="navbar navbar-expand-lg pb-0 navbar-light bg-white ">
                     <div class="container-fluid d-flex flex-row-reverse">
                         <div id="logo" class="d-flex order-lg-1">
-                            <router-link :to="{name:'LoginRegister'}"
+                            <!-- <router-link :to="{name:'LoginRegister'}"
                                 class="btn  btn-sm btn-secondary rounded-5 p-2 px-3 font-80 me-lg-5 d-none d-lg-block">ورود
                                 / ثبت
-                                نام</router-link>
-                                <a href="#" class="d-block d-lg-none font-73 mr-1-">ورود
+                                نام</router-link> -->
+                                <!-- <a href="#" class="d-block d-lg-none font-73 mr-1-">ورود
                                     / ثبت
-                                    نام</a>
+                                    نام</a> -->
 
-                                <!-- <div class="dropdown me-lg-5 drop-acc" >
+                                <div v-if="isLogin" class="dropdown me-lg-5 drop-acc" >
                                     <button class="btn btn-secondary dropdown-toggle rounded-5 p-2 px-3 font-73  d-none d-lg-block" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                       محمد محمدی فر 
                                     </button>
@@ -23,14 +23,19 @@
                                     </button>
                                     
                                     <ul class="dropdown-menu p-0 font-75" dir="ltr" aria-labelledby="dropdownMenuButton1">
-                                      <li><a class="dropdown-item pe-4 p-2" href="#">درخواست های من</a></li>
-                                      <li><a class="dropdown-item pe-4 p-2" href="#">ایمیل های اطلاع رسانی</a></li>
+                                      <li><router-link :to="{name:'Requests'}" class="dropdown-item pe-4 p-2" href="#">درخواست های من</router-link></li>
+                                      <li><a class="dropdown-item pe-4 p-2">ایمیل های اطلاع رسانی</a></li>
                                       <li><a class="dropdown-item pe-4 p-2" href="#">رزومه من</a></li>
-                                      <li><a class="dropdown-item pe-4 p-2" href="#">فرصت های شغلی ذخیره شده</a></li>
+                                      <li><router-link :to="{name:'Saved'}" class="dropdown-item pe-4 p-2">فرصت های شغلی ذخیره شده</router-link></li>
                                       <li><a class="dropdown-item pe-4 p-2" href="#">تنظیمات حساب کاربری</a></li>
                                       <li><a class="dropdown-item pe-4 p-2" href="#">خروج</a></li>
                                     </ul>
-                                  </div> -->
+                                  </div>
+
+                               <router-link v-else :to="{name:'LoginRegister'}"
+                                class="btn  btn-sm btn-secondary rounded-5 p-2 px-3 font-80 me-lg-5 d-none d-lg-block">ورود
+                                / ثبت
+                                نام</router-link>
 
                         </div>
                         <a class="navbar-brand d-flex  me-0 me-lg-3 order-lg-0" href="#">
@@ -59,7 +64,11 @@
 
 <script>
 export default {
-
+data(){
+  return{
+    isLogin:true
+  }
+}
 }
 </script>
 

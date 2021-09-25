@@ -13,7 +13,7 @@ export const Routes = [
     {path:'/login-register',component:LoginRegister,name:'LoginRegister'},
     {path:'/job',component:Job,
     children:[
-        {path:'',redirect:Saved},
+        {path:'',redirect:'/'},
         {path:'saved',component:Saved,name:'Saved'},
         {path:'requests',component:Requests,name:'Requests'},
     ]     
