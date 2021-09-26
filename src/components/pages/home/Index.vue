@@ -26,7 +26,7 @@
 </template>
 <script>
 
- import { customSelectMixin } from "@/Mixins/customSelectMixin";
+import { customSelectMixin } from "@/Mixins/customSelectMixin";
 import AppHeader from "../shared/Header.vue";
 import AppLandingLayer from "./LandingLayer.vue";
 import AppHomeRightSide from "./NewJobs.vue";

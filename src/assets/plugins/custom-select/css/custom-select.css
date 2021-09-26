@@ -151,7 +151,16 @@ padding: 0 !important;
 .custom-select.simple .custom-select-item-container .custom-option-item{
 margin: 0 !important;
 }
-.custom-select.simple .custom-select-items{
+.custom-select.simple-scroll .custom-select-item-container{
+padding-left: 3px !important;
+}
+.custom-select.simple-scroll .custom-select-item-container .custom-select-items{
+    margin: 0 !important;
+}
+.custom-select.simple-scroll .custom-select-item-container .custom-option-item{
+margin-left: 3px !important;
+}
+/* .custom-select.simple .custom-select-items{
     overflow: hidden !important;
     max-height: max-content !important;
-}
+} */

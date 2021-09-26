@@ -42,7 +42,7 @@
                                     <select>
                                         <option value="0">همه دسته بندی ها</option>
                                         <option selected value="1">برنامه نویس وب</option>
-                                        <option value="2">طراح سایت</option>
+                                        <option value="2">طراح  88 سایت</option>
                                         <option value="3">گرافیست</option>
                                         <option value="4">تایپیست</option>
                                         <option value="5">کارمند بانک </option>
