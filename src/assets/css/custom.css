@@ -261,6 +261,14 @@ a {
   background-color: #528e02 !important;
   color: #fff;
 }
+.btn--cancel{
+  background-color: #656E78 !important;
+  color: #fff;
+}
+.btn--cancel:hover{
+  background-color: #525b64 !important;
+  color: #fff;
+}
 /* --- shadows : --- */
 .shadow-c {
   box-shadow: 1px 1px 10px #ccc;
