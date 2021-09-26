@@ -215,6 +215,9 @@ a {
 .color--success{
   color: #559500 !important;
 }
+.color--danger{
+  color: #D6080C !important;
+}
 .border-radius-1 {
   border-radius: 1rem !important;
 }
@@ -237,7 +240,7 @@ a {
 .bg-sky {
   background-color: #0ea5cc !important;
 }
-.bg-close{
+.bg--danger{
   background-color: #D6080C !important;
 }
 /* ------ */
@@ -299,6 +302,9 @@ a {
 }
 .border-dashed {
   border: 1px dashed #ccc;
+}
+.border-bm-c{
+border-bottom: 1px solid #ccc;
 }
 /*  index page : */
 .input-textbox {
