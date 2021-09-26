@@ -5,6 +5,7 @@ let JobDescriptions = ()=>import('../components/pages/jobDescriptions/Index.vue'
 let Job = ()=>import('../components/pages/employee/jobRequestSaved/Index.vue');
 let Saved = ()=>import('../components/pages/employee/jobRequestSaved/Saved.vue');
 let Requests = ()=>import('../components/pages/employee/jobRequestSaved/Requests.vue');
+let Resume = ()=>import('../components/pages/employee/resume/Index.vue');
 
 export const Routes = [
     {path:'/',component:Home,name:'Home'},
@@ -18,6 +19,7 @@ export const Routes = [
         {path:'requests',component:Requests,name:'Requests'},
     ]     
 },
+  {path:'/resume',component:Resume,name:'resume'},
     {path:'*',redirect:'/'},
     {path:'/404',redirect:'/'},
 ]

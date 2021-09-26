@@ -206,7 +206,7 @@ export const customSelectMixin = {
       });
       document.addEventListener("click", closeAllCustomSelect);
     }
-    
+  
     eventListeners();
     
     // Functions
@@ -225,6 +225,6 @@ export const customSelectMixin = {
     function onInput(e) {
       CustomSelectObj.onInput(e.target.value, e);
     }
-    
+  
   }
 }
