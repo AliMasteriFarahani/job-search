@@ -19,7 +19,7 @@ export const Routes = [
         {path:'requests',component:Requests,name:'Requests'},
     ]     
 },
-  {path:'/resume',component:Resume,name:'resume'},
+  {path:'/resume',component:Resume,name:'Resume'},
     {path:'*',redirect:'/'},
     {path:'/404',redirect:'/'},
 ]
