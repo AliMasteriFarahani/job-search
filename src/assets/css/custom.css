@@ -215,6 +215,9 @@ a {
 .color--success{
   color: #559500 !important;
 }
+.color--danger{
+  color: #D6080C !important;
+}
 .border-radius-1 {
   border-radius: 1rem !important;
 }
@@ -237,7 +240,7 @@ a {
 .bg-sky {
   background-color: #0ea5cc !important;
 }
-.bg-close{
+.bg--danger{
   background-color: #D6080C !important;
 }
 /* ------ */
@@ -256,6 +259,14 @@ a {
 }
 .btn--success:hover{
   background-color: #528e02 !important;
+  color: #fff;
+}
+.btn--cancel{
+  background-color: #656E78 !important;
+  color: #fff;
+}
+.btn--cancel:hover{
+  background-color: #525b64 !important;
   color: #fff;
 }
 /* --- shadows : --- */
@@ -299,6 +310,12 @@ a {
 }
 .border-dashed {
   border: 1px dashed #ccc;
+}
+.border-bm-c{
+border-bottom: 1px solid #ccc;
+}
+.border-bm-dashed-c{
+border-bottom: 1px dashed #ccc;
 }
 /*  index page : */
 .input-textbox {

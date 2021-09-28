@@ -8,7 +8,7 @@
           <!-- right-side -->
         <app-right-side></app-right-side>
         <!-- left side : -->
-        <app-resume-left-side :showBtn="true" :resume='true'></app-resume-left-side>
+        <app-resume-left-side :showBtn="false" :resumeEdit='true'></app-resume-left-side>
       </div>
       <!-- end of left side  -->
       <!-- end of left and right for jobsection -->

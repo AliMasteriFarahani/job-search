@@ -45,7 +45,7 @@
                     <a class="dropdown-item pe-4 p-2">ایمیل های اطلاع رسانی</a>
                   </li>
                   <li>
-                    <a class="dropdown-item pe-4 p-2" href="#">رزومه من</a>
+                    <router-link :to="{name:'Resume'}" class="dropdown-item pe-4 p-2" >رزومه من</router-link>
                   </li>
                   <li>
                     <router-link

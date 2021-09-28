@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
     <div class="border-r bg-white">
-      <!-- personal information -->
+      <!-- personal information : -->
       <div class="row m-0 p-5 px-4 ">
         <div class="col">
           <div class="row rounded-3 border-dashed">
@@ -386,7 +386,7 @@
           </div>
         </div>
       </div>
-      <!-- about me -->
+      <!-- about me : -->
       <div class="row m-0 p-5 px-4 ">
         <div class="col">
           <div class="row rounded-3 border-dashed">
@@ -491,7 +491,7 @@
           </div>
         </div>
       </div>
-      <!-- skills -->
+      <!-- skills : -->
       <div class="row m-0 p-5 px-4 ">
         <div class="col">
           <div class="row rounded-3 border-dashed">
@@ -541,48 +541,69 @@
                     <div class="modal-body">
                       <div class="row">
                         <div class="col-12 mb-4">
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html css html css html css html css
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">خوب</span>
-                          </span>
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">خوب</span>
-                          </span>
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">خوب</span>
-                          </span>
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">خوب</span>
-                          </span>
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">متوسط</span>
-                          </span>
-                          <span class="d-inline-block mb-2 me-2">
-                            <span class="skill font-90"
-                              >html
-                              <span class="circle-middle"></span>
-                            </span>
-                            <span class="skill-level font-90">مقدماتی</span>
-                          </span>
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >php
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">پیشرفته</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >javascript
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
                         </div>
                         <div class="col-12 col-md-6 d-flex">
                           <div class="mb-4 flex-grow-1">
@@ -625,11 +646,6 @@
                             </select>
                           </div>
                         </div>
-                        <!-- <div class="col">
-                              <br>
-                              <br>
-                              <br>
-                          </div> -->
                         <div class="col-12">
                           <button
                             class="btn btn--success float-end border-radius-05 px-3  py-2 shadow-c border-0 mt-1 font-90 text-white"
@@ -655,48 +671,70 @@
             <div class="col-12">
               <div class="row mt-2 ps-4">
                 <div class="col-12 mb-4">
-                  <span class="d-inline-block mb-2 me-2">
+                  <div class="d-inline-flex mb-2 me-2">
                     <span class="skill font-90"
                       >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
-                  <span class="d-inline-block mb-2 me-2">
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >php
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">پیشرفته</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >html css html css html css html css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >javascrip mvvvvv
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
+                    <span class="skill font-90"
+                      >css
+                      <span class="circle-middle"></span>
+                    </span>
+                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
                     <span class="skill font-90"
                       >html
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
-                  <span class="d-inline-block mb-2 me-2">
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
+                  <div class="d-inline-flex mb-2 me-2">
                     <span class="skill font-90"
-                      >html
+                      >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
-                  <span class="d-inline-block mb-2 me-2">
-                    <span class="skill font-90"
-                      >html
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
-                  <span class="d-inline-block mb-2 me-2">
-                    <span class="skill font-90"
-                      >html
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
-                  <span class="d-inline-block mb-2 me-2">
-                    <span class="skill font-90"
-                      >html
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level font-90">خوب</span>
-                  </span>
+                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                  </div>
+                  <!--  -->
                 </div>
               </div>
             </div>
@@ -704,7 +742,770 @@
           </div>
         </div>
       </div>
+      <!-- Educational records :  -->
+      <div class="row m-0 p-5 px-4 ">
+        <div class="col">
+          <div class="row rounded-3 border-dashed">
+            <div class="col-12 ">
+              <span class="section-title">سوابق تحصیلی</span>
+            </div>
+            <div class="col-12">
+              <!-- <span
+                data-bs-toggle="modal"
+                data-bs-target="#about-me"
+                class="float-end font-90 cursor-pointer color-sky text-underline font-md-is"
+              >
+                <i class="fa-solid font-2 color--success fa-circle-plus"></i>
+              </span> -->
+              <!-- modal -->
+              <div
+                class="modal z-index-lv0 fade"
+                id="educational-records"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="educational-records-label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg ">
+                  <div class="modal-content px-1">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title font-1 font-md-is"
+                        id="educational-records-label"
+                      >
+                        سوابق تحصیلی
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close remove-outline"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="major-title"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >عنوان رشته :</label
+                            >
+                            <input
+                              type="text"
+                              id="major-title"
+                              name="major-title"
+                              placeholder="مثال : مهندی نرم افزار"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="uni-title"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >نام دانشگاه :</label
+                            >
+                            <input
+                              type="text"
+                              id="uni-title"
+                              name="uni-title"
+                              placeholder="مثال : دانشگاه شهید شمسی پور"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="edu-level"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >مقطع تحصیلی :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="edu-level" name="edu-level">
+                              <option value="1">دبیرستان</option>
+                              <option value="2">کاردانی</option>
+                              <option value="3">کارشناسی</option>
+                              <option value="3">کارشناسی ارشد</option>
+                              <option value="3">دکترا</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="average"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >معدل :</label
+                            >
+                            <input
+                              type="text"
+                              id="average"
+                              name="average"
+                              placeholder="مثال : 14"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="start-year"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >سال شروع :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="start-year" name="start-year">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="end-year"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >سال پایان :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="end-year" name="end-year">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input remove-outline  cursor-pointer"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckChecked"
+                            />
+                            <label
+                              class="form-check-label font-90  cursor-pointer"
+                              for="flexCheckChecked"
+                            >
+                              هنوز مشغول به تحصیل می باشم
+                            </label>
+                          </div>
 
+                        </div>
+                        <div class="col-12">
+                          <button
+                            class="btn btn--success float-end border-radius-05 px-3  py-2 shadow-c border-0 mt-1 font-90 text-white"
+                          >
+                            ذخیره
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn--close float-end border-radius-05 px-3 py-2 shadow-c border-0 mt-1 font-90 text-white me-2"
+                            data-bs-dismiss="modal"
+                          >
+                            انصراف
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- modal end -->
+            </div>
+            <!--  -->
+            <div class="col-12">
+              <div class="row ps-4">
+                <div class="col-12">
+                  <div class="row mt-3 me-2 border-bm-c">
+                    <div class="col">
+                      <p class="font-bd-is">
+                        کارشناسی - مهندسی تکنولوژی نرم افزار
+                      </p>
+                      <p>
+                        <span class="font-1 me-3">دانشکده امیرکبیر اراک</span>
+                        <span dir="ltr" class="font-1 font-num-is"
+                          >1395 - 1400</span
+                        >
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-2">
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#educational-records"
+                        class="float-end font-102 cursor-pointer text-underline font-md-is"
+                      >
+                        <i class="fa-solid fa-trash-can color--danger"></i>
+                      </span>
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#educational-records"
+                        class="float-end font-102 me-2 cursor-pointer color-sky text-underline font-md-is"
+                      >
+                        <i
+                          class="fa-solid me-1 color-sky  fa-pen-to-square"
+                        ></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 py-2">
+                  <span
+                    data-bs-toggle="modal"
+                    data-bs-target="#educational-records"
+                    class="float-end font-90 cursor-pointer me-3 text-underline font-md-is"
+                  >
+                    <i
+                      class="fa-solid font-2 color--success fa-circle-plus"
+                    ></i>
+                  </span>
+                  <!-- modal -->
+
+                  <!-- modal end -->
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <!-- job experience : -->
+      <div class="row m-0 p-5 px-4 ">
+        <div class="col">
+          <div class="row rounded-3 border-dashed">
+            <div class="col-12 ">
+              <span class="section-title">سوابق شغلی</span>
+            </div>
+            <div class="col-12">
+
+              <!-- modal -->
+              <div
+                class="modal z-index-lv0 fade"
+                id="job-experience"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="job-experience-label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg ">
+                  <div class="modal-content px-1">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title font-1 font-md-is"
+                        id="job-experience-label"
+                      >
+                        سوابق شغلی
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close remove-outline"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="job-title"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >عنوان شغلی :</label
+                            >
+                            <input
+                              type="text"
+                              id="job-title"
+                              name="job-title"
+                              placeholder="مثال : برنامه نویس وب"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="uni-title"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >نام سازمان/شرکت :</label
+                            >
+                            <input
+                              type="text"
+                              id="uni-title"
+                              name="uni-title"
+                              placeholder="مثال : شرکت داده گستر عصر جدید"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="start-year"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >سال شروع :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="start-year" name="start-year">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="start-month"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >ماه شروع :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="start-month" name="start-month">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="end-year"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >سال پایان :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="end-year" name="end-year">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="end-month"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >ماه پایان :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="end-month" name="end-month">
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                              <option value="0">1350</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 mb-4 col-md-6">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input remove-outline  cursor-pointer"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckChecked"
+                            />
+                            <label
+                              class="form-check-label font-90  cursor-pointer"
+                              for="flexCheckChecked"
+                            >
+                              هنوز مشغول به کار می باشم
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button
+                            class="btn btn--success float-end border-radius-05 px-3  py-2 shadow-c border-0 mt-1 font-90 text-white"
+                          >
+                            ذخیره
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn--close float-end border-radius-05 px-3 py-2 shadow-c border-0 mt-1 font-90 text-white me-2"
+                            data-bs-dismiss="modal"
+                          >
+                            انصراف
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- modal end -->
+            </div>
+            <!--  -->
+            <div class="col-12">
+              <div class="row ps-4">
+                <div class="col-12">
+                  <div class="row mt-3 me-2 border-bm-c">
+                    <div class="col">
+                      <p class="font-bd-is">
+                        برنامه نویس وب
+                      </p>
+                      <p>
+                        <span class="font-1 me-3">شرکت داده گستر عصر جدید</span>
+                        <span dir="ltr" class="font-1 font-num-is"
+                          >از 1380 تا 1400</span
+                        >
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-2">
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#job-experience"
+                        class="float-end font-102 cursor-pointer text-underline font-md-is"
+                      >
+                        <i class="fa-solid fa-trash-can color--danger"></i>
+                      </span>
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#job-experience"
+                        class="float-end font-102 me-2 cursor-pointer color-sky text-underline font-md-is"
+                      >
+                        <i
+                          class="fa-solid me-1 color-sky  fa-pen-to-square"
+                        ></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 py-2">
+                  <span
+                    data-bs-toggle="modal"
+                    data-bs-target="#job-experience"
+                    class="float-end font-90 cursor-pointer me-3 text-underline font-md-is"
+                  >
+                    <i
+                      class="fa-solid font-2 color--success fa-circle-plus"
+                    ></i>
+                  </span>
+                  <!-- modal -->
+
+                  <!-- modal end -->
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <!-- langueges : -->
+      <div class="row m-0 p-5 px-4 ">
+        <div class="col">
+          <div class="row rounded-3 border-dashed">
+            <div class="col-12 ">
+              <span class="section-title">زبان ها</span>
+            </div>
+            <div class="col-12">
+                            <!-- modal -->
+              <div
+                class="modal z-index-lv0 fade"
+                id="remove-item"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="remove-item-label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content px-1">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title color--danger font-1 font-md-is"
+                        id="remove-item-label"
+                      >
+                        هشدار !
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close remove-outline"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p>آیتم مورد نظر حذف شود ؟</p>
+                        </div>
+
+
+                        <div class="col-12">
+                          <button
+                            class="btn btn--close float-end border-radius-05 px-3  py-2 shadow-c border-0 mt-1 font-90 text-white"
+                          >
+                            حذف
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn--cancel float-end border-radius-05 px-3 py-2 shadow-c border-0 mt-1 font-90 text-white me-2"
+                            data-bs-dismiss="modal"
+                          >
+                            انصراف
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- modal -->
+              <div
+                class="modal z-index-lv0 fade"
+                id="language"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="language-label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg ">
+                  <div class="modal-content px-1">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title font-1 font-md-is"
+                        id="language-label"
+                      >
+                        زبان ها
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close remove-outline"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <div class="mb-4">
+                            <label
+                              for="language-title"
+                              class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                              >عنوان زبان :</label
+                            >
+                            <input
+                              type="text"
+                              id="language-title"
+                              name="language-title"
+                              placeholder="مثال : آلمانی"
+                              class="form-control input-textbox"
+                            />
+                          </div>
+                        </div>
+                       <div class="col-12 mb-4 col-md-6">
+                          <label
+                            for="language-level"
+                            class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
+                            >سطح تسلط :</label
+                          >
+                          <div
+                            class="custom-select simple-scroll z-index-lv2"
+                            title="انتخاب کنید ..."
+                            data-search-box="false"
+                          >
+                            <select id="language-level" name="language-level">
+                              <option value="1">مقدماتی</option>
+                              <option value="2">متوسط</option>
+                              <option value="3">پیشرفته</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <button
+                            class="btn btn--success float-end border-radius-05 px-3  py-2 shadow-c border-0 mt-1 font-90 text-white"
+                          >
+                            ذخیره
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn--close float-end border-radius-05 px-3 py-2 shadow-c border-0 mt-1 font-90 text-white me-2"
+                            data-bs-dismiss="modal"
+                          >
+                            انصراف
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- modal end -->
+            </div>
+            <!--  -->
+            <div class="col-12">
+              <div class="row ps-4">
+                <div class="col-12">
+                  <div class="row mt-3 me-2 border-bm-c">
+                    <div class="col">
+                      <p class="font-bd-is">
+                       آلمانی
+                      </p>
+                      <p>
+                        <span class="font-1 me-3">متوسط</span>
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-2">
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#remove-item"
+                        class="float-end font-102 cursor-pointer text-underline font-md-is"
+                      >
+                        <i class="fa-solid fa-trash-can color--danger"></i>
+                      </span>
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#language"
+                        class="float-end font-102 me-2 cursor-pointer color-sky text-underline font-md-is"
+                      >
+                        <i
+                          class="fa-solid me-1 color-sky  fa-pen-to-square"
+                        ></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 py-2">
+                  <span
+                    data-bs-toggle="modal"
+                    data-bs-target="#language"
+                    class="float-end font-90 cursor-pointer me-3 text-underline font-md-is"
+                  >
+                    <i
+                      class="fa-solid font-2 color--success fa-circle-plus"
+                    ></i>
+                  </span>
+                  <!-- modal -->
+
+                  <!-- modal end -->
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
       <!--  -->
     </div>
   </div>
@@ -750,7 +1551,8 @@ export default {
 .modal-header {
   border-bottom: 1px dashed #dee2e6 !important;
 }
-.custom-option-item {
+.custom-option-item,
+.custom-option-selected {
   font-family: "iransanse-num" !important;
 }
 
