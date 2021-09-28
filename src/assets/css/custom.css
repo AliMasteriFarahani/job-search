@@ -314,6 +314,9 @@ a {
 .border-bm-c{
 border-bottom: 1px solid #ccc;
 }
+.border-bm-dashed-c{
+border-bottom: 1px dashed #ccc;
+}
 /*  index page : */
 .input-textbox {
   height: 40px;

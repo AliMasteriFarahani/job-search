@@ -980,7 +980,7 @@
                         data-bs-target="#educational-records"
                         class="float-end font-102 cursor-pointer text-underline font-md-is"
                       >
-                        <i class="fa-solid fa-trash color--danger"></i>
+                        <i class="fa-solid fa-trash-can color--danger"></i>
                       </span>
                       <span
                         data-bs-toggle="modal"
@@ -1277,7 +1277,7 @@
                         data-bs-target="#job-experience"
                         class="float-end font-102 cursor-pointer text-underline font-md-is"
                       >
-                        <i class="fa-solid fa-trash color--danger"></i>
+                        <i class="fa-solid fa-trash-can color--danger"></i>
                       </span>
                       <span
                         data-bs-toggle="modal"
@@ -1472,7 +1472,7 @@
                         data-bs-target="#remove-item"
                         class="float-end font-102 cursor-pointer text-underline font-md-is"
                       >
-                        <i class="fa-solid fa-trash color--danger"></i>
+                        <i class="fa-solid fa-trash-can color--danger"></i>
                       </span>
                       <span
                         data-bs-toggle="modal"
