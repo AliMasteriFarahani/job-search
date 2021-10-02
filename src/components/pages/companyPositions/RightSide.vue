@@ -1,6 +1,19 @@
 <template>
-              <div class="row min-h-70vh align-content-start px-lg-5 px-4">
-              <!-- result of job search : -->
+          <div class="col-12 col-lg-9 col-lg-72">
+          <div class="border-r bg-white">
+            <div class="row px-lg-5 px-4 mt-4">
+              <div class="col-12">
+                  <h3 class="font-1 mb-3">موقعیت های شغلی این شرکت</h3>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <div class="border-dashed"></div>
+              </div>
+            </div>
+            <app-jobs></app-jobs>
+            <!-- <div class="row px-lg-5 px-4">
+              
               <div v-for="n in 10" :key="n" class="col-12 mb-3">
                 <div
                   class="float-start w-100 job-adv position-relative  similar-job d-flex p-2"
@@ -50,17 +63,38 @@
                   </span>
                 </div>
               </div>
-              <!-- end of result of job search  -->
+          
            
-            </div>
+            </div> -->
+          </div>
+        </div>
 </template>
 
 <script>
+import AppJobs from "../shared/Saved.vue";
 export default {
-
+components:{AppJobs}
 }
 </script>
 
 <style>
 
+.job-sa{
+    border-bottom: 2px solid transparent;
+    padding: .2rem .2rem .4rem .5rem;
+    margin-bottom: -.12rem;
+    position: relative;
+}
+.job-sa a{
+ color: #000 !important;
+ font-family: "iransanse-md" !important;
+}
+.job-sa.active{
+  border-bottom: 2px solid #4dbcf0 !important;
+  color: #4dbcf0 !important;
+}
+.job-sa.active a{
+ color: #4dbcf0 !important;
+  font-family: "iransanse-md" !important;
+}
 </style>

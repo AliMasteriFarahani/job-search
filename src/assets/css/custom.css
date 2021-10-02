@@ -118,6 +118,15 @@ a {
   .col-lg-col{
     flex: 1 0 0% !important;
   }
+  .shadow-lg-0-c{
+    box-shadow: 0 0 10px #ccc !important;
+  }
+}
+/*  media 992px  */
+@media (max-width: 992px) {
+  .shadow-mlg-0-c{
+    box-shadow: 0 0 10px #ccc !important;
+  }
 }
 
 /* --------------- */
