@@ -19,6 +19,7 @@ let EmployeeSettings = () =>
 let EmployerLoginRegister = ()=>import('../components/pages/employer/login/Index.vue');
 let EmployerLogin = ()=>import('../components/pages/employer/login/Login.vue');
 let EmployerRegister = ()=>import('../components/pages/employer/login/Register.vue');
+let CompanyInformations = ()=>import('../components/pages/employer/companyInformations/Index.vue');
 
 export const Routes = [
   { path: "/", component: Home, name: "Home" },
@@ -64,9 +65,11 @@ export const Routes = [
   // employer :
   {path:'/employer',component:EmployerLoginRegister,
    children:[
+       {path:'',redirect:'/'},
        {path:'login',component:EmployerLogin},
        {path:'register',component:EmployerRegister},
-   ]}
+   ]},
+   {path:'/companyInformations',component:CompanyInformations}
 
 
 ];

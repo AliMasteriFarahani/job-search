@@ -96,6 +96,9 @@ a {
   .font-md-102 {
     font-size: 1.2rem !important;
   }
+  .border-md-0{
+    border: 0 !important;
+  }
 }
 
 /*  media 992px  */
@@ -335,6 +338,9 @@ border-bottom: 1px dashed #ccc;
   color: #7d7d7d !important;
 }
 
+.line-height-3{
+  line-height: 3 !important;
+}
 
 /* search box - index page */
 .job-logo-palce {
