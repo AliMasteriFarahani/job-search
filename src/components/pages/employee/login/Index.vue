@@ -19,27 +19,16 @@
         >
             <span class="d-flex justify-content-center">
               <span
-                @click="switchLoginRegister('AppLogin')"
-                :class="[
-                  'login font-90 cursor-pointer',
-                  {
-                    'login-register-active-btn':
-                      selectedComponent === 'AppLogin',
-                  },
-                ]"
-                >ورود
+                class="login font-90 cursor-pointer"
+                >
+                <router-link to="/employee/login" class="d-block">ورود</router-link>
                 <span class="circle-register-login"></span>
               </span>
               <span
-                @click="switchLoginRegister('AppRegister')"
-                :class="[
-                  'register font-90 cursor-pointer',
-                  {
-                    'login-register-active-btn':
-                      selectedComponent === 'AppRegister',
-                  },
-                ]"
-                >ثبت نام</span
+                class="register font-90 cursor-pointer"
+                >
+                <router-link to="/employee/register" class="d-block">ثبت نام</router-link>
+                </span
               >
             </span>
             </transition>
@@ -56,7 +45,8 @@
           enter-active-class="animate__animated animate__fadeIn"
         >
           <keep-alive>
-            <component :is="selectedComponent"></component>
+            <!-- <component :is="selectedComponent"></component> -->
+            <router-view></router-view>
           </keep-alive>
         </transition>
       </div>
@@ -65,23 +55,9 @@
 </template>
 
 <script>
-import AppRegister from "./Register.vue";
-import AppLogin from "./Login.vue";
+
 export default {
-  components: {
-    AppRegister,
-    AppLogin,
-  },
-  data() {
-    return {
-      selectedComponent: "AppLogin",
-    };
-  },
-  methods: {
-    switchLoginRegister(whatComponent) {
-      this.selectedComponent = whatComponent;
-    },
-  },
+
 };
 </script>
 
@@ -89,7 +65,6 @@ export default {
 .login,
 .register {
   background: #c4c4c4;
-  padding: 0.5rem 1rem;
   width: 6rem;
   text-align: center;
   display: inline-block;
@@ -103,10 +78,20 @@ export default {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: 1px solid #fff;
 }
-.login-register-active-btn {
+.login a,.register a{
+   padding: 0.5rem 1rem;
+   color: #000;
+}
+.router-link-exact-active{
   color: #fff !important;
   background-color: #1e6fcf !important;
   font-family: "iransanse-md" !important;
+}
+.login .router-link-exact-active{
+ border-radius: 0 0.5rem 0.5rem 0;
+}
+.register .router-link-exact-active{
+ border-radius: 0.5rem 0 0 0.5rem;
 }
 .circle-register-login {
   display: inline-block;

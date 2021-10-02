@@ -1,5 +1,5 @@
 <template>
-              <div class="row px-lg-5 min-h-70vh px-4">
+              <div class="row px-lg-5 min-h-70vh align-content-start px-4">
               <!-- result of job search : -->
               <div v-for="n in 1" :key="n" class="col-12 mb-3">
                 <div

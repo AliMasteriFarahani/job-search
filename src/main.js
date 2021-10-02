@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import './assets/css/bootstrap.rtl.min.css'
-//import './assets/css/bootstrap-reboot.rtl.min.css'
+import './assets/css/bootstrap-reboot.rtl.min.css'
 import './assets/css/all.css'
 import './assets/css/animate.min.css'
 import './assets/css/custom.css'
