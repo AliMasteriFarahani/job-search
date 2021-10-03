@@ -240,6 +240,9 @@ a {
   border-radius: 0.4rem !important;
 }
 /* --- bgColors : --- */
+.bg--green-04{
+  background: #048C9C !important;
+}
 .bg-cascade {
   background: #95a5a6 !important;
 }
@@ -248,6 +251,9 @@ a {
 }
 .bg-green {
   background-color: #559500 !important;
+}
+.bg--green-36{
+  background-color: #36CBB6 !important;
 }
 .bg-sky {
   background-color: #0ea5cc !important;
@@ -328,6 +334,9 @@ border-bottom: 1px solid #ccc;
 }
 .border-bm-dashed-c{
 border-bottom: 1px dashed #ccc;
+}
+.ltr{
+  direction: ltr !important;
 }
 /*  index page : */
 .input-textbox {

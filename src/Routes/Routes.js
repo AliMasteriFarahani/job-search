@@ -20,6 +20,7 @@ let EmployerLoginRegister = ()=>import('../components/pages/employer/login/Index
 let EmployerLogin = ()=>import('../components/pages/employer/login/Login.vue');
 let EmployerRegister = ()=>import('../components/pages/employer/login/Register.vue');
 let CompanyInformations = ()=>import('../components/pages/employer/companyInformations/Index.vue');
+let CompanyAdvertisments = ()=>import('../components/pages/employer/advertisments/Index.vue');
 
 export const Routes = [
   { path: "/", component: Home, name: "Home" },
@@ -69,7 +70,8 @@ export const Routes = [
        {path:'login',component:EmployerLogin},
        {path:'register',component:EmployerRegister},
    ]},
-   {path:'/companyInformations',component:CompanyInformations}
-
+   
+   {path:'/companyInformations',component:CompanyInformations},
+   {path:'/advertisments',component:CompanyAdvertisments}
 
 ];
