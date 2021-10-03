@@ -350,6 +350,9 @@ border-bottom: 1px dashed #ccc;
 .line-height-3{
   line-height: 3 !important;
 }
+.line-height-5{
+  line-height: 5 !important;
+}
 
 /* search box - index page */
 .job-logo-palce {
