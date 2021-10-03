@@ -541,69 +541,93 @@
                     <div class="modal-body">
                       <div class="row">
                         <div class="col-12 mb-4">
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >html css html css html css html css
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >php
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >html css html css html css html css
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">پیشرفته</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >html css html css html css html css
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >javascript
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >css
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >html
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
-                  </div>
-                  <!--  -->
-                  <div class="d-inline-flex mb-2 me-2">
-                    <span class="skill font-90"
-                      >html css html css html css html css
-                      <span class="circle-middle"></span>
-                    </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
-                  </div>
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >html css html css html css html css
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >مقدماتی</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >php
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >متوسط</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >html css html css html css html css
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >پیشرفته</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >html css html css html css html css
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >مقدماتی</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >javascript
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >مقدماتی</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >css
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >متوسط</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >html
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >مقدماتی</span
+                            >
+                          </div>
+                          <!--  -->
+                          <div class="d-inline-flex mb-2 me-2">
+                            <span class="skill font-90"
+                              >html css html css html css html css
+                              <span class="circle-middle"></span>
+                            </span>
+                            <span
+                              class="skill-level d-flex align-items-center font-90"
+                              >مقدماتی</span
+                            >
+                          </div>
                         </div>
                         <div class="col-12 col-md-6 d-flex">
                           <div class="mb-4 flex-grow-1">
@@ -676,7 +700,9 @@
                       >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >مقدماتی</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -684,7 +710,9 @@
                       >php
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >متوسط</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -692,7 +720,9 @@
                       >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">پیشرفته</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >پیشرفته</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -700,7 +730,9 @@
                       >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >مقدماتی</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -708,7 +740,9 @@
                       >javascrip mvvvvv
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >مقدماتی</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -716,7 +750,9 @@
                       >css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">متوسط</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >متوسط</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -724,7 +760,9 @@
                       >html
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >مقدماتی</span
+                    >
                   </div>
                   <!--  -->
                   <div class="d-inline-flex mb-2 me-2">
@@ -732,7 +770,9 @@
                       >html css html css html css html css
                       <span class="circle-middle"></span>
                     </span>
-                    <span class="skill-level d-flex align-items-center font-90">مقدماتی</span>
+                    <span class="skill-level d-flex align-items-center font-90"
+                      >مقدماتی</span
+                    >
                   </div>
                   <!--  -->
                 </div>
@@ -935,7 +975,6 @@
                               هنوز مشغول به تحصیل می باشم
                             </label>
                           </div>
-
                         </div>
                         <div class="col-12">
                           <button
@@ -1022,7 +1061,6 @@
               <span class="section-title">سوابق شغلی</span>
             </div>
             <div class="col-12">
-
               <!-- modal -->
               <div
                 class="modal z-index-lv0 fade"
@@ -1319,7 +1357,7 @@
               <span class="section-title">زبان ها</span>
             </div>
             <div class="col-12">
-                            <!-- modal -->
+              <!-- modal -->
               <div
                 class="modal z-index-lv0 fade"
                 id="remove-item"
@@ -1347,9 +1385,8 @@
                     <div class="modal-body">
                       <div class="row">
                         <div class="col-12 col-md-6">
-                            <p>آیتم مورد نظر حذف شود ؟</p>
+                          <p>آیتم مورد نظر حذف شود ؟</p>
                         </div>
-
 
                         <div class="col-12">
                           <button
@@ -1413,7 +1450,7 @@
                             />
                           </div>
                         </div>
-                       <div class="col-12 mb-4 col-md-6">
+                        <div class="col-12 mb-4 col-md-6">
                           <label
                             for="language-level"
                             class="form-check-label mb-2 font-90 font-md-is  cursor-pointer"
@@ -1460,7 +1497,7 @@
                   <div class="row mt-3 me-2 border-bm-c">
                     <div class="col">
                       <p class="font-bd-is">
-                       آلمانی
+                        آلمانی
                       </p>
                       <p>
                         <span class="font-1 me-3">متوسط</span>

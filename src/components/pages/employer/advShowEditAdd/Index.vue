@@ -25,7 +25,9 @@ import AppHeader from "../shared/Header.vue";
 import AppJobDetails from "./JobDetails.vue";
 import AppCompanySummary from "./CompanySummary.vue";
 import AppFooter from "../shared/Footer.vue";
+import { customSelectMixin } from "@/Mixins/customSelectMixin";
 export default {
+    mixins: [customSelectMixin],
   components: {
     AppHeader,
     AppFooter,
@@ -36,6 +38,7 @@ export default {
 </script>
 
 <style>
+@import url("../../../../assets/plugins/custom-select/css/custom-select.css");
 .header-bg {
   background: url("/images/job-banner.jpg");
   max-width: 100%;
