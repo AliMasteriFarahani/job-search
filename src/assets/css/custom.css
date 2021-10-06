@@ -298,12 +298,18 @@ a {
 .mr-1-{
   margin-right: -1rem !important;
 }
+.mt-05-{
+  margin-top: -.5rem !important;
+}
 /* ------ */
 .top-15 {
   top: 15% !important;
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.overflow-y-hidden{
+  overflow-y: hidden !important;
 }
 .vertical-line {
   border-left: 0.15rem solid #000;

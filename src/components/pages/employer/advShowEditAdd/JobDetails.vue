@@ -68,6 +68,10 @@
                           <option value="0">4 - 5 میلیون تومان</option>
                           <option value="0">5 - 6 میلیون تومان</option>
                           <option value="0">6 - 8 میلیون تومان</option>
+                          <option value="0">6 - 8 میلیون تومان</option>
+                          <option value="0">6 - 8 میلیون تومان</option>
+                          <option value="0">6 - 8 میلیون تومان</option>
+                          <option value="0">6 - 8 میلیون تومان</option>
                           <option value="0">8 - 10 میلیون تومان</option>
                           <option value="0">10 - 12 میلیون تومان</option>
                           <option value="0">12 - 15 میلیون تومان</option>
@@ -84,7 +88,7 @@
                         >نوع همکاری :</label
                       >
                       <div
-                        class="custom-select simple-scroll"
+                        class="custom-select"
                         title="انتخاب کنید ..."
                         data-search-box="false"
                       >
@@ -550,7 +554,7 @@
                       >سطح تسلط :</label
                     >
                     <div
-                      class="custom-select simple-scroll z-index-lv2"
+                      class="custom-select z-index-lv2"
                       title="انتخاب کنید ..."
                       data-search-box="false"
                     >

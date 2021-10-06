@@ -23,6 +23,9 @@ let CompanyInformations = ()=>import('../components/pages/employer/companyInform
 let CompanyAdvertisments = ()=>import('../components/pages/employer/advertisments/Index.vue');
 let JobDetails = ()=>import('../components/pages/employer/advertismentDetails/Index.vue');
 let JobEdit = ()=>import('../components/pages/employer/advShowEditAdd/Index.vue');
+let ResumeFolders = ()=>import('../components/pages/employer/resumeFolders/Index.vue');
+let ResumeFolder = ()=>import('../components/pages/employer/resumeFolder/Index.vue');
+let ResumeDetails = ()=>import('../components/pages/employer/resumeDetails/Index.vue');
 
 export const Routes = [
   { path: "/", component: Home, name: "Home" },
@@ -74,8 +77,10 @@ export const Routes = [
    ]},
    
    {path:'/companyInformations',component:CompanyInformations},
-   {path:'/advertisments',component:CompanyAdvertisments},
+   {path:'/advertismentsList',component:CompanyAdvertisments},
    {path:'/job/:id/details',component:JobDetails},
    {path:'/job/:id/edit',component:JobEdit},
-   
+   {path:'/resume/folders',component:ResumeFolders},
+   {path:'/resume/folders/:folderId',component:ResumeFolder},
+   {path:'/resume/details/:id',component:ResumeDetails},
 ];
