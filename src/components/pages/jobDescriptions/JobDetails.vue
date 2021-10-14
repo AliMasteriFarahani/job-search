@@ -5,15 +5,35 @@
         <div class="col-12">
           <div class="px-md-3 py-md-3 p-2 px-3 bg-c1 float-start w-100">
             <h3 class="m-0 mt-2 float-start font-xs-95 font-md-102">
-              استخدام برنامه نویس فرانت اند
+              استخدام {{ getJobDetails.jobTitle }}
             </h3>
-            <span class="float-end font-105 fw-bold cursor-pointer"
-              ><i class="fa-solid fa-bookmark align-middle"></i
-            ></span>
+            <span
+              class="
+                float-end
+                position-relative
+                font-105
+                save
+                fw-bold
+                cursor-pointer
+              "
+              @click="changeSaveStatus($route.params.id)"
+              > 
+              <span v-html="saveIcon()">
+
+              </span>
+              <div
+                v-if="getIsCurrentJobSaved === -1 && job == getJobDetails.jobId"
+                class="spinner-border spinner-save spinner-border-sm"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </span>
+            {{ getIsCurrentJobSaved }}
           </div>
         </div>
       </div>
-      <div class="row my-3 px-md-4 ">
+      <div class="row my-3 px-md-4">
         <div class="col-12">
           <div class="row ms-3 ms-md-2 vertical-dashed-line">
             <!-- moshakhasat forsat shoghli  -->
@@ -24,54 +44,103 @@
               <div class="row mt-3 font-xs-80 font-md-90">
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                   >
                     دسته بندی شغلی</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >برنامه نویسی وب</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.catTitle }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >نوع همکاری</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >تمام وقت</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.type_of_cooperation }}</span
                   >
                 </div>
 
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >موقعیت مکانی</span
                   >
-                  <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >تهران</span
+                  <span class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.provinceName }} -
+                    {{ getJobDetails.cityName }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >تعداد افراد مورد نیاز</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5 font-num-bd-is"
-                    >10</span
+                    class="
+                      job-desc-item
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-grow-5
+                      font-num-bd-is
+                    "
+                    >{{ getJobDetails.workforce_num }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >حقوق</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5 font-num-bd-is"
-                    >7000000</span
+                    class="
+                      job-desc-item
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-grow-5
+                      font-num-bd-is
+                    "
+                    >{{ getJobDetails.salary }}</span
                   >
                 </div>
               </div>
@@ -85,55 +154,97 @@
               <div class="row mt-3 font-xs-80 font-md-90">
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                   >
                     وضعیت نظام وظیفه</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >پایان خدمت سربازی</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.military_status }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >سابقه کار</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >کمتر از سه سال</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.work_experience }}</span
                   >
                 </div>
 
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                   >
                     مدرک تحصیلی</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >دکترا</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.degree_of_education }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >جنسیت
                   </span>
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5"
-                    >اقا - خانم</span
+                    class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
+                    >{{ getJobDetails.gender }}</span
                   >
                 </div>
                 <div class="col-12 mb-2 px-4 d-flex">
                   <span
-                    class="job-desc-item me-2 p-1 px-md-2 font-bd-is flex-bases-40 flex-grow-0"
+                    class="
+                      job-desc-item
+                      me-2
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-bases-40 flex-grow-0
+                    "
                     >بازه سنی</span
                   >
                   <span
-                    class="job-desc-item  p-1 px-md-2 font-bd-is flex-grow-5 font-num-bd-is"
-                    >20 تا 35 سال</span
+                    class="
+                      job-desc-item
+                      p-1
+                      px-md-2
+                      font-bd-is
+                      flex-grow-5
+                      font-num-bd-is
+                    "
+                    >{{ getJobDetails.age_range }} سال</span
                   >
                 </div>
               </div>
@@ -146,10 +257,14 @@
               </div>
               <div class="row mt-3 font-xs-80 font-md-90">
                 <div class="col-12 mb-2 px-4 d-flex flex-wrap">
-                  <span class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is">
-                    html /css</span
+                  <span
+                    v-for="(skill, index) in getJobDetails.needed_skills"
+                    :key="index"
+                    class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is"
                   >
-                  <span class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is "
+                    {{ skill }}</span
+                  >
+                  <!-- <span class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is "
                     >javascript</span
                   >
                   <span class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is "
@@ -163,7 +278,7 @@
                   >
                   <span class="job-desc-item me-2 mb-2 p-1 px-md-2 font-bd-is "
                     >vuejs</span
-                  >
+                  > -->
                 </div>
               </div>
             </div>
@@ -175,7 +290,8 @@
               </div>
               <div class="row mt-3 font-xs-80 font-md-90">
                 <div class="col-12 mb-2 px-4 d-flex flex-wrap font-bd-is">
-                  <ul>
+                  <p>{{ getJobDetails.job_descriptions }}</p>
+                  <!-- <ul>
                     <li class="mb-2">تسلط کامل به ui / ux</li>
                     <li class="mb-2">تسلط کامل به ui / ux</li>
                     <li class="mb-2">تسلط کامل به ui / ux</li>
@@ -190,7 +306,7 @@
                     در دسترس بودن علاقه‌مند به یادگیری مفاهیم جدید و حل مسائل
                     چالشی · علاقه‌مند به تولید کدهای تمیز، قابل توسعه و با
                     توضیحات کافی
-                  </p>
+                  </p> -->
                 </div>
               </div>
             </div>
@@ -202,15 +318,9 @@
               </div>
               <div class="row mt-3 font-xs-80 font-md-90">
                 <div class="col-12 mb-2 px-4 d-flex flex-wrap font-bd-is">
-                  <p>
-                    پینتو ادز (pinto Ads) شالوده دانش و همسانی تیمی زبده در حوزه
-                    دیجیتال مارکتینگ و توسه وب و اپلیکیشن موبایل است، که تجربه
-                    چندین ساله در بستر کسب و کارهای آنلاین ایران را به همراه خود
-                    دارد. در پینتو خلاقیت بر محور کار تیمی همیشه جریان دارد.
-                    پینتوها از هر چالشی برای ساخت یک فرصت تلاش می‌کنند تا
-                    رویاهای خود و مشتریان را به واقعیت نزدیک و نزدیک‌تر کنند.
-                  </p>
+                  <p>{{ getJobDetails.company_intro }}</p>
                 </div>
+               
               </div>
             </div>
             <!-- end of introduce company -->
@@ -222,7 +332,64 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  data() {
+    return { 
+         defaultClass: 'fa-regular',
+         employeeId:1,
+         job:null
+    };
+  },
+  computed: {
+    ...mapGetters(["getJobDetails", "getIsCurrentJobSaved"]),
+    saveIcon(){
+      return ()=>{
+        if (this.job==this.getJobDetails.jobId) {
+          this.getJobDetails.isSaved = this.getIsCurrentJobSaved;
+        }
+        return `<i class="fa-bookmark align-middle  ${this.saveClass} "></i>`;
+      }
+    },
+    saveClass(){
+      let className ;
+      if (this.getJobDetails.isSaved == 1) {
+        className = 'fa-solid';
+      }else if(this.getJobDetails.isSaved == 0){
+        className = 'fa-regular';
+      }else{
+        className = this.defaultClass
+      }
+      return className;
+    }
+  },
+  methods: {
+      changeSaveStatus(jobId) {
+        console.log(this.getJobDetails.isSaved);
+        if (this.saveClass === 'fa-solid') {
+          this.defaultClass = 'fa-solid'
+        }else if(this.saveClass === 'fa-regular'){
+          this.defaultClass = 'fa-regular'
+        }
+       this.$store.dispatch("changeJobSaveStatusInServer", { jobId, empId:this.employeeId ,isSaved:this.getJobDetails.isSaved,isCurrent:1});
+       this.$store.commit("setIsCurrentJobSaved", -1);
+       this.job = this.getJobDetails.jobId 
+    },
+
+  },
+
+};
 </script>
 
-<style></style>
+<style>
+.spinner-save {
+    position: absolute;
+    left: 0.1rem;
+    top: 0.5rem;
+    border-color: #6bf9c5;
+    border-left-color: transparent;
+}
+.spinner-border-sm {
+   border-width: .14em;
+}
+</style>

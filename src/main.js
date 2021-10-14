@@ -7,21 +7,25 @@ import './assets/css/all.css'
 import './assets/css/animate.min.css'
 import './assets/css/custom.css'
 
-import './assets/js/bootstrap.min.js' 
+import './assets/js/bootstrap.min.js'
 import './assets/js/all.min.js'
 
+Vue.config.productionTip = false
 
 import VueRouter from "vue-router";
+import { store } from './Store/Store.js'
+//import Axios from 'axios'
 import { Routes } from "./Routes/Routes.js";
 
-Vue.config.productionTip = false
 Vue.use(VueRouter)
+    //Vue.use(Axios)
 const router = new VueRouter({
-  mode:'history',
-  routes:Routes
+    mode: 'history',
+    routes: Routes
 })
 
 new Vue({
-  render: h => h(App),
-  router
+    render: h => h(App),
+    router,
+    store
 }).$mount('#app')

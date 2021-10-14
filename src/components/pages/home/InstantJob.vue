@@ -11,26 +11,26 @@
       <!--  -->
       <div class="row">
         <!-- job items -->
-        <div class="col-12" v-for="n in 10" :key="n">
-          <router-link :to="'/job-descriptions/'+n">
+        <div class="col-12" v-for="(job,index) in getImmediateJobs" :key="index">
+          <router-link :to="'/job-descriptions/' + job.id">
             <div class="float-start w-100 job-adv-imd p-2">
               <span class="float-start ms-2 w-100">
                 <div>
                   <h3 class="font-85 d-inline m-0">
-                    استخدام کارشناس بازاریابی
+                    {{job.title}}
                   </h3>
                   <span class="badge rounded-pill bg-danger float-end me-1"
                     >فوری</span
                   >
                 </div>
-                <div class="mt-3  color-73">
+                <div class="mt-3 color-73">
                   <span class="me-2">
                     <i class="fa-solid fa-building font-80"></i>
-                    <span class="font-73 ms-1">شرکت داده پرداز</span>
+                    <span class="font-73 ms-1">{{job.companyName}}</span>
                   </span>
                   <span>
                     <i class="fa-solid fa-location-dot font-80"></i>
-                    <span class="font-73 ms-1">تهران</span>
+                    <span class="font-73 ms-1">{{job.provinceName}}</span>
                   </span>
                 </div>
               </span>
@@ -44,7 +44,22 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+data(){
+  return{
+  
+  }
+},
+computed:{
+  ...mapGetters(['getCompanyLogoFolder','getImmediateJobs'])
+},
+created(){
+   if (this.getImmediateJobs.length == null) {
+     this.$store.dispatch('getImmediateJobsFromServer')
+   }
+}
+};
 </script>
 
 <style scoped>
@@ -62,4 +77,5 @@ export default {};
 }
 .job-adv-imd:first-child {
   border-top: none !important;
-}</style>
+}
+</style>

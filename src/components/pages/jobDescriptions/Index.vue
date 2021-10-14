@@ -13,7 +13,7 @@
         <!-- right side : -->
         <app-job-details></app-job-details>
         <!-- left side : -->
-        <app-resume-section :showBtn="true"></app-resume-section>
+        <app-resume-section :showBtn="true"  :expireDate="getJobDetails.expire_date"></app-resume-section>
       </div>
       <!-- end of left side  -->
       <!-- end of left and right for jobsection -->
@@ -36,7 +36,13 @@ import AppJobDetails from "./JobDetails.vue";
 import AppResumeSection from "../shared/ResumeSectionLeft.vue";
 import AppSimilarJobs from "./SimilarJobs.vue";
 import AppFooter from "../shared/Footer.vue";
+ import { mapGetters } from "vuex";
 export default {
+  data(){
+    return{
+      employeeId:1
+    }
+  },
   components: {
     AppHeader,
     AppFooter,
@@ -46,6 +52,20 @@ export default {
     AppJobDetails,
     AppResumeSection,
   },
+  computed:{
+      ...mapGetters(['getJobDetails']),
+  },
+  created(){
+    
+      this.$store.dispatch('getJobDetailsFromServer',{id:this.$route.params.id,empId:this.employeeId})
+ 
+  },
+  watch:{
+    $route(){
+       this.$store.dispatch('getJobDetailsFromServer',{id:this.$route.params.id,empId:this.employeeId})
+ 
+    }
+  }
 };
 </script>
 
