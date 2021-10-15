@@ -46,11 +46,18 @@
                         {{ simJob.jobTitle }}
                       </h3></router-link
                     >
-                    {{ simJob.jobId }} ---
                     <span
                       class="text-dark font-73 d-block d-md-inline font-num-is"
-                      >( 3 روز پیش )</span
                     >
+                      {{ simJob.created_at == "yesterday" ? "( دیروز )" : "" }}
+                      {{ simJob.created_at == "today" ? "( امروز )" : "" }}
+                      {{
+                        simJob.created_at != "yesterday" &&
+                        simJob.created_at != "today"
+                          ? `( ${simJob.created_at} روز پیش )`
+                          : ""
+                      }}
+                    </span>
                     <div
                       class="
                         mt-4
@@ -82,11 +89,7 @@
                       <span
                         class="position-absolute similar-bookmark"
                         @click="
-                          changeSaveStatus(
-                            simJob.jobId,
-                            simJob.isSaved,
-                            index
-                          )
+                          changeSaveStatus(simJob.jobId, simJob.isSaved, index)
                         "
                       >
                         <span v-html="saveIcon(index, simJob)"></span>
@@ -130,55 +133,20 @@
 <script>
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
 export default {
   //--------------------
+  mixins: [saveJobCollectMixin],
   data() {
     return {
-      employeeId:1,
-      oldClass: '',
-      key: null,
+      // employeeId:1,
     };
+  },
+  computed: {
+    ...mapGetters(["getSimilarPositions", "getIsJobSaved"]),
   },
   methods: {
     ...mapActions(["getSimilarPositionsFromServer"]),
-
-    changeSaveStatus(jobId, isSaved, key) {
-      this.$store.dispatch("changeJobSaveStatusInServer", {
-        jobId,
-        empId:this.employeeId,
-        isSaved,
-        isCurrent: 0,
-      });
-      this.$store.commit("setIsJobSaved", -1);
-      this.key = key;
-      if (isSaved == 1) {
-        this.oldClass = "fa-solid";
-      } else {
-        this.oldClass = "fa-regular";
-      }
-    },
-  },
-
-  computed: {
-    ...mapGetters(["getSimilarPositions", "getIsJobSaved"]),
-    saveIcon() {
-      return (index, simJob) => {
-        if (this.key == index) {
-          simJob.isSaved = this.getIsJobSaved;
-        }
-
-        let className;
-        if (simJob.isSaved == 1) {
-          className = "fa-solid";
-        } else if (simJob.isSaved == 0) {
-          className = "fa-regular";
-        } else {
-          className = this.oldClass;
-        }
-
-        return `<i class='fa-bookmark ${className} font-105'></i>`;
-      };
-    },
   },
   created() {
     this.getSimilarPositionsFromServer({
@@ -186,8 +154,26 @@ export default {
       empId: this.employeeId,
     });
   },
+  watch: {
+    $route() {
+      this.getSimilarPositionsFromServer({
+        jobId: this.$route.params.id,
+        empId: this.employeeId,
+      });
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.spinner-border-sm {
+  border-width: 0.16em;
+}
+.spinner-save {
+  position: absolute;
+  left: 0.1rem;
+  top: 0.2rem;
+  border-color: #ffcc12;
+  border-left-color: transparent;
+}
 </style>

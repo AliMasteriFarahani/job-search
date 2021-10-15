@@ -23,12 +23,12 @@ const mutations = {
 };
 const actions = {
     getProvincesFromServer(context) {
-        axios.get('http://job-search.test/api/getProvinces').then((response) => {
+        axios.get('api/getProvinces').then((response) => {
             context.commit('setProvinces', response.data)
         })
     },
     getCitiesFromServer() {
-        axios.get('http://job-search.test/api/getCities').then((response) => {
+        axios.get('api/getCities').then((response) => {
             console.log(response);
         })
     }

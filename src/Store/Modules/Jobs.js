@@ -9,6 +9,8 @@ const state = {
   isJobSaved: '',
   isCurrentJobSaved:'',
   similarPositions: {},
+  companyJobPositions:{},
+  companySummaryInfo:[]
 };
 const getters = {
   getNewJobs() {
@@ -32,6 +34,12 @@ const getters = {
   getSimilarPositions() {
     return state.similarPositions;
   },
+  getCompanyJobPositions(){
+    return state.companyJobPositions;
+  },
+  getCompanySummaryInfo(){
+    return state.companySummaryInfo;
+  }
 };
 const mutations = {
   setNewJobs(state, newJobs) {
@@ -52,17 +60,23 @@ const mutations = {
   setSimilarPositions(state, similarPositions) {
     state.similarPositions = similarPositions;
   },
+  setCompanyJobPositions(state,jobPositions){
+    state.companyJobPositions = jobPositions;
+  },
+  setCompanySummaryInfo(state,companyInfo){
+    state.companySummaryInfo = companyInfo;
+  }
 };
 const actions = {
   // for home page :
   getNewJobsFromServer(context) {
-    axios.get("http://job-search.test/api/getNewJobs").then((response) => {
+    axios.get("api/getNewJobs").then((response) => {
       context.commit("setNewJobs", response.data);
     });
   },
   getImmediateJobsFromServer(context) {
     axios
-      .get("http://job-search.test/api/getImmediateJobs")
+      .get("api/getImmediateJobs")
       .then((response) => {
         context.commit("setImmediateJobs", response.data);
       });
@@ -70,7 +84,7 @@ const actions = {
   // for job-description page :
   getJobDetailsFromServer(context, data) {
     axios
-      .get(`http://job-search.test/api/getJobDetails/${data.id}/${data.empId}`)
+      .get(`api/getJobDetails/${data.id}/${data.empId}`)
       .then((response) => {
         context.commit("setJobDetails", response.data[0]);
       });
@@ -85,7 +99,7 @@ const actions = {
   getIsJobSavedFromServer(context, data) {
     console.log('heyyy',data);
     axios
-      .get(`http://job-search.test/api/isJobSaved/${data.jobId}/${data.empId}`)
+      .get(`api/isJobSaved/${data.jobId}/${data.empId}`)
       .then((response) => {
         console.log('reponse',response.data);
         if (data.isCurrent == 1) {
@@ -101,7 +115,7 @@ const actions = {
       // if job was saved (delete it):
       axios
         .delete(
-          `http://job-search.test/api/removeJobFromSaved/${data.jobId}/${data.empId}`
+          `api/removeJobFromSaved/${data.jobId}/${data.empId}`
         )
         .then((response) => {
           console.log("data.isJobSaved", response);
@@ -113,7 +127,7 @@ const actions = {
       // if job wasn't saved (add it):
       axios
         .post(
-          `http://job-search.test/api/addJobToSaved/${data.jobId}/${data.empId}`
+          `api/addJobToSaved/${data.jobId}/${data.empId}`
         )
         .then((response) => {
           if (response.status === 200) {
@@ -124,11 +138,25 @@ const actions = {
   },
   getSimilarPositionsFromServer({ commit },data) {
     axios
-      .get(`http://job-search.test/api/getSimilarPositions/${data.jobId}/${data.empId}`)
+      .get(`api/getSimilarPositions/${data.jobId}/${data.empId}`)
       .then((response) => {
         commit("setSimilarPositions", response.data);
       });
   },
+  getCompanyJobPositionsFromServer({commit},data){
+    axios
+      .get(`api/getCompanyJobPositions/${data.companyId}/${data.empId}`)
+      .then((response) => {
+        commit("setCompanyJobPositions", response.data);
+      });
+  },
+  getCompanySummaryInfoFromServer({commit},data){
+    axios
+      .get(`api/getCompanySummaryInfo/${data.companyId}`)
+      .then((response) => {
+        commit("setCompanySummaryInfo", response.data[0]);
+      });
+  }
 };
 
 export default {

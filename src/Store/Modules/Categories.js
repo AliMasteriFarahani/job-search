@@ -16,7 +16,7 @@ const mutations = {
 };
 const actions = {
     getCategoriesFromServer(context) {
-        axios.get('http://job-search.test/api/getCategories').then(response => {
+        axios.get('api/getCategories').then(response => {
                 return response.data
             })
             .then((data) => {
