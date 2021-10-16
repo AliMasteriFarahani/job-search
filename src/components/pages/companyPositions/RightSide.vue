@@ -36,17 +36,20 @@
               />
             </span>
             <span class="float-start ms-3">
-              <a href="">
+              <router-link  :to="{
+                        name: 'JobDescriptions',
+                        params: { id: job.jobId },
+                      }">
                 <h3 class="font-90 mt-1 d-inline">
                   {{ job.jobTitle }}
                 </h3>
-              </a>
+              </router-link>
               <span class="text-dark font-73 d-block d-md-inline font-num-is"
                 >
-                {{job.created_at == 'yesterday' ? '( دیروز )':''}}
+                {{job.created_at == 'yesterday' || job.created_at == 1 ? '( دیروز )':''}}
                 {{job.created_at == 'today' ? '( امروز )':''}}
                 {{job.created_at != 'yesterday' && 
-                    job.created_at != 'today' ? `( ${job.created_at} روز پیش )`:''}}
+                    job.created_at != 'today' && job.created_at != 1 ? `( ${job.created_at} روز پیش )`:''}}
                 
                 </span
               >

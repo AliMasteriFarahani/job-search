@@ -31,7 +31,7 @@
                 >
                   <span class="job-logo-palce flex-none align-self-center">
                     <img
-                      src="/images/aven.png"
+                      :src="getCompanyLogoFolder+simJob.logo"
                       class="img-fluid figure-img"
                       alt=""
                     />
@@ -49,11 +49,17 @@
                     <span
                       class="text-dark font-73 d-block d-md-inline font-num-is"
                     >
-                      {{ simJob.created_at == "yesterday" ? "( دیروز )" : "" }}
+                      {{
+                        simJob.created_at == "yesterday" ||
+                        simJob.created_at == 1
+                          ? "( دیروز )"
+                          : ""
+                      }}
                       {{ simJob.created_at == "today" ? "( امروز )" : "" }}
                       {{
-                        simJob.created_at != "yesterday" &&
-                        simJob.created_at != "today"
+                        (simJob.created_at != "yesterday") &&
+                        (simJob.created_at != "today") &&
+                        (simJob.created_at != 1)
                           ? `( ${simJob.created_at} روز پیش )`
                           : ""
                       }}
@@ -143,7 +149,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSimilarPositions", "getIsJobSaved"]),
+    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder"]),
   },
   methods: {
     ...mapActions(["getSimilarPositionsFromServer"]),

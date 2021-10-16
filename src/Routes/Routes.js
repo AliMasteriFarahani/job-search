@@ -7,7 +7,7 @@ let JobDescriptions = () =>
   import("../components/pages/jobDescriptions/Index.vue");
 let Job = () =>
   import("../components/pages/employee/jobRequestSaved/Index.vue");
-let Saved = () => import("../components/pages/shared/Saved.vue");
+let Saved = () => import("../components/pages/employee/jobRequestSaved/Saved.vue");
 let Requests = () =>
   import("../components/pages/employee/jobRequestSaved/Requests.vue");
 let Resume = () => import("../components/pages/employee/resume/Index.vue");
