@@ -1,7 +1,7 @@
 <template>
               <div class="row min-h-70vh px-lg-5 px-4">
               <!-- result of job search : -->
-              <div v-for="n in 10" :key="n" class="col-12 mb-3">
+              <div v-for="(job,index) in getEmployeeSavedJobs" :key="index" class="col-12 mb-3">
                 <div
                   class="float-start w-100 job-adv position-relative  similar-job d-flex p-2"
                 >
@@ -15,7 +15,7 @@
                   <span class="float-start ms-3">
                     <a href="">
                       <h3 class="font-90 mt-1 d-inline">
-                        استخدام کارشناس بازاریابی
+                        {{job.jobTitle}}
                       </h3>
                     </a>
                     <span
@@ -27,19 +27,31 @@
                     >
                       <span class="me-3 mb-2 mb-md-0">
                         <i class="fa-solid fa-building font-80"></i>
-                        <span class="ms-1">شرکت داده پرداز</span>
+                        <span class="ms-1">{{job.companyName}}</span>
                       </span>
                       <span class="me-3 mb-2 mb-md-0">
                         <i class="fa-solid fa-location-dot font-80"></i>
-                        <span class="ms-1">تهران</span>
+                        <span class="ms-1">{{job.provinceName}}</span>
                       </span>
                       <span class="me-3">
                         <i class="fa-solid fa-money-check  align-middle font-80"></i>
                         <span class="ms-1">حقوق</span>
                         <span class="ms-1 font-num-is">(7000000 تومان)</span>
                       </span>
-                      <span class="position-absolute similar-bookmark">
-                        <i class="fa-solid fa-bookmark font-105"></i>
+                      <span
+                        class="position-absolute similar-bookmark"
+                        @click="
+                          changeSaveStatus(job.jobId, job.isSaved, index)
+                        "
+                      >
+                        <span v-html="saveIcon(index, job)"></span>
+                        <div
+                          v-if="getIsJobSaved === -1 && key == index"
+                          class="spinner-border spinner-save spinner-border-sm"
+                          role="status"
+                        >
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
                       </span>
                       <button
                         class="btn btn-success btn-similar-position bg-green border-radius-05 px-3 py-2 shadow-c border-0 d-none d-lg-block font-80 text-white"
@@ -55,12 +67,39 @@
             </div>
 </template>
 
-<script>
-export default {
 
+<script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
+export default {
+  mixins: [saveJobCollectMixin],
+  data(){
+    return{
+      employeeId:1
+    }
+  },
+  computed:{
+      ...mapGetters(['getEmployeeSavedJobs','getIsJobSaved','getCompanyLogoFolder'])
+  },
+methods:{
+  ...mapActions(['getEmployeeSavedJobsFromServer']),
+},
+created(){
+  this.getEmployeeSavedJobsFromServer(this.employeeId)
+}
 }
 </script>
 
 <style>
-
+.spinner-border-sm {
+  border-width: 0.16em;
+}
+.spinner-save {
+  position: absolute;
+  left: 0.1rem;
+  top: 0.2rem;
+  border-color: #ffcc12;
+  border-left-color: transparent;
+}
 </style>

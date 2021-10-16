@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 import Jobs from "./Modules/Jobs";
+import emloyeeJob from "./Modules/employee/job";
 import Categories from "./Modules/Categories";
 import Location from "./Modules/Location";
 export const store = new Vuex.Store({
@@ -21,6 +22,7 @@ export const store = new Vuex.Store({
     modules: {
         Jobs,
         Categories,
-        Location
+        Location,
+        emloyeeJob
     }
 });

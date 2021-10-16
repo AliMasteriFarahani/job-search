@@ -6,8 +6,8 @@ const state = {
   immediateJobs: {},
   newJobs: {},
   jobDetails: [],
-  isJobSaved: '',
-  isCurrentJobSaved:'',
+  // isJobSaved: '',
+  // isCurrentJobSaved:'',
   similarPositions: {},
   companyJobPositions:{},
   companySummaryInfo:[]
@@ -25,12 +25,12 @@ const getters = {
   getJobDetails() {
     return state.jobDetails;
   },
-  getIsJobSaved() {
-    return state.isJobSaved;
-  },
-  getIsCurrentJobSaved(state){
-      return state.isCurrentJobSaved
-  },
+  // getIsJobSaved() {
+  //   return state.isJobSaved;
+  // },
+  // getIsCurrentJobSaved(state){
+  //     return state.isCurrentJobSaved
+  // },
   getSimilarPositions() {
     return state.similarPositions;
   },
@@ -51,12 +51,12 @@ const mutations = {
   setJobDetails(state, jobDetails) {
     state.jobDetails = jobDetails;
   },
-  setIsJobSaved(state, isJobSaved) {
-    state.isJobSaved = isJobSaved;
-  },
-  setIsCurrentJobSaved(state,isSaved){
-      state.isCurrentJobSaved = isSaved;
-  },
+  // setIsJobSaved(state, isJobSaved) {
+  //   state.isJobSaved = isJobSaved;
+  // },
+  // setIsCurrentJobSaved(state,isSaved){
+  //     state.isCurrentJobSaved = isSaved;
+  // },
   setSimilarPositions(state, similarPositions) {
     state.similarPositions = similarPositions;
   },
@@ -96,46 +96,46 @@ const actions = {
   //         context.commit("setIsJobSaved", response.data["isJobSaved"]);
   //     });
   // },
-  getIsJobSavedFromServer(context, data) {
-    console.log('heyyy',data);
-    axios
-      .get(`api/isJobSaved/${data.jobId}/${data.empId}`)
-      .then((response) => {
-        console.log('reponse',response.data);
-        if (data.isCurrent == 1) {
-          context.commit("setIsCurrentJobSaved", response.data["isJobSaved"]);
-        }else{
+  // getIsJobSavedFromServer(context, data) {
+  //   console.log('heyyy',data);
+  //   axios
+  //     .get(`api/isJobSaved/${data.jobId}/${data.empId}`)
+  //     .then((response) => {
+  //       console.log('reponse',response.data);
+  //       if (data.isCurrent == 1) {
+  //         context.commit("setIsCurrentJobSaved", response.data["isJobSaved"]);
+  //       }else{
 
-          context.commit("setIsJobSaved", response.data["isJobSaved"]);
-        }
-      });
-  },
-  changeJobSaveStatusInServer({ dispatch }, data) {
-    if (data.isSaved == 1) { 
-      // if job was saved (delete it):
-      axios
-        .delete(
-          `api/removeJobFromSaved/${data.jobId}/${data.empId}`
-        )
-        .then((response) => {
-          console.log("data.isJobSaved", response);
-          if (response.status === 200) {
-              dispatch("getIsJobSavedFromServer", data)
-          }
-        });
-    } else if (data.isSaved == 0) {
-      // if job wasn't saved (add it):
-      axios
-        .post(
-          `api/addJobToSaved/${data.jobId}/${data.empId}`
-        )
-        .then((response) => {
-          if (response.status === 200) {
-            dispatch("getIsJobSavedFromServer", data);
-          }
-        });
-    }
-  },
+  //         context.commit("setIsJobSaved", response.data["isJobSaved"]);
+  //       }
+  //     });
+  // },
+  // changeJobSaveStatusInServer({ dispatch }, data) {
+  //   if (data.isSaved == 1) { 
+  //     // if job was saved (delete it):
+  //     axios
+  //       .delete(
+  //         `api/removeJobFromSaved/${data.jobId}/${data.empId}`
+  //       )
+  //       .then((response) => {
+  //         console.log("data.isJobSaved", response);
+  //         if (response.status === 200) {
+  //             dispatch("getIsJobSavedFromServer", data)
+  //         }
+  //       });
+  //   } else if (data.isSaved == 0) {
+  //     // if job wasn't saved (add it):
+  //     axios
+  //       .post(
+  //         `api/addJobToSaved/${data.jobId}/${data.empId}`
+  //       )
+  //       .then((response) => {
+  //         if (response.status === 200) {
+  //           dispatch("getIsJobSavedFromServer", data);
+  //         }
+  //       });
+  //   }
+  // },
   getSimilarPositionsFromServer({ commit },data) {
     axios
       .get(`api/getSimilarPositions/${data.jobId}/${data.empId}`)
