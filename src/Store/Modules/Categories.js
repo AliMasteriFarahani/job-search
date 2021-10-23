@@ -20,7 +20,6 @@ const actions = {
                 return response.data
             })
             .then((data) => {
-                console.log(data);
                 context.commit('setCategories', data)
             })
     }

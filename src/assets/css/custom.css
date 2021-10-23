@@ -420,6 +420,9 @@ text-decoration: underline !important;
     transform: translate(0, -50%);
 }
 
+.custom-option-item{
+  font-family: 'iransanse-num' !important;
+}
 
 /* shared */
 /* end of jod descriptions  */

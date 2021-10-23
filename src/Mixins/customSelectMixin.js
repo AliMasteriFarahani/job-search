@@ -178,6 +178,16 @@ export const customSelectMixin = {
             ? originalSelectedOption.removeAttribute("selected")
             : "";
           originalOptionSelect.setAttribute("selected", "");
+        //  let ori = e.target
+        //    .closest(".custom-select")
+        //    .querySelector(`select option[value='0']`);
+          let se = e.target
+            .closest(".custom-select")
+            .querySelector(`select`);
+                  let clickEvent = new Event('change');
+                //  ori.dispatchEvent(clickEvent);
+         // ori.click();
+          se.dispatchEvent(clickEvent);
         }
       }
     

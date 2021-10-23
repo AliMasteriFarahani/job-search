@@ -27,9 +27,10 @@ const actions = {
             context.commit('setProvinces', response.data)
         })
     },
-    getCitiesFromServer() {
-        axios.get('api/getCities').then((response) => {
+    getCitiesFromServer({commit},provinceId) {
+        axios.get(`api/getCities/${provinceId}`).then((response) => {
             console.log(response);
+            commit('setCities',response.data);
         })
     }
 };

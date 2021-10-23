@@ -74,7 +74,9 @@
                   >
                   <span
                     class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
-                    >{{ getJobDetails.type_of_cooperation }}</span
+                    >
+                    {{ getJobDetails.contract_type }}
+                    </span
                   >
                 </div>
 
@@ -244,7 +246,7 @@
                       flex-grow-5
                       font-num-bd-is
                     "
-                    >{{ getJobDetails.age_range }} سال</span
+                    >{{ getJobDetails.age_range }}</span
                   >
                 </div>
               </div>

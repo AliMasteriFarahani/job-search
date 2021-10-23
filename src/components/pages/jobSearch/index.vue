@@ -3,13 +3,13 @@
     <!-- top-menu -->
     <app-header></app-header>
     <!-- start header : -->
-    <app-search-filter-layer></app-search-filter-layer>
+    <app-search-filter-layer :removeFilter="removeFilter" :pageIdChanged="pageIdChanged" :sortStatus="sortStatus"></app-search-filter-layer>
     <!--  end of header -->
     <!-- job advertisment : -->
     <section class="container mt-5">
       <div class="row">
           <!-- right-side -->
-          <app-job-search-result></app-job-search-result>
+          <app-job-search-result @removeFilter="removeFilter = $event"  @sortChanged="sortStatus = $event"></app-job-search-result>
         <!-- left side : -->
         <app-resume-left-side :showBtn="false"></app-resume-left-side>
       </div>
@@ -17,7 +17,7 @@
       <!-- end of left and right for jobsection -->
 
       <!-- pagination : -->
-      <app-pagination></app-pagination>
+      <app-pagination :getPageId="getPageId" @pageChanged="pageIdChanged = $event" :allPages="getAllPages"></app-pagination>
       <!-- end of pagination  -->
     </section>
     <!-- footer  -->
@@ -34,6 +34,7 @@ import AppJobSearchResult from "./JobSearchResultRightSide.vue";
 import AppResumeLeftSide from "../shared/ResumeSectionLeft.vue";
 import AppPagination from "./Pagination.vue";
 import AppFooter from "../shared/Footer.vue";
+import { mapGetters } from "vuex";
 export default {
   mixins: [customSelectMixin],
   components: {
@@ -44,6 +45,29 @@ export default {
     AppSearchFilterLayer,
     AppJobSearchResult
   },
+  data(){
+    return{
+      employeeId:1,
+      sortStatus:1,
+      pageIdChanged:1,
+      removeFilter:null
+    }
+  },
+  computed:{
+    ...mapGetters(['getAllPages','getPageId'])
+  },
+  methods:{
+  //  ...mapActions(['getJobsFromServer']),
+    // pageChanged(pageId){
+    //   console.log('dddddd',pageId);
+    //   this.getJobsFromServer({employeeId:this.employeeId,pageId})
+    // }
+  },
+  watch:{
+    getPageId(v){
+      this.pageIdChanged = v;
+    }
+  }
 
 
 };

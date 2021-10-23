@@ -25,6 +25,16 @@ Vue.use(axios);
 const router = new VueRouter({
   mode: "history",
   routes: Routes,
+  scrollBehavior(to,from,savePosition){
+    if(to.hash){
+      if (savePosition) {
+        return savePosition
+      }
+       return {
+         selector:to.hash
+       };
+    }
+}
 });
 
 new Vue({
