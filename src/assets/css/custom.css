@@ -96,6 +96,9 @@ a {
   .font-md-102 {
     font-size: 1.2rem !important;
   }
+  .border-md-0{
+    border: 0 !important;
+  }
 }
 
 /*  media 992px  */
@@ -237,6 +240,9 @@ a {
   border-radius: 0.4rem !important;
 }
 /* --- bgColors : --- */
+.bg--green-04{
+  background: #048C9C !important;
+}
 .bg-cascade {
   background: #95a5a6 !important;
 }
@@ -245,6 +251,9 @@ a {
 }
 .bg-green {
   background-color: #559500 !important;
+}
+.bg--green-36{
+  background-color: #36CBB6 !important;
 }
 .bg-sky {
   background-color: #0ea5cc !important;
@@ -289,12 +298,18 @@ a {
 .mr-1-{
   margin-right: -1rem !important;
 }
+.mt-05-{
+  margin-top: -.5rem !important;
+}
 /* ------ */
 .top-15 {
   top: 15% !important;
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.overflow-y-hidden{
+  overflow-y: hidden !important;
 }
 .vertical-line {
   border-left: 0.15rem solid #000;
@@ -326,6 +341,16 @@ border-bottom: 1px solid #ccc;
 .border-bm-dashed-c{
 border-bottom: 1px dashed #ccc;
 }
+.ltr{
+  direction: ltr !important;
+}
+
+.line-height-3{
+  line-height: 3 !important;
+}
+.line-height-5{
+  line-height: 5 !important;
+}
 /*  index page : */
 .input-textbox {
   height: 40px;
@@ -334,7 +359,6 @@ border-bottom: 1px dashed #ccc;
   border: 1px solid #e6e6e6 !important;
   color: #7d7d7d !important;
 }
-
 
 /* search box - index page */
 .job-logo-palce {
@@ -369,20 +393,6 @@ a:hover {
   transform: scale(1.01);
   float: right !important;
 }
-/*  */
-
-
-
-
-/* job description page : */
-
-
-
-
-/* .form-check-input:checked {
-  background-color: #14cbe8;
-  border-color: #14cbe8;
-} */
 
 
 /* similar jobs  */
@@ -410,6 +420,9 @@ text-decoration: underline !important;
     transform: translate(0, -50%);
 }
 
+.custom-option-item{
+  font-family: 'iransanse-num' !important;
+}
 
 /* shared */
 /* end of jod descriptions  */

@@ -148,8 +148,8 @@
               </button>
             </div>
             <div class="mt-3 d-flex justify-content-center">
-              <p class="font-80" ref="f8" @click="changeColor($event)">
-                فرصت ارسال رزومه تا <span class="font-num-bd-is">20</span> روز
+              <p class="font-80" ref="f8">
+                فرصت ارسال رزومه تا <span class="font-num-bd-is">{{expireDate}}</span> روز
                 دیگر
               </p>
             </div>
@@ -169,6 +169,9 @@ export default {
     resumeEdit: {
       Boolean,
     },
+    expireDate:{
+      String
+    }
   },
   data() {
     return {

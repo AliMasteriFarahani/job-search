@@ -14,27 +14,27 @@
                             <div class="row ms-lg-2">
                                 <div class="col-12 col-md-6">
                                     <span class="float-start ms-3">
-                                        <span class="font-90 mt-1 d-none d-md-inline">نام شرکت :</span>
-                                        <span class="font-90 mt-1"><strong>سازه گستر مهر نوین</strong></span>
+                                        <span class="font-90 mt-1 d-none d-md-inline">نام شرکت : </span>
+                                        <span class="font-90 mt-1"><strong>{{getJobDetails.companyName}}</strong></span>
                                     </span>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <span class="float-start ms-3">
-                                        <span class="font-90 mt-1 d-none d-md-inline">آدرس سایت :</span>
-                                        <span class="font-xs-80 font-bd-is font-sm-90 mt-1">www.something.com</span>
+                                        <span class="font-90 mt-1 d-none d-md-inline">آدرس سایت : </span>
+                                        <span class="font-xs-80 font-bd-is font-sm-90 mt-1">{{getJobDetails.site_address}}</span>
                                     </span>
                                 </div>
                                 <div class="col-6 col-md-6">
                                     <span class="float-start ms-3">
                                         <span class="font-xs-80 font-sm-90 mt-1"> تاسیس : </span>
-                                        <span class="font-xs-80 font-num-bd-is font-sm-90 mt-1">1388</span>
+                                        <span class="font-xs-80 font-num-bd-is font-sm-90 mt-1">{{getJobDetails.date_of_establishment}}</span>
 
                                     </span>
                                 </div>
                                 <div class="col-6 col-md-6">
                                     <span class="float-start ms-0 ms-md-3">
-                                        <span class="font-xs-80 font-sm-90 mt-1">تعداد پرسنل :</span>
-                                        <span class="font-xs-80 font-num-bd-is font-sm-90 mt-1">15</span>
+                                        <span class="font-xs-80 font-sm-90 mt-1">تعداد پرسنل : </span>
+                                        <span class="font-xs-80 font-num-bd-is font-sm-90 mt-1">{{getJobDetails.num_of_staff}}</span>
                                     </span>
                                 </div>
 
@@ -48,8 +48,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-
+computed:{
+     ...mapGetters(['getJobDetails']),
+}
 }
 </script>
 

@@ -10,14 +10,14 @@
             <div class="bg-white rounded-3 shadow-c py-3 px-4">
                  <h3 class="font-1 font-bd-is mb-3">معرفی شرکت</h3>
                  <p>
-                   پینتو ادز (pinto Ads) شالوده دانش و همسانی تیمی زبده در حوزه دیجیتال مارکتینگ و توسه وب و اپلیکیشن موبایل است، که تجربه چندین ساله در بستر کسب و کارهای آنلاین ایران را به همراه خود دارد. در پینتو خلاقیت بر محور کار تیمی همیشه جریان دارد. پینتوها از هر چالشی برای ساخت یک فرصت تلاش می‌کنند تا رویاهای خود و مشتریان را به واقعیت نزدیک و نزدیک‌تر کنند.
+                    {{getCompanySummaryInfo.introduce}}
                  </p>
             </div>
         </div>
       </div>
       <div class="row">
           <!-- right-side -->
-        <app-right-side></app-right-side>
+        <app-right-side :pageIdChanged="pageIdChanged" ></app-right-side>
         <!-- left side : -->
         <app-resume-left-side :showBtn="false"></app-resume-left-side>
       </div>
@@ -25,7 +25,7 @@
       <!-- end of left and right for jobsection -->
 
       <!-- pagination : -->
-      <app-pagination></app-pagination>
+      <app-pagination :getPageId="getCompanyJobPageId" @pageChanged="pageIdChanged = $event" :allPages="getAllPagesCompanyJob"></app-pagination>
       <!-- end of pagination  -->
     </section>
     <!-- footer  -->
@@ -39,9 +39,16 @@ import AppHeader from "../shared/Header.vue";
 import AppLandingLayer from "./LandingLayer.vue";
 import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../shared/ResumeSectionLeft.vue";
-import AppPagination from "./Pagination.vue";
+import AppPagination from "../shared/PaginationSimple.vue";
 import AppFooter from "../shared/Footer.vue";
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
+  data(){
+    return {
+            pageIdChanged:1,
+    }
+  },
   components: {
     AppFooter,
     AppHeader,
@@ -50,7 +57,24 @@ export default {
     AppResumeLeftSide,
     AppRightSide
   },
+  computed:{
+    ...mapGetters(['getCompanySummaryInfo','getAllPagesCompanyJob','getCompanyJobPageId'])
+  },
+  methods:{
+    ...mapActions(['getCompanySummaryInfoFromServer'])
 
+  },
+  created(){
+    if(Object.keys(this.getCompanySummaryInfo).length == 0){
+      this.getCompanySummaryInfoFromServer({companyId:this.$route.params.id})
+    }
+  },
+  watch:{
+    getPageId(v){
+      this.pageIdChanged = v;
+    },
+
+  },
 
 };
 </script>

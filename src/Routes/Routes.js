@@ -7,7 +7,7 @@ let JobDescriptions = () =>
   import("../components/pages/jobDescriptions/Index.vue");
 let Job = () =>
   import("../components/pages/employee/jobRequestSaved/Index.vue");
-let Saved = () => import("../components/pages/shared/Saved.vue");
+let Saved = () => import("../components/pages/employee/jobRequestSaved/Saved.vue");
 let Requests = () =>
   import("../components/pages/employee/jobRequestSaved/Requests.vue");
 let Resume = () => import("../components/pages/employee/resume/Index.vue");
@@ -16,13 +16,22 @@ let CompanyPositions = () =>
 let EmployeeSettings = () =>
   import("../components/pages/employee/settings/Index.vue");
 // employer :
-//let EmployerLogin = ()=>import('../components/pages/employer/login/Index.vue');
+let EmployerLoginRegister = ()=>import('../components/pages/employer/login/Index.vue');
+let EmployerLogin = ()=>import('../components/pages/employer/login/Login.vue');
+let EmployerRegister = ()=>import('../components/pages/employer/login/Register.vue');
+let CompanyInformations = ()=>import('../components/pages/employer/companyInformations/Index.vue');
+let CompanyAdvertisments = ()=>import('../components/pages/employer/advertisments/Index.vue');
+let JobDetails = ()=>import('../components/pages/employer/advertismentDetails/Index.vue');
+let JobEdit = ()=>import('../components/pages/employer/advShowEditAdd/Index.vue');
+let ResumeFolders = ()=>import('../components/pages/employer/resumeFolders/Index.vue');
+let ResumeFolder = ()=>import('../components/pages/employer/resumeFolder/Index.vue');
+let ResumeDetails = ()=>import('../components/pages/employer/resumeDetails/Index.vue');
 
 export const Routes = [
   { path: "/", component: Home, name: "Home" },
   { path: "/job-search", component: JobSearch, name: "JobSearch" },
   {
-    path: "/job-descriptions/:id",
+    path: "/job-descriptions/:id/:slug",
     component: JobDescriptions,
     name: "JobDescriptions",
   },
@@ -60,4 +69,18 @@ export const Routes = [
   { path: "/404", redirect: "/" },
 
   // employer :
+  {path:'/employer',component:EmployerLoginRegister,
+   children:[
+       {path:'',redirect:'/'},
+       {path:'login',component:EmployerLogin},
+       {path:'register',component:EmployerRegister},
+   ]},
+   
+   {path:'/companyInformations',component:CompanyInformations},
+   {path:'/advertismentsList',component:CompanyAdvertisments},
+   {path:'/job/:id/details',component:JobDetails},
+   {path:'/job/:id/edit',component:JobEdit},
+   {path:'/resume/folders',component:ResumeFolders},
+   {path:'/resume/folders/:folderId',component:ResumeFolder},
+   {path:'/resume/details/:id',component:ResumeDetails},
 ];

@@ -82,7 +82,7 @@ export default {
    padding: 0.5rem 1rem;
    color: #000;
 }
-.router-link-exact-active{
+.login .router-link-exact-active .register .router-link-exact-active {
   color: #fff !important;
   background-color: #1e6fcf !important;
   font-family: "iransanse-md" !important;
