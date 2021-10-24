@@ -33,7 +33,7 @@
                     title="انتخاب استان ..."
                     data-search-box="true"
                   >
-                    <select v-model="filters.province">
+                    <select class="p2" id="province" v-model="filters.province">
                       <option value="0">انتخاب همه استان ها</option>
                       <option
                         v-for="(province, index) in getProvinces"
@@ -57,7 +57,7 @@
                     title="دسته بندی شغلی"
                     data-search-box="true"
                   >
-                    <select v-model="filters.category">
+                    <select class="p2" id="category" v-model="filters.category">
                       <option value="0">همه دسته بندی ها</option>
                       <option
                         v-for="(cat, index) in getCategories"
@@ -199,7 +199,6 @@
                   >
                     جست و جو
                   </button>
-                  {{ oo.mykey }}
                 </div>
               </div>
             </div>
@@ -241,13 +240,10 @@ export default {
         contractType: "",
         sortStatus: 1,
       },
+      fff: "",
       filtersTmp: [],
-      showAdvancedFilterItems: false,
       employeeId: 1,
-      fff: {
-        name: "ali",
-      },
-      oo: {},
+      showAdvancedFilterItems: false,
     };
   },
   computed: {
@@ -275,10 +271,19 @@ export default {
         employeeId: this.employeeId,
         pageId: 1,
       });
-      this.filtersTmp = Object.assign({},this.filters) ;
+      this.filtersTmp = Object.assign({}, this.filters);
     },
   },
   created() {
+    console.log(' oop ',this.$route);
+    this.filtersTmp = Object.assign({}, this.filters);
+    if (this.$route.params["filters"] !== undefined) {
+      this.filters = this.$route.params.filters;
+      this.filtersTmp = Object.assign({}, this.filters);
+     // this.fff = this.$route.params.filters;
+    } else {
+      console.log("uuuuuuu");
+    }
     this.getProvincesFromServer();
     this.getCategoriesFromServer();
     this.getSalaryFromServer();
@@ -291,23 +296,81 @@ export default {
     });
   },
   watch: {
+    fff() {
+      //   console.log('ffff heyyyy');
+      //    //let fa = { pr: 3, cat: 2 };
+      // let clickEvent = new Event("change");
+      // document.querySelectorAll(".custom-select .p2").forEach((element) => {
+      //   console.log("eee", element);
+      //   if (element.id == "province") {
+      //     let option = element.querySelector(`option[value='${this.filters.province}']`);
+      //     let text = option.innerText;
+      //     option.setAttribute("selected", "selected");
+      //     element
+      //       .closest(".custom-select")
+      //       .querySelector(".custom-option-selected").innerText = text;
+      //   }
+      //   if (element.id == "category") {
+      //     let option = element.querySelector(`option[value='${this.filters.category}']`);
+      //     let text = option.innerText;
+      //     option.setAttribute("selected", "selected");
+      //     element
+      //       .closest(".custom-select")
+      //       .querySelector(".custom-option-selected").innerText = text;
+      //   }
+      //   console.log("id", element.id);
+      //   element.dispatchEvent(clickEvent);
+      // });
+    },
+    filters() {
+      let clickEvent = new Event("change");
+      document.querySelectorAll(".custom-select .p2").forEach((element) => {        
+          if (element.id == "province") {
+            if (this.filters.province != "" && this.filters.province !=0 && this.filters.province != undefined) {
+              alert("empty not");
+            let option = element.querySelector(
+              `option[value='${this.filters.province}']`
+            );
+            let text = option.innerText;
+            option.setAttribute("selected", "selected");
+            element
+              .closest(".custom-select")
+              .querySelector(".custom-option-selected").innerText = text;
+          }
+        }
+
+          if (element.id == "category") {
+            if (this.filters.category != "" && this.filters.category !=0 && this.filters.category != undefined) {
+            let option = element.querySelector(
+              `option[value='${this.filters.category}']`
+            );
+            let text = option.innerText;
+            option.setAttribute("selected", "selected");
+            element
+              .closest(".custom-select")
+              .querySelector(".custom-option-selected").innerText = text;
+          }
+        }
+        element.dispatchEvent(clickEvent);
+      });
+    },
     sortStatus(v) {
       this.filters.sortStatus = v;
+      this.filtersTmp.sortStatus = v;
       this.getSearchJobsFromServer({
-        filters: this.filters,
+        filters: this.filtersTmp,
         employeeId: this.employeeId,
         pageId: 1,
       });
     },
     pageIdChanged(v) {
       this.getSearchJobsFromServer({
-        filters: this.filters,
+        filters: this.filtersTmp,
         employeeId: this.employeeId,
         pageId: v,
       });
     },
     removeFilter(v) {
-    //  this.filtersTmp['province'] = 'hellllo'
       if (v.value != null && v.value != "all") {
         this.filtersTmp[v.value] = "";
         this.getSearchJobsFromServer({
@@ -326,7 +389,9 @@ export default {
         });
       }
     },
-  },
+
+  }, // watch
+
 };
 </script>
 

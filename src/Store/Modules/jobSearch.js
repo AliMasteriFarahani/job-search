@@ -43,26 +43,25 @@ const mutations = {
     }
 };
 const actions = {
-    getJobsFromServer({commit},data){
-        axios.get(`api/jobs/${data.employeeId}/${data.pageId}`)
-        .then(response=>{
-            console.log(response);
-            commit('setJobs',response.data.result)
-            commit('setAllPages',response.data.allPages)
-        })
-    },
+    // getJobsFromServer({commit},data){
+    //     axios.get(`api/jobs/${data.employeeId}/${data.pageId}`)
+    //     .then(response=>{
+    //         commit('setJobs',response.data.result)
+    //         commit('setAllPages',response.data.allPages)
+    //     })
+    // },
     getSearchJobsFromServer({commit},data){
     //  let info={id:1,name:'ali'}
      // let params = new URLSearchParams();
      // params.append('name','Ali')
-     console.log('serrrrrr:',data);
+     console.log('sent data',data);
         axios.post(`api/getSearchJobs/${data.employeeId}/${data.pageId}`,data.filters)
         .then(response=>{
-            console.log('ser:',response);
             commit('setJobs',response.data.result);
             commit('setAllPages',response.data.allPages);
             commit('setTotalJobs',response.data.totalJobs);
             commit('setPageId',response.data.pageId);
+           console.log(response);
             commit('setWhatSearch',response.data.whatSearch);
         })
     },

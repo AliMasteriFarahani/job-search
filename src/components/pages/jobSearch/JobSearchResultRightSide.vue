@@ -4,30 +4,35 @@
       <a href="" id="search"></a>
       <div class="row filters my-3 px-md-4">
         <div class="col-12 col-md-9 ps-4 ps-md-2 order-1 order-md-0">
-
-          <template  v-if="Object.keys(getWhatSearch).length > 0">
-          <span class="font-85"
-            >نتایج جست و جو :
-            <span class="ms-2 font-1 me-1 font-num-bd-is">{{getTotalJobs}}</span> مورد یافت
-            شد</span
-          >
-          <span class="vertical-line mx-3 d-none d-md-inline"></span>
-          <span @click="removeFilter({id:Math.random(0,1),value:'all'})"
-            class="
-              font-80
-              text-danger
-              cursor-pointer
-              d-block d-md-inline
-              mt-2 mt-md-0
-            "
-            >حذف فیلتر ها</span
-          >
+          <template v-if="Object.keys(getWhatSearch).length > 0">
+            <span class="font-85"
+              >نتایج جست و جو :
+              <span class="ms-2 font-1 me-1 font-num-bd-is">{{
+                getTotalJobs
+              }}</span>
+              مورد یافت شد</span
+            >
+            <span class="vertical-line mx-3 d-none d-md-inline"></span>
+            <span
+              @click="removeFilter({ id: Math.random(0, 1), value: 'all' })"
+              class="
+                font-80
+                text-danger
+                cursor-pointer
+                d-block d-md-inline
+                mt-2 mt-md-0
+              "
+              >حذف فیلتر ها</span
+            >
           </template>
           <template v-else>
-                      <span class="font-85"
-            >مشاغل موجود :
-            <span class="ms-2 font-1 me-1 font-num-bd-is">{{getTotalJobs}}</span> مورد شغل فعال</span
-          >
+            <span class="font-85"
+              >مشاغل موجود :
+              <span class="ms-2 font-1 me-1 font-num-bd-is">{{
+                getTotalJobs
+              }}</span>
+              مورد شغل فعال</span
+            >
           </template>
         </div>
         <div
@@ -59,7 +64,9 @@
             <input type="hidden" value="0" />
             <span class="font-num-is">{{ handleSearch(search) }} </span>
             <span
-              @click="removeFilter({id:Math.random(0,1),value:search.name})"
+              @click="
+                removeFilter({ id: Math.random(0, 1), value: search.name })
+              "
               class="close-icon d-inline-flex align-middle cursor-pointer ms-1"
             >
               <i class="font-1 align-middle fa-solid fa-circle-xmark"></i>
@@ -99,11 +106,17 @@
               />
             </span>
             <span class="float-start ms-3">
-              <a href="">
+              <router-link
+                target="_blank"
+                :to="{
+                  name: 'JobDescriptions',
+                  params: { id: job.jobId, slug: sanitizeTitleSlug(job.jobTitle) },
+                }"
+              >
                 <h3 class="font-90 mt-1 d-inline">
                   {{ job.jobTitle }}
                 </h3>
-              </a>
+              </router-link>
               <span class="text-dark font-73 d-block d-md-inline font-num-is">
                 {{
                   job.created_at == "yesterday" || job.created_at == 1
@@ -132,11 +145,6 @@
                   <i class="fa-solid fa-money-check align-middle font-80"></i>
                   <span class="ms-1">حقوق</span>
                   <span class="ms-1 font-num-is">
-                    <!-- ({{
-                      job.salary == "حقوق پایه (وزارت کار)"
-                        ? `حقوق پایه - وزارت کار`
-                        : `${job.salary | toCurrency()} تومان `
-                    }}) -->
                     ({{
                       job.salary == "حقوق پایه (وزارت کار)"
                         ? `حقوق پایه - وزارت کار`
@@ -193,8 +201,9 @@
 import { mapGetters } from "vuex";
 import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
 import { toCurrency } from "@/Mixins/toCurrency";
+import { makeSlug } from "@/Mixins/makeSlug";
 export default {
-  mixins: [saveJobCollectMixin, toCurrency],
+  mixins: [saveJobCollectMixin, toCurrency,makeSlug],
   data() {
     return {
       employeeId: 1,
@@ -207,7 +216,7 @@ export default {
       "getIsJobSaved",
       "getCompanyLogoFolder",
       "getWhatSearch",
-      "getTotalJobs"
+      "getTotalJobs",
     ]),
     handleSearch() {
       return (itam) => {
@@ -223,9 +232,9 @@ export default {
     },
   },
   methods: {
-  removeFilter(val){
-        this.$emit('removeFilter',val);
-  },
+    removeFilter(val) {
+      this.$emit("removeFilter", val);
+    },
   },
   watch: {
     sortStatus(v) {

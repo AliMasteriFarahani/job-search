@@ -31,7 +31,7 @@ export const Routes = [
   { path: "/", component: Home, name: "Home" },
   { path: "/job-search", component: JobSearch, name: "JobSearch" },
   {
-    path: "/job-descriptions/:id",
+    path: "/job-descriptions/:id/:slug",
     component: JobDescriptions,
     name: "JobDescriptions",
   },

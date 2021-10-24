@@ -50,7 +50,8 @@ export default {
       employeeId:1,
       sortStatus:1,
       pageIdChanged:1,
-      removeFilter:null
+      removeFilter:null,
+      ff:''
     }
   },
   computed:{
@@ -66,7 +67,19 @@ export default {
   watch:{
     getPageId(v){
       this.pageIdChanged = v;
-    }
+    },
+//         $route(to,from){
+//       //    alert()
+//           this.ff = to.params;
+// console.log('dddd',to,from);
+//   }
+  },
+
+    beforeRouteEnter(to,from,next){
+    console.log('before route enter', to);
+   // console.log('br',document.querySelectorAll('select'));
+    console.log('before route enter', from);
+    next()
   }
 
 
