@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import VueMeta from "vue-meta"
 
 import "./assets/css/bootstrap.rtl.min.css";
 import "./assets/css/bootstrap-reboot.rtl.min.css";
@@ -21,6 +22,10 @@ import { Routes } from "./Routes/Routes.js";
 
 Vue.use(VueRouter);
 Vue.use(axios);
+
+Vue.use(VueMeta,{
+ // refreshOnceOnNavigation: true
+});
 
 const router = new VueRouter({
   mode: "history",

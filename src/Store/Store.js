@@ -10,9 +10,10 @@ import Location from "./Modules/Location";
 import searchOptions from "./Modules/searchOptions";
 export const store = new Vuex.Store({
     state: {
-
+    
     },
     getters: {
+
 
     },
     mutations: {

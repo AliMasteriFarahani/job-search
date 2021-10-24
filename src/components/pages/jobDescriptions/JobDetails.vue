@@ -336,6 +336,11 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+    metaInfo() {
+      return {
+          title: this.getMeta,
+      }
+  },
   data() {
     return { 
          defaultClass: 'fa-regular',
@@ -363,6 +368,9 @@ export default {
         className = this.defaultClass
       }
       return className;
+    },
+    getMeta(){
+      return this.getJobDetails.jobTitle
     }
   },
   methods: {

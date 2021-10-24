@@ -8,7 +8,7 @@ const state = {
     whatSearch:[]
 };
 const getters = {
-    getJobs(){
+    getJobs(state){
         return state.jobs;
     },
     getAllPages(){

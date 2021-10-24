@@ -38,9 +38,10 @@
                   </span>
                   <span class="float-start ms-3">
                     <router-link
+                    target="_blank"
                       :to="{
                         name: 'JobDescriptions',
-                        params: { id: simJob.jobId },
+                        params: { id: simJob.jobId ,slug:sanitizeTitleSlug(simJob.jobTitle)},
                       }"
                       ><h3 class="font-90 mt-1 d-inline">
                         {{ simJob.jobTitle }}
@@ -140,9 +141,10 @@
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
+import { makeSlug } from "@/Mixins/makeSlug";
 export default {
   //--------------------
-  mixins: [saveJobCollectMixin],
+  mixins: [saveJobCollectMixin,makeSlug],
   data() {
     return {
       // employeeId:1,

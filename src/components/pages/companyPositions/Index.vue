@@ -17,7 +17,7 @@
       </div>
       <div class="row">
           <!-- right-side -->
-        <app-right-side></app-right-side>
+        <app-right-side :pageIdChanged="pageIdChanged" ></app-right-side>
         <!-- left side : -->
         <app-resume-left-side :showBtn="false"></app-resume-left-side>
       </div>
@@ -25,7 +25,7 @@
       <!-- end of left and right for jobsection -->
 
       <!-- pagination : -->
-      <app-pagination></app-pagination>
+      <app-pagination :getPageId="getCompanyJobPageId" @pageChanged="pageIdChanged = $event" :allPages="getAllPagesCompanyJob"></app-pagination>
       <!-- end of pagination  -->
     </section>
     <!-- footer  -->
@@ -39,11 +39,16 @@ import AppHeader from "../shared/Header.vue";
 import AppLandingLayer from "./LandingLayer.vue";
 import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../shared/ResumeSectionLeft.vue";
-import AppPagination from "./Pagination.vue";
+import AppPagination from "../shared/PaginationSimple.vue";
 import AppFooter from "../shared/Footer.vue";
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 export default {
+  data(){
+    return {
+            pageIdChanged:1,
+    }
+  },
   components: {
     AppFooter,
     AppHeader,
@@ -53,7 +58,7 @@ export default {
     AppRightSide
   },
   computed:{
-    ...mapGetters(['getCompanySummaryInfo'])
+    ...mapGetters(['getCompanySummaryInfo','getAllPagesCompanyJob','getCompanyJobPageId'])
   },
   methods:{
     ...mapActions(['getCompanySummaryInfoFromServer'])
@@ -63,7 +68,13 @@ export default {
     if(Object.keys(this.getCompanySummaryInfo).length == 0){
       this.getCompanySummaryInfoFromServer({companyId:this.$route.params.id})
     }
-  }
+  },
+  watch:{
+    getPageId(v){
+      this.pageIdChanged = v;
+    },
+
+  },
 
 };
 </script>

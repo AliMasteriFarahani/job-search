@@ -3,7 +3,7 @@
     <div class="border-r bg-white">
       <div class="row px-lg-5 px-4 mt-4">
         <div class="col-12">
-          <h3 class="font-1 mb-3">موقعیت های شغلی </h3>
+          <h3 class="font-1 mb-3">موقعیت های شغلی</h3>
         </div>
       </div>
       <div class="row mb-3">
@@ -30,29 +30,40 @@
           >
             <span class="job-logo-palce flex-none align-self-center">
               <img
-                :src="getCompanyLogoFolder+job.logo"
+                :src="getCompanyLogoFolder + job.logo"
                 class="img-fluid figure-img"
                 alt=""
               />
             </span>
             <span class="float-start ms-3">
-              <router-link  :to="{
-                        name: 'JobDescriptions',
-                        params: { id: job.jobId },
-                      }">
+              <router-link
+                :to="{
+                  name: 'JobDescriptions',
+                  params: {
+                    id: job.jobId,
+                    slug: sanitizeTitleSlug(job.jobTitle),
+                  },
+                }"
+              >
                 <h3 class="font-90 mt-1 d-inline">
                   {{ job.jobTitle }}
                 </h3>
               </router-link>
-              <span class="text-dark font-73 d-block d-md-inline font-num-is"
-                >
-                {{job.created_at == 'yesterday' || job.created_at == 1 ? '( دیروز )':''}}
-                {{job.created_at == 'today' ? '( امروز )':''}}
-                {{job.created_at != 'yesterday' && 
-                    job.created_at != 'today' && job.created_at != 1 ? `( ${job.created_at} روز پیش )`:''}}
-                
-                </span
-              >
+              <span class="text-dark font-73 d-block d-md-inline font-num-is">
+                {{
+                  job.created_at == "yesterday" || job.created_at == 1
+                    ? "( دیروز )"
+                    : ""
+                }}
+                {{ job.created_at == "today" ? "( امروز )" : "" }}
+                {{
+                  job.created_at != "yesterday" &&
+                  job.created_at != "today" &&
+                  job.created_at != 1
+                    ? `( ${job.created_at} روز پیش )`
+                    : ""
+                }}
+              </span>
               <div class="mt-4 color-73 font-xs-73 font-sm-80 d-flex flex-wrap">
                 <span class="me-3 mb-2 mb-md-0">
                   <i class="fa-solid fa-building font-80"></i>
@@ -112,23 +123,47 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
+import { makeSlug } from "@/Mixins/makeSlug";
 export default {
-  mixins:[saveJobCollectMixin],
+  mixins: [saveJobCollectMixin, makeSlug],
+  props: {
+    pageIdChanged: {
+      Number,
+      default: 1,
+    },
+  },
   data() {
     return {
       // employeeId: 1,
     };
   },
-    computed: {
-    ...mapGetters(['getCompanyJobPositions', 'getIsJobSaved','getCompanyLogoFolder']),
+  computed: {
+    ...mapGetters([
+      "getCompanyJobPositions",
+      "getIsJobSaved",
+      "getCompanyLogoFolder",
+    ]),
+  },
+  methods:{
+      ...mapActions(['getCompanyJobPositionsFromServer'])
   },
   created() {
     this.$store.dispatch("getCompanyJobPositionsFromServer", {
       companyId: this.$route.params.id,
       empId: this.employeeId,
+      pageId: 1,
     });
+  },
+  watch: {
+    pageIdChanged(v) {
+      this.getCompanyJobPositionsFromServer({
+        companyId: this.$route.params.id,
+        empId: this.employeeId,
+        pageId: v,
+      });
+    },
   },
 };
 </script>

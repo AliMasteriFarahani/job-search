@@ -11,7 +11,12 @@
 export default {
   //components: { AppHome },
   name: "App",
+    metaInfo() {
+      return {
+          titleTemplate: '%s | jobroob.ir جابروب'   
+      }
 
+  },
 };
 </script>
 

@@ -32,7 +32,7 @@ import AppHeader from "../shared/Header.vue";
 import AppSearchFilterLayer from "./SearchFilterLayer.vue";
 import AppJobSearchResult from "./JobSearchResultRightSide.vue";
 import AppResumeLeftSide from "../shared/ResumeSectionLeft.vue";
-import AppPagination from "./Pagination.vue";
+import AppPagination from "../shared/PaginationSimple.vue";
 import AppFooter from "../shared/Footer.vue";
 import { mapGetters } from "vuex";
 export default {
@@ -45,43 +45,28 @@ export default {
     AppSearchFilterLayer,
     AppJobSearchResult
   },
+      metaInfo() {
+      return {
+          title: 'جست و جوی فرصت های شغلی',
+      }
+  },
   data(){
     return{
       employeeId:1,
       sortStatus:1,
       pageIdChanged:1,
       removeFilter:null,
-      ff:''
     }
   },
   computed:{
-    ...mapGetters(['getAllPages','getPageId'])
-  },
-  methods:{
-  //  ...mapActions(['getJobsFromServer']),
-    // pageChanged(pageId){
-    //   console.log('dddddd',pageId);
-    //   this.getJobsFromServer({employeeId:this.employeeId,pageId})
-    // }
+    ...mapGetters(['getAllPages','getPageId','getAllaa'])
   },
   watch:{
     getPageId(v){
       this.pageIdChanged = v;
     },
-//         $route(to,from){
-//       //    alert()
-//           this.ff = to.params;
-// console.log('dddd',to,from);
-//   }
+
   },
-
-    beforeRouteEnter(to,from,next){
-    console.log('before route enter', to);
-   // console.log('br',document.querySelectorAll('select'));
-    console.log('before route enter', from);
-    next()
-  }
-
 
 };
 </script>

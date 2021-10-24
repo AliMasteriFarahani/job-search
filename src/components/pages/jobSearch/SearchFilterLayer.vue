@@ -275,14 +275,11 @@ export default {
     },
   },
   created() {
-    console.log(' oop ',this.$route);
     this.filtersTmp = Object.assign({}, this.filters);
     if (this.$route.params["filters"] !== undefined) {
       this.filters = this.$route.params.filters;
       this.filtersTmp = Object.assign({}, this.filters);
      // this.fff = this.$route.params.filters;
-    } else {
-      console.log("uuuuuuu");
     }
     this.getProvincesFromServer();
     this.getCategoriesFromServer();
@@ -296,32 +293,6 @@ export default {
     });
   },
   watch: {
-    fff() {
-      //   console.log('ffff heyyyy');
-      //    //let fa = { pr: 3, cat: 2 };
-      // let clickEvent = new Event("change");
-      // document.querySelectorAll(".custom-select .p2").forEach((element) => {
-      //   console.log("eee", element);
-      //   if (element.id == "province") {
-      //     let option = element.querySelector(`option[value='${this.filters.province}']`);
-      //     let text = option.innerText;
-      //     option.setAttribute("selected", "selected");
-      //     element
-      //       .closest(".custom-select")
-      //       .querySelector(".custom-option-selected").innerText = text;
-      //   }
-      //   if (element.id == "category") {
-      //     let option = element.querySelector(`option[value='${this.filters.category}']`);
-      //     let text = option.innerText;
-      //     option.setAttribute("selected", "selected");
-      //     element
-      //       .closest(".custom-select")
-      //       .querySelector(".custom-option-selected").innerText = text;
-      //   }
-      //   console.log("id", element.id);
-      //   element.dispatchEvent(clickEvent);
-      // });
-    },
     filters() {
       let clickEvent = new Event("change");
       document.querySelectorAll(".custom-select .p2").forEach((element) => {        
