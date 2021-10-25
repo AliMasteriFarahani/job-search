@@ -6,8 +6,8 @@ const state = {
   employeeSavedJobs: [],
   isJobSaved: "",
   isCurrentJobSaved: "",
- // allPages:1,
- // pageId:1
+  allPagesSaved:1,
+  savedPageId:1
 };
 const getters = {
   getEmployeeSavedJobs() {
@@ -19,12 +19,12 @@ const getters = {
   getIsCurrentJobSaved(state) {
     return state.isCurrentJobSaved;
   },
-  // getAllPages(){
-  //   return state.allPages;
-  // },
-  // getPageId(){
-  //   return state.pageId;
-  // }
+  getAllPagesSaved(){
+    return state.allPagesSaved;
+  },
+  getSavedPageId(){
+    return state.savedPageId;
+  }
 };
 
 const mutations = {
@@ -37,12 +37,12 @@ const mutations = {
   setIsCurrentJobSaved(state, isSaved) {
     state.isCurrentJobSaved = isSaved;
   },
-  // setAllPages(state,pages){
-  //   state.allPages = pages;
-  // },
-  // setPageId(state,id){
-  //   state.pageId = id;
-  // }
+  setAllPagesSaved(state,pages){
+    state.allPagesSaved = pages;
+  },
+  setSavedPageId(state,id){
+    state.savedPageId = id;
+  }
 };
 
 const actions = {
@@ -76,13 +76,13 @@ const actions = {
         });
     }
   },
-  getEmployeeSavedJobsFromServer({ commit }, employeeId) {
+  getEmployeeSavedJobsFromServer({ commit }, data) {
     console.log('object');
-    axios.get(`employee/getSavedJobs/${employeeId}/1`).then((response) => {
+    axios.get(`employee/getSavedJobs/${data.empId}/${data.pageId}`).then((response) => {
       console.log('ttttt',response);
       commit("setEmployeeSavedJobs", response.data.result);
-      commit("setAllPages", response.data.allPages);
-      commit("setPageId", response.data.pageId);
+      commit("setAllPagesSaved", response.data.allPages);
+      commit("setSavedPageId", response.data.pageId);
     });
   },
 };

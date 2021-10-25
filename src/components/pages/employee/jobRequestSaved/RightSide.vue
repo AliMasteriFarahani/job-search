@@ -16,7 +16,7 @@
                 <div class="border-dashed"></div>
               </div>
             </div>
-            <router-view></router-view>
+            <router-view :pageIdChanged="pageIdChanged"></router-view>
             <!-- <div class="row px-lg-5 px-4">
               
               <div v-for="n in 10" :key="n" class="col-12 mb-3">
@@ -77,6 +77,12 @@
 
 <script>
 export default {
+      props: {
+    pageIdChanged: {
+      Number,
+      default: 1,
+    },
+  },
 }
 </script>
 
