@@ -11,26 +11,39 @@
       </div>
       <div class="row my-3 px-4 justify-content-evenly">
         <!-- job advertisment right : -->
-        <div class="col-12 col-lg-6 mb-3" v-for="(newJobs,index) in getNewJobs" :key="index">
-          <router-link :to="`/job-descriptions/${newJobs.id}`">
+        <div
+          class="col-12 col-lg-6 mb-3"
+          v-for="(newJobs, index) in getNewJobs"
+          :key="index"
+        >
+          <router-link
+            target="_blank"
+            :to="{
+              name: 'JobDescriptions',
+              params: {
+                id: newJobs.id,
+                slug: sanitizeTitleSlug(newJobs.title),
+              },
+            }"
+          >
             <div class="float-start w-100 job-adv d-flex p-2">
               <span class="job-logo-palce align-self-center">
                 <img
-                  :src="getCompanyLogoFolder+newJobs.logo"
+                  :src="getCompanyLogoFolder + newJobs.logo"
                   class="img-fluid figure-img"
                   :alt="newJobs.title"
                 />
               </span>
               <span class="float-start ms-3">
-                <h3 class="font-90 mt-1">{{newJobs.title}}</h3>
+                <h3 class="font-90 mt-1">{{ newJobs.title }}</h3>
                 <div class="mt-4 color-73">
                   <span class="me-3">
                     <i class="fa-solid fa-building font-80"></i>
-                    <span class="font-80 ms-1">{{newJobs.companyName}}</span>
+                    <span class="font-80 ms-1">{{ newJobs.companyName }}</span>
                   </span>
                   <span>
                     <i class="fa-solid fa-location-dot font-80"></i>
-                    <span class="font-80 ms-1">{{newJobs.provinceName}}</span>
+                    <span class="font-80 ms-1">{{ newJobs.provinceName }}</span>
                   </span>
                 </div>
               </span>
@@ -45,16 +58,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { makeSlug } from "@/Mixins/makeSlug";
 export default {
+  mixins: [makeSlug],
   computed: {
     getNewJobs() {
       return this.$store.getters.getNewJobs;
     },
-      ...mapGetters(['getCompanyLogoFolder']),
+    ...mapGetters(["getCompanyLogoFolder"]),
   },
   created() {
     if (this.getNewJobs.length == null) {
-    this.$store.dispatch("getNewJobsFromServer");
+      this.$store.dispatch("getNewJobsFromServer");
     }
   },
 };

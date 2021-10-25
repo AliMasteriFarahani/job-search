@@ -82,12 +82,16 @@ const actions = {
       });
   },
   // for job-description page :
-  getJobDetailsFromServer(context, data) {
-    axios
+   async getJobDetailsFromServer(context, data) {
+    return new Promise((resolve)=>{
+          axios
       .get(`api/getJobDetails/${data.id}/${data.empId}`)
       .then((response) => {
         context.commit("setJobDetails", response.data[0]);
+        resolve()
       });
+    })
+
   },
   getSimilarPositionsFromServer({ commit },data) {
     axios
@@ -100,7 +104,6 @@ const actions = {
     axios
       .get(`api/getCompanyJobPositions/${data.companyId}/${data.empId}/${data.pageId}`)
       .then((response) => {
-        console.log(data);
         commit("setCompanyJobPositions", response.data.result);
         commit("setAllPagesCompanyJob", response.data.allPages);
         commit("setCompanyJobPageId", response.data.pageId);

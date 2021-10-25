@@ -56,7 +56,7 @@ export const Routes = [
   },
   { path: "/resume", component: Resume, name: "Resume" },
   {
-    path: "/company/:id/positions",
+    path: "/company/:id/positions/:slug",
     component: CompanyPositions,
     name: "CompanyPositions",
   },

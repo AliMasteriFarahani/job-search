@@ -37,7 +37,9 @@ import AppResumeSection from "../shared/ResumeSectionLeft.vue";
 import AppSimilarJobs from "./SimilarJobs.vue";
 import AppFooter from "../shared/Footer.vue";
  import { mapGetters } from "vuex";
+
 export default {
+
   data(){
     return{
       employeeId:1
