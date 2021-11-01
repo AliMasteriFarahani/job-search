@@ -761,42 +761,6 @@ export default {
               this.personalInfo
             );
 
-            // if (element.id == "salaryRequested") {
-            //   if (
-            //     this.personalInfo.salaryRequested != "" &&
-            //     this.personalInfo.salaryRequested != 0 &&
-            //     this.personalInfo.salaryRequested != undefined
-            //   ) {
-            //     let option = element.querySelector(
-            //       `option[value='${this.personalInfo.salaryRequested}']`
-            //     );
-            //     let text = option.innerText;
-            //     option.setAttribute("selected", "selected");
-            //     element
-            //       .closest(".custom-select")
-            //       .querySelector(".custom-option-selected").innerText =
-            //       text;
-            //   }
-            //   element.dispatchEvent(clickEvent);
-            // }////
-            // if (element.id == "militaryStatus") {
-            //   if (
-            //     this.personalInfo.militaryStatus != "" &&
-            //     this.personalInfo.militaryStatus != 0 &&
-            //     this.personalInfo.militaryStatus != undefined
-            //   ) {
-            //     let option = element.querySelector(
-            //       `option[value='${this.personalInfo.militaryStatus}']`
-            //     );
-            //     let text = option.innerText;
-            //     option.setAttribute("selected", "selected");
-            //     element
-            //       .closest(".custom-select")
-            //       .querySelector(".custom-option-selected").innerText =
-            //       text;
-            //   }
-            //   element.dispatchEvent(clickEvent);
-            // }////
           }); // then
       }
     },
@@ -808,52 +772,7 @@ export default {
         btnClose.click();
       }
     },
-    // getPersonalInfo(v){
-    //   let info = Object.assign({}, v);
-    //   console.log('dd',v);
-    //   if (info.gender == 'آقا') {
-    //     info.gender = 1;
-    //   }else if (info.gender == 'خانم') {
-    //     info.gender = 2;
-    //   }
-    //   if (info.maritalStatus == 'مجرد') {
-    //     info.maritalStatus = 1;
-    //   }else if (info.maritalStatus == 'متاهل') {
-    //     info.maritalStatus = 2;
-    //   }
-    //   this.personalInfo = info;
 
-    ///------------
-    //       let clickEvent = new Event("change");
-    // document.querySelectorAll(".custom-select .p2").forEach((element) => {
-    //     if (element.id == "province") {
-    //       if (this.filters.province != "" && this.filters.province !=0 && this.filters.province != undefined) {
-    //       let option = element.querySelector(
-    //         `option[value='${this.filters.province}']`
-    //       );
-    //       let text = option.innerText;
-    //       option.setAttribute("selected", "selected");
-    //       element
-    //         .closest(".custom-select")
-    //         .querySelector(".custom-option-selected").innerText = text;
-    //     }
-    //   }
-
-    //     if (element.id == "category") {
-    //       if (this.filters.category != "" && this.filters.category !=0 && this.filters.category != undefined) {
-    //       let option = element.querySelector(
-    //         `option[value='${this.filters.category}']`
-    //       );
-    //       let text = option.innerText;
-    //       option.setAttribute("selected", "selected");
-    //       element
-    //         .closest(".custom-select")
-    //         .querySelector(".custom-option-selected").innerText = text;
-    //     }
-    //   }
-    //   element.dispatchEvent(clickEvent);
-    // });
-    // }
   },
 };
 </script>
