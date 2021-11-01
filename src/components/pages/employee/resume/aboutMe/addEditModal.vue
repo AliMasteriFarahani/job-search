@@ -87,7 +87,6 @@
                 <template v-else> ذخیره </template>
               </button>
               <button
-                ref="closey"
                 :disabled="getStatus == 'pending'"
                 type="button"
                 class="
@@ -161,7 +160,7 @@ export default {
         this.$store
           .dispatch("getAboutMeFromServer", this.employeeId)
           .then(() => {
-            this.aboutMe = this.$store.getters.getAboutMe;
+            this.aboutMe = this.$store.getters.getAboutMe.aboutMe;
           }); // then
       }
     },

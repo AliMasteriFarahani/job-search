@@ -4,6 +4,7 @@ const state = {
   personalInfo: {},
   personalInfoById: "",
   aboutMe: {},
+  skills:[],
   status: "",
 };
 const getters = {
@@ -19,6 +20,9 @@ const getters = {
   getAboutMe() {
     return state.aboutMe;
   },
+  getSkills(){
+    return state.skills;
+  }
 };
 
 const mutations = {
@@ -34,6 +38,9 @@ const mutations = {
   setAboutMe(state, text) {
     state.aboutMe = text;
   },
+  setSkills(state,skills){
+    state.skills = skills;
+  }
 };
 
 const actions = {
@@ -85,11 +92,31 @@ const actions = {
     });
   },
   sendAboutMeToServer({ commit }, data) {
-    console.log("data:", data);
     return new Promise((resolve) => {
       axios
         .patch(`employee/saveAboutMe/${data.employeeId}`, {
           aboutMe: data.aboutMe,
+        })
+        .then((response) => {
+          commit("setStatus", response.data);
+          resolve();
+        });
+    });
+  },
+  getSkillsFromServer({ commit }, employeeId) {
+    return new Promise((resolve) => {
+      axios.get(`employee/getSkills/${employeeId}`).then((response) => {
+        commit("setSkills", response.data);
+        resolve();
+      });
+    });
+  },
+  sendSkillsToServer({ commit }, data) {
+    console.log("data:", data);
+    return new Promise((resolve) => {
+      axios
+        .patch(`employee/saveSkills/${data.employeeId}`, {
+          skills: data.skills,
         })
         .then((response) => {
           commit("setStatus", response.data);

@@ -21,88 +21,34 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 mb-4">
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >html css html css html css html css
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >مقدماتی</span
-                >
-              </div>
               <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
+              <div
+                v-for="(skill, i) in skills"
+                :key="i"
+                class="d-inline-flex mb-2 me-2 position-relative"
+              >
                 <span class="skill font-90"
-                  >php
+                  >{{ skill.skillTitle }}
                   <span class="circle-middle"></span>
                 </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >متوسط</span
+                <span class="skill-level d-flex align-items-center font-90">{{
+                  skill.skillLevel
+                }}</span>
+                <span
+                  @click="removeSkill(i)"
+                  class="
+                    close-icon-sk
+                    d-inline-flex
+                    align-middle
+                    cursor-pointer
+                  "
                 >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >html css html css html css html css
-                  <span class="circle-middle"></span>
+                  <i class="font-1 align-middle fa-solid fa-circle-xmark"></i>
                 </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >پیشرفته</span
-                >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >html css html css html css html css
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >مقدماتی</span
-                >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >javascript
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >مقدماتی</span
-                >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >css
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >متوسط</span
-                >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >html
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >مقدماتی</span
-                >
-              </div>
-              <!--  -->
-              <div class="d-inline-flex mb-2 me-2">
-                <span class="skill font-90"
-                  >html css html css html css html css
-                  <span class="circle-middle"></span>
-                </span>
-                <span class="skill-level d-flex align-items-center font-90"
-                  >مقدماتی</span
-                >
               </div>
             </div>
-            <div class="col-12 col-md-6 d-flex">
-              <div class="mb-4 flex-grow-1">
+            <form autocomplete="off" class="col-12 col-md-6">
+              <div class="mb-1 flex-grow-1">
                 <label
                   for="skill"
                   class="
@@ -114,6 +60,7 @@
                   >عنوان مهارت :</label
                 >
                 <input
+                  v-model="$v.skill.skillTitle.$model"
                   type="text"
                   id="skill"
                   name="skill"
@@ -121,7 +68,42 @@
                   class="form-control input-textbox"
                 />
               </div>
-              <span class="float-end d-flex font-90 cursor-pointer font-md-is">
+              <span v-if="hasError" class="invalid-feedback">
+                فیلد سطح مهارت الزامی است
+              </span>
+            </form>
+            <div class="col-12 col-md-6 d-flex">
+              <div class="mb-4 flex-grow-1">
+                <label
+                  for="skill-level"
+                  class="
+                    form-check-label
+                    mb-2
+                    font-90 font-md-is
+                    cursor-pointer
+                  "
+                  >سطح تسلط :</label
+                >
+                <div
+                  class="custom-select simple-scroll z-index-lv2"
+                  title="انتخاب کنید ..."
+                  data-search-box="false"
+                >
+                  <select
+                    id="skill-level"
+                    name="skill-level"
+                    v-model="$v.skill.skillLevel.$model"
+                  >
+                    <option selected value="مقدماتی">مقدماتی</option>
+                    <option value="متوسط">متوسط</option>
+                    <option value="پیشرفته">پیشرفته</option>
+                  </select>
+                </div>
+              </div>
+              <span
+                @click="addToSkills()"
+                class="float-start d-flex font-90 cursor-pointer font-md-is"
+              >
                 <i
                   class="
                     fa-solid
@@ -134,26 +116,19 @@
                 ></i>
               </span>
             </div>
-            <div class="col-12 mb-4 col-md-6">
-              <label
-                for="skill-level"
-                class="form-check-label mb-2 font-90 font-md-is cursor-pointer"
-                >سطح تسلط :</label
-              >
-              <div
-                class="custom-select simple-scroll z-index-lv2"
-                title="انتخاب کنید ..."
-                data-search-box="false"
-              >
-                <select id="skill-level" name="skill-level">
-                  <option value="1">مقدماتی</option>
-                  <option value="2">متوسط</option>
-                  <option value="3">پیشرفته</option>
-                </select>
-              </div>
-            </div>
+            <!-- <span
+                  v-if="
+                    (!$v.skill.skillLevel.required && $v.skill.skillLevel.$dirty) ||
+                    (hasError && !$v.skill.skillLevel.$dirty && $v.skill.skillLevel.$model == '')
+                  "
+                  class="invalid-feedback"
+                >
+                  فیلد سطح مهارت الزامی است
+                </span> -->
             <div class="col-12">
               <button
+                @click.prevent="sendSkills()"
+                :disabled="getStatus == 'pending' || skills.length == 0"
                 class="
                   btn btn--success
                   float-end
@@ -167,9 +142,18 @@
                   text-white
                 "
               >
-                ذخیره
+                <template v-if="getStatus == 'pending'">
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  در حال ارسال
+                </template>
+                <template v-else> ذخیره </template>
               </button>
               <button
+                :disabled="getStatus == 'pending'"
                 type="button"
                 class="
                   btn btn--close
@@ -197,19 +181,89 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
+import { mapGetters, mapActions } from "vuex";
 export default {
+  props: {
+    isEdit: Object,
+  },
   data() {
     return {
-      skills: { },
-        skill: {
-          skillTitle: "",
-          level: "",
-        },
-     
+      employeeId: 1,
+      hasError: false,
+      skills: [],
+      skill: {
+        skillTitle: "",
+        skillLevel: "مقدماتی",
+      },
     };
+  },
+  validations: {
+    skill: {
+      skillTitle: {
+        required,
+      },
+      skillLevel: {
+        required,
+      },
+    },
+  },
+  computed: {
+    ...mapGetters(["getStatus", "getSkills"]),
+  },
+  methods: {
+    ...mapActions(["sendSkillsToServer", "getSkillsFromServer"]),
+    addToSkills() {
+      if (this.$v.$invalid) {
+        this.hasError = true;
+      } else {
+        this.hasError = false;
+        let sk = Object.assign({}, this.skill);
+        this.skills.push(sk);
+        this.skill.skillTitle = "";
+      }
+    },
+    sendSkills() {
+      this.$store.commit("setStatus", "pending");
+      this.sendSkillsToServer({
+        employeeId: this.employeeId,
+        skills: this.skills,
+      }).then(() => {
+        this.getSkillsFromServer(this.employeeId);
+      });
+    },
+    removeSkill(i) {
+      this.skills.splice(i, 1);
+    },
+  },
+  watch: {
+    isEdit(v) {
+      if (v.value == true) {
+        this.$store
+          .dispatch("getSkillsFromServer", this.employeeId)
+          .then(() => {
+            //  let skl = this.$store.getters.getSkills
+            this.skills = Object.assign([], this.getSkills);
+          }); // then
+      }
+    },
+    getStatus(v) {
+      if (v == "ok" || v == "failed") {
+        document
+          .querySelectorAll("button[data-bs-dismiss='modal']")
+          .forEach((element) => {
+            element.click();
+          });
+      }
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.close-icon-sk {
+  position: absolute;
+  top: -0.3rem !important;
+  right: -0.3rem !important;
+}
 </style>
