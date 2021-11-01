@@ -96,7 +96,7 @@
               <div class="mt-2 font-num-is">
                                           {{
                             !Number.isInteger(Number(getPersonalInfo.salaryRequested))
-                              ? ''
+                              ? getPersonalInfo.salaryRequested
                               : getPersonalInfo.salaryRequested | toCurrency()
                           }}
                                           {{
