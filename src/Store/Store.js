@@ -6,7 +6,7 @@ import Jobs from "./Modules/Jobs";
 import jobSearch from "./Modules/jobSearch";
 import emloyeeJob from "./Modules/employee/job";
 import Categories from "./Modules/Categories";
-import Location from "./Modules/Location";
+import Resume from "./Modules/employee/resume";
 import searchOptions from "./Modules/searchOptions";
 export const store = new Vuex.Store({
     state: {
@@ -26,7 +26,7 @@ export const store = new Vuex.Store({
         Jobs,
         jobSearch,
         Categories,
-        Location,
+        Resume,
         emloyeeJob,
         searchOptions
     }

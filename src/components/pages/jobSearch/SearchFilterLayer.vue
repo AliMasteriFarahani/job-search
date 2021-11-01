@@ -298,7 +298,6 @@ export default {
       document.querySelectorAll(".custom-select .p2").forEach((element) => {        
           if (element.id == "province") {
             if (this.filters.province != "" && this.filters.province !=0 && this.filters.province != undefined) {
-              alert("empty not");
             let option = element.querySelector(
               `option[value='${this.filters.province}']`
             );

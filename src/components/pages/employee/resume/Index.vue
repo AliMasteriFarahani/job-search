@@ -25,6 +25,11 @@ import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../../shared/ResumeSectionLeft.vue";
 import AppFooter from "../../shared/Footer.vue";
 export default {
+  data(){
+    return{
+      employeeId:1
+    }
+  },
   components: {
     AppFooter,
     AppHeader,
