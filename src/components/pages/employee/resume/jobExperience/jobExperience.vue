@@ -7,34 +7,42 @@
             </div>
             <div class="col-12">
               <!-- modal -->
-                <add-edit-modal></add-edit-modal>
+                          <add-edit-modal :isEdit="isEdit"></add-edit-modal>
+          <delete-modal :jobExpId="jobExpId"></delete-modal>
               <!-- modal end -->
             </div>
             <!--  -->
             <div class="col-12">
               <div class="row ps-4">
-                <div class="col-12">
-                  <div class="row mt-3 me-2 border-bm-c">
+                <div class="col-12" v-if="Object.keys(getAllJobExperience).length > 0">
+                  <div v-for="(jobExp,i) in getAllJobExperience" :key="i" class="row mt-3 me-2 border-bm-c">
                     <div class="col">
                       <p class="font-bd-is">
-                        برنامه نویس وب
+                        {{jobExp.jobTitle}}
                       </p>
                       <p>
-                        <span class="font-1 me-3">شرکت داده گستر عصر جدید</span>
+                        <span class="font-1 me-3">{{jobExp.orgTitle}}</span>
                         <span dir="ltr" class="font-1 font-num-is"
-                          >از 1380 تا 1400</span
+                          >از
+                      {{ jobExp.startYear }} تا {{ jobExp.endYear=='now' ? 'اکنون': jobExp.endYear}}
+                          
+                          </span
                         >
                       </p>
                     </div>
                     <div class="col-12 col-md-2">
                       <span
+                      @click="jobExpId = jobExp.id"
                         data-bs-toggle="modal"
-                        data-bs-target="#job-experience"
+                        data-bs-target="#remove-job-exp"
                         class="float-end font-102 cursor-pointer text-underline font-md-is"
                       >
                         <i class="fa-solid fa-trash-can color--danger"></i>
                       </span>
                       <span
+                               @click="
+                      isEdit = { uniq: Math.random(), id: jobExp.id, value: true }
+                    "
                         data-bs-toggle="modal"
                         data-bs-target="#job-experience"
                         class="float-end font-102 me-2 cursor-pointer color-sky text-underline font-md-is"
@@ -46,20 +54,47 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 py-2">
-                  <span
-                    data-bs-toggle="modal"
-                    data-bs-target="#job-experience"
-                    class="float-end font-90 cursor-pointer me-3 text-underline font-md-is"
-                  >
-                    <i
-                      class="fa-solid font-2 color--success fa-circle-plus"
-                    ></i>
-                  </span>
-                  <!-- modal -->
-
-                  <!-- modal end -->
-                </div>
+            <template v-if="Object.keys(this.getAllJobExperience).length == 0">
+              <div :class="['col-12', 'pb-3']">
+                <span
+                  @click="
+                    isEdit = { uniq: Math.random(), id: null, value: false }
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#job-experience"
+                  class="
+                    float-end
+                    font-90
+                    cursor-pointer
+                    text-underline
+                    font-md-is
+                  "
+                >
+                  <i class="fa-solid font-2 color--success fa-circle-plus"></i>
+                </span>
+              </div>
+            </template>
+            <template v-if="Object.keys(this.getAllJobExperience).length > 0">
+              <div :class="['col-12', 'pt-1 pb-1']">
+                <span
+                  @click="
+                    isEdit = { uniq: Math.random(), id: null, value: false }
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#job-experience"
+                  class="
+                    float-end
+                    font-90
+                    cursor-pointer
+                    me-3
+                    text-underline
+                    font-md-is
+                  "
+                >
+                  <i class="fa-solid font-2 color--success fa-circle-plus"></i>
+                </span>
+              </div>
+            </template>
               </div>
             </div>
             <!--  -->
@@ -70,10 +105,41 @@
 
 <script>
 import addEditModal from "./addEditModal.vue";
+import deleteModal from "./deleteModal.vue";
+import { mapGetters, mapActions } from "vuex";
 export default {
   components:{
-    addEditModal
-  }
+    addEditModal,
+    deleteModal
+  },
+  data(){
+    return{
+      employeeId: 1,
+      isEdit: { uniq: Math.random(), id: null, value: false },
+      jobExpId:null,
+    }
+  },
+    computed: {
+    ...mapGetters(["getAllJobExperience", "getStatus"]),
+  },
+  methods: {
+    ...mapActions(["getAllJobExperienceFromServer"]),
+  },
+  created() {
+    this.getAllJobExperienceFromServer(this.employeeId)
+  },
+  watch: {
+    getStatus(v) {
+      if (v == "ok" || v == "failed" || v == "deleted") {
+        document
+          .querySelectorAll("button[data-bs-dismiss='modal']")
+          .forEach((el) => {
+            el.click();
+          });
+      }
+    },
+  },
+
 
 }
 </script>
