@@ -135,7 +135,6 @@ export default {
   data() {
     return {
       employeeId: 1,
-      padding: "ppppp",
       isEdit: { uniq: Math.random(), id: null, value: false },
       eduId: null,
     };
@@ -147,19 +146,10 @@ export default {
     ...mapActions(["getAllEducationsFromServer"]),
   },
   created() {
-    this.getAllEducationsFromServer(this.employeeId).then(() => {
-      if (Object.keys(this.getAllEducations).length == 0) {
-        alert("yyy");
-        this.padding = "pb-3";
-      } else if (Object.keys(this.getAllEducations).length > 0) {
-        alert("nnnn");
-        this.padding == "pb-1";
-      }
-    });
+    this.getAllEducationsFromServer(this.employeeId)
   },
   watch: {
     getStatus(v) {
-      console.log(v, "vvv");
       if (v == "ok" || v == "failed" || v == "deleted") {
         document
           .querySelectorAll("button[data-bs-dismiss='modal']")

@@ -7,6 +7,7 @@ const state = {
   skills:[],
   allEducations:[],
   education:[],
+  allJobExperience:[],
   status: "",
 };
 const getters = {
@@ -30,6 +31,9 @@ const getters = {
   },
   getEducation(){
     return state.education;
+  },
+  getAllJobExperience(){
+    return state.allJobExperience;
   }
 };
 
@@ -54,6 +58,9 @@ const mutations = {
   },
   setEducation(state,edu){
     state.education = edu;
+  },
+  setAllJobExperience(state,jobExp){
+    state.allJobExperience = jobExp;
   }
 };
 
@@ -184,6 +191,14 @@ const actions = {
         console.log(response,'deleted');
         commit('setStatus',response.data)
         resolve()
+      })
+    })
+  },
+  getAllJobExperienceFromServer({commit},employeeId){
+    return new Promise((resolve)=>{
+      axios.get(`employee/getAllJobExperience/${employeeId}`).then(response=>{
+        commit('setAllJobExperience',response.data)
+        resolve();
       })
     })
   }
