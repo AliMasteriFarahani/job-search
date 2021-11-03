@@ -35,14 +35,14 @@
                   >عنوان شغلی :</label
                 >
                 <input
-                v-model="$v.jobExperience.jobTitle.$model"
+                  v-model="$v.jobExperience.jobTitle.$model"
                   type="text"
                   id="job-title"
                   name="job-title"
                   placeholder="مثال : برنامه نویس وب"
                   class="form-control input-textbox"
                 />
-                                <span
+                <span
                   class="invalid-feedback"
                   v-if="
                     (!$v.jobExperience.jobTitle.required &&
@@ -68,14 +68,14 @@
                   >نام سازمان/شرکت :</label
                 >
                 <input
-                v-model="$v.jobExperience.orgTitle.$model"
+                  v-model="$v.jobExperience.orgTitle.$model"
                   type="text"
                   id="uni-title"
                   name="uni-title"
                   placeholder="مثال : شرکت داده گستر عصر جدید"
                   class="form-control input-textbox"
                 />
-                                                <span
+                <span
                   class="invalid-feedback"
                   v-if="
                     (!$v.jobExperience.orgTitle.required &&
@@ -99,7 +99,11 @@
                 title="انتخاب کنید ..."
                 data-search-box="false"
               >
-                <select v-model="$v.jobExperience.startYear.$model" id="startYear" name="start-year">
+                <select
+                  v-model="$v.jobExperience.startYear.$model"
+                  id="startYear"
+                  name="start-year"
+                >
                   <option
                     v-for="i in thisYear - startYear"
                     :key="i"
@@ -109,17 +113,17 @@
                   </option>
                 </select>
               </div>
-                                                              <span
-                  class="invalid-feedback"
-                  v-if="
-                    (!$v.jobExperience.startYear.required &&
-                      $v.jobExperience.startYear.$dirty) ||
-                    (hasError &&
-                      !$v.jobExperience.startYear.$dirty &&
-                      $v.jobExperience.startYear.$model == '')
-                  "
-                  >فیلد سال شروع الزامی است
-                </span>
+              <span
+                class="invalid-feedback"
+                v-if="
+                  (!$v.jobExperience.startYear.required &&
+                    $v.jobExperience.startYear.$dirty) ||
+                  (hasError &&
+                    !$v.jobExperience.startYear.$dirty &&
+                    $v.jobExperience.startYear.$model == '')
+                "
+                >فیلد سال شروع الزامی است
+              </span>
             </div>
             <!-- <div class="col-12 mb-4 col-md-6">
               <label
@@ -161,13 +165,18 @@
                 class="form-check-label mb-2 font-90 font-md-is cursor-pointer"
                 >سال پایان :</label
               >
-              <div  ref="endYear"
+              <div
+                ref="endYear"
                 class="custom-select simple-scroll z-index-lv2"
                 title="انتخاب کنید ..."
                 data-search-box="false"
               >
-                <select v-model="$v.jobExperience.endYear.$model" id="endYear" name="end-year">
-                                    <option
+                <select
+                  v-model="$v.jobExperience.endYear.$model"
+                  id="endYear"
+                  name="end-year"
+                >
+                  <option
                     v-for="i in thisYear - startYear"
                     :key="i"
                     :value="startYear + i"
@@ -176,17 +185,17 @@
                   </option>
                 </select>
               </div>
-                                                                            <span
-                  class="invalid-feedback"
-                  v-if="
-                    (!$v.jobExperience.endYear.required &&
-                      $v.jobExperience.endYear.$dirty) ||
-                    (hasError &&
-                      !$v.jobExperience.endYear.$dirty &&
-                      $v.jobExperience.endYear.$model == '')
-                  "
-                  >فیلد سال پایان الزامی است
-                </span>
+              <span
+                class="invalid-feedback"
+                v-if="
+                  (!$v.jobExperience.endYear.required &&
+                    $v.jobExperience.endYear.$dirty) ||
+                  (hasError &&
+                    !$v.jobExperience.endYear.$dirty &&
+                    $v.jobExperience.endYear.$model == '')
+                "
+                >فیلد سال پایان الزامی است
+              </span>
             </div>
             <!-- <div class="col-12 mb-4 col-md-6">
               <label
@@ -224,7 +233,8 @@
             </div> -->
             <div class="col-12 mb-4 col-md-6">
               <div class="form-check">
-                <input v-model="now"
+                <input
+                  v-model="now"
                   class="form-check-input remove-outline cursor-pointer"
                   type="checkbox"
                   value=""
@@ -239,7 +249,7 @@
               </div>
             </div>
             <div class="col-12">
- <button
+              <button
                 :disabled="getStatus == 'pending'"
                 @click.prevent="sendJobExperience()"
                 class="
@@ -299,13 +309,13 @@ import { mapGetters, mapActions } from "vuex";
 import { calender } from "@/Mixins/calender";
 import { selectedManual } from "@/Mixins/selectedManualCs";
 export default {
-   mixins: [calender, selectedManual],
-    props: {
+  mixins: [calender, selectedManual],
+  props: {
     isEdit: {
       Object,
     },
   },
-   data() {
+  data() {
     return {
       employeeId: 1,
       hasError: false,
@@ -318,7 +328,7 @@ export default {
       now: false,
     };
   },
-   validations: {
+  validations: {
     jobExperience: {
       jobTitle: {
         required,
@@ -334,12 +344,8 @@ export default {
       },
     },
   },
-    computed: {
-    ...mapGetters([
-      "getStatus",
-      "getJobExperience",
-      "getAllJobExperience",
-    ]),
+  computed: {
+    ...mapGetters(["getStatus", "getJobExperience", "getAllJobExperience"]),
     thisYear() {
       return this.calender().getYear();
     },
@@ -350,9 +356,9 @@ export default {
   methods: {
     ...mapActions([
       "sendJobExperienceToServer",
-      'getJobExperienceFromServer',
+      "getJobExperienceFromServer",
       "getAllJobExperienceFromServer",
-      'updateJobExperienceInServer'
+      "updateJobExperienceInServer",
     ]),
     sendJobExperience() {
       if (this.$v.$invalid) {
@@ -364,7 +370,7 @@ export default {
           this.updateJobExperienceInServer({
             employeeId: this.employeeId,
             jobExperience: this.jobExperience,
-            id:this.isEdit.id
+            id: this.isEdit.id,
           }).then(() => {
             this.getAllJobExperienceFromServer(this.employeeId);
           });
@@ -379,10 +385,9 @@ export default {
       }
     },
   },
-   watch: {
+  watch: {
     isEdit(v) {
-      this.hasError = false,
-      this.now = false
+      (this.hasError = false), (this.now = false);
       if (v.value == true) {
         this.$store
           .dispatch("getJobExperienceFromServer", {
@@ -405,12 +410,11 @@ export default {
           }); // then
       } else if (v.value == false) {
         this.$v.$reset();
-         let ref = document.getElementById("job-experience");
-         this.selectedManual(ref, [], this.jobExperience,true);
+        let ref = document.getElementById("job-experience");
+        this.selectedManual(ref, [], this.jobExperience, true);
         for (const key in this.jobExperience) {
           this.jobExperience[key] = "";
         }
-
       }
     },
     now(v) {

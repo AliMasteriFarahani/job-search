@@ -9,6 +9,8 @@ const state = {
   education:[],
   allJobExperience:[],
   jobExperience:[],
+  allLanguageSkills:[],
+  languageSkill:[],
   status: "",
 };
 const getters = {
@@ -38,6 +40,12 @@ const getters = {
   },
   getJobExperience(){
     return state.jobExperience
+  },
+  getAllLanguageSkills(){
+    return state.allLanguageSkills;
+  },
+  getLanguageSkill(){
+    return state.languageSkill;
   }
 };
 
@@ -68,6 +76,12 @@ const mutations = {
   },
   setJobExperience(state,job){
     state.jobExperience = job;
+  },
+  setAllLanguageSkills(state,langs){
+state.allLanguageSkills = langs;
+  },
+  setLanguageSkill(state,lang){
+    state.languageSkill = lang;
   }
 };
 
@@ -231,12 +245,12 @@ const actions = {
   },
   updateJobExperienceInServer({ commit }, data){
     return new Promise((resolve) => {
-      console.log(data,'dararara');
+      console.log(data,'dappppppppppppppppppppprarara');
       axios
         .patch(`employee/updateJobExperience/${data.employeeId}/${data.id}`,data.jobExperience)
         .then((response) => {
           commit("setStatus", response.data);
-          console.log("res", response);
+          console.log("resoppopooooooo", response);
           resolve();
         });
     });
@@ -249,7 +263,60 @@ const actions = {
         resolve()
       })
     })
-  }
+  },
+  getAllLanguageSkillsFromServer({commit},employeeId){
+    return new Promise((resolve)=>{
+      axios.get(`employee/getAllLanguageSkills/${employeeId}`).then(response=>{
+        console.log(response,'ttttt');
+        commit('setAllLanguageSkills',response.data)
+        resolve();
+      })
+    })
+  },
+  sendLanguageToServer({ commit }, data){
+    console.log(data,'datatattatateeeeeee');
+    return new Promise((resolve) => {
+      axios
+        .put(`employee/saveLanguageSkill/${data.employeeId}`,data.languageSkill)
+        .then((response) => {
+          console.log(response,'rrreeeree');
+          commit("setStatus", response.data);
+          resolve();
+        });
+    });
+  },
+  getLanguageSkillFromServer({commit},data){
+    return new Promise((resolve) => {
+      axios.get(`employee/getLanguageSkill/${data.employeeId}/${data.id}`).then((response) => {
+        console.log(response,'js one');
+        commit("setLanguageSkill", response.data);
+        resolve();
+      });
+    });
+  },
+  updateLanguageSkillInServer({commit},data){
+    return new Promise((resolve) => {
+      console.log(data,'dararara');
+      console.log(data.languageSkill.level,'dattt');
+      axios
+        .patch(`employee/updateLanguageSkill/${data.employeeId}/${data.id}`,data.languageSkill)
+        .then((response) => {
+          commit("setStatus", response.data);
+          console.log("res", response);
+          resolve();
+        });
+    });
+  },
+  removeLanguageSkillFromServer({commit},id){
+    return new Promise((resolve)=>{
+      axios.delete(`employee/removeLanguageSkill/${id}`).then(response=>{
+        console.log(response,'deleted');
+        commit('setStatus',response.data)
+        resolve()
+      })
+    })
+  },
+
 };
 
 export default {
