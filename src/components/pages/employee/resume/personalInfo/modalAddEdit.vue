@@ -756,7 +756,8 @@ export default {
           .then(() => {
             this.personalInfo = this.$store.getters.getPersonalInfoById;
 
-            this.selectedManual(
+            let ref = document.getElementById('personal-informations');
+            this.selectedManual(ref,
               ["province", "militaryStatus", "salaryRequested"],
               this.personalInfo
             );

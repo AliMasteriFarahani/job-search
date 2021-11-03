@@ -3,7 +3,7 @@
     <div
       :class="[
         'toast align-items-center',
-        { show: getStatus == 'ok' || getStatus == 'failed' },
+        { show: getStatus == 'ok' || getStatus == 'failed' || getStatus == 'deleted' },
       ]"
       role="alert"
       aria-live="assertive"
@@ -14,7 +14,7 @@
           :class="[
             'toast-body',
             {
-              'text-success': getStatus == 'ok',
+              'text-success': getStatus == 'ok' || getStatus == 'deleted',
               'text-danger': getStatus == 'failed',
             },
           ]"
@@ -24,6 +24,9 @@
           </template>
           <template v-if="getStatus == 'failed'">
             متاسفانه خطایی به وجود آمده است !
+          </template>
+          <template v-if="getStatus == 'deleted'">
+            عملیات با موفقیت انجام شد
           </template>
         </div>
         <button
@@ -42,7 +45,7 @@ export default {
   props: { getStatus: { String } },
     watch: {
     getStatus(v) {
-      if (v == "ok" || v == "failed") {
+      if (v == "ok" || v == "failed" || v == 'deleted') {
         setTimeout(() => {
           this.$store.commit("setStatus", null);
         }, 3000);

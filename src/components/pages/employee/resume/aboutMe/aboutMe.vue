@@ -50,14 +50,12 @@
         </div>
         <!--  -->
         <div class="col-12">
-          <div class="row mt-2 ps-4">
-            <div
-              v-if="
+          <div               v-if="
                 getAboutMe != '' &&
                 getAboutMe != null &&
-                getAboutMe != undefined &&
-                getAboutMe != 'empty' 
-              "
+                getAboutMe != undefined 
+              " class="row mt-2 ps-4">
+            <div
               class="col-12 mb-4"
             >
               <p>

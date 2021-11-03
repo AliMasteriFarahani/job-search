@@ -7,6 +7,7 @@ const state = {
   provinces: {},
   cities: {},
   militaryStatus: {},
+  grades:{}
 };
 const getters = {
   getSalary() {
@@ -27,6 +28,9 @@ const getters = {
   getMilitaryStatus() {
     return state.militaryStatus;
   },
+  getGrades(){
+    return state.grades;
+  }
 };
 const mutations = {
   setSalary(state, salary) {
@@ -46,6 +50,9 @@ const mutations = {
   },
   setMilitaryStatus(state,status){
       state.militaryStatus = status;
+  },
+  setGrades(state,grades){
+    state.grades = grades
   }
 
 };
@@ -78,6 +85,11 @@ const actions = {
   getMilitaryStatusFromServer({ commit }) {
     axios.get(`api/getMilitaryStatus/`).then((response) => {
       commit("setMilitaryStatus", response.data);
+    });
+  },
+  getGradesFromServer({ commit }) {
+    axios.get(`api/getGrades/`).then((response) => {
+      commit("setGrades", response.data);
     });
   },
 };

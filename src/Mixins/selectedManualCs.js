@@ -1,8 +1,18 @@
 export const selectedManual = {
     methods:{
-        selectedManual(arr, obj) {
+        selectedManual(ref,arr, obj,reset=false) {
+          if (reset ==true) {
+          ref.querySelectorAll('.custom-select select option').forEach(el=>{
+            el.removeAttribute('selected');
+            el
+            .closest(".custom-select")
+            .querySelector(".custom-option-selected").innerText = 'انتخاب کنید ...';
+           let clickEvent = new Event("change");
+           el.dispatchEvent(clickEvent);
+         })
+          }else{
             let clickEvent = new Event("change");
-            document.querySelectorAll(".custom-select select").forEach((element) => {
+            ref.querySelectorAll(".custom-select select").forEach((element) => {
               if (arr.includes(element.id)) {
                 if (
                   obj[element.id] != "" &&
@@ -10,17 +20,22 @@ export const selectedManual = {
                   obj[element.id] != undefined
                 ) {
                   let option = element.querySelector(
-                    `option[value='${obj[element.id]}']`
+                    `option[value="${obj[element.id]}"]`
                   );
                   let text = option.innerText;
-                  option.setAttribute("selected", "selected");
+                  element.querySelectorAll('option').forEach(opt=>{
+                    opt.removeAttribute('selected')
+                  })
+                 option.setAttribute("selected", "selected");
                   element
                     .closest(".custom-select")
                     .querySelector(".custom-option-selected").innerText = text;
+                    element.dispatchEvent(clickEvent);
                 }
-                element.dispatchEvent(clickEvent);
               }
             });
+          }
+           
           },
     }
 }
