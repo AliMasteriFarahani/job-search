@@ -128,7 +128,7 @@
             <div class="col-12">
               <button
                 @click.prevent="sendSkills()"
-                :disabled="getStatus == 'pending' || skills.length == 0"
+                :disabled="getStatus == 'pending'"
                 class="
                   btn btn--success
                   float-end
@@ -212,7 +212,7 @@ export default {
     ...mapGetters(["getStatus", "getSkills"]),
   },
   methods: {
-    ...mapActions(["sendSkillsToServer", "getSkillsFromServer"]),
+    ...mapActions(["sendSkillsToServer", "getSkillsFromServer",'updateSkillsInServer']),
     addToSkills() {
       if (this.$v.$invalid) {
         this.hasError = true;
@@ -225,12 +225,24 @@ export default {
     },
     sendSkills() {
       this.$store.commit("setStatus", "pending");
-      this.sendSkillsToServer({
+      if (Object.keys(this.skills).length > 0) {
+        console.log((Object.keys(this.skills).length,'lelelele'));
+              this.sendSkillsToServer({
         employeeId: this.employeeId,
         skills: this.skills,
       }).then(() => {
         this.getSkillsFromServer(this.employeeId);
       });
+      }else if(Object.keys(this.skills).length == 0){
+          console.log((Object.keys(this.skills).length,'tttttt'));
+                        this.updateSkillsInServer({
+        employeeId: this.employeeId,
+        skills: this.skills,
+      }).then(() => {
+        this.getSkillsFromServer(this.employeeId);
+      });
+      }
+
     },
     removeSkill(i) {
       this.skills.splice(i, 1);
