@@ -4,6 +4,7 @@ import skills from "./skills";
 import education from "./education";
 import jobExperience from "./jobExperience";
 import languageSkills from "./languageSkills";
+import resumeLeftSide from "./resumeLeftSide";
 const state = {
   status: "",
 };
@@ -28,7 +29,8 @@ aboutMe,
 skills,
 education,
 jobExperience,
-languageSkills
+languageSkills,
+resumeLeftSide
 }
 export default {
   state,

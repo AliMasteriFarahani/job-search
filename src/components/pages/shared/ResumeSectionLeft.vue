@@ -5,8 +5,24 @@
         <div class="col-12">
           <div class="bg-c1 p-3 float-start w-100 text-center">
             <div class="avatar shadow-c">
-              <img v-if="resumeEdit" src="/images/avatars/user.jpg" width="100%" height="100%" class="rounded-circle" alt="avatar">
-              <i v-else class="fa-solid fa-user font-3 mt-3 color-gray"></i>
+              <span v-if="isExAvatar == true" key="avatar-emp">
+                <img
+                  :src="
+                    getEmployeeFolder +
+                    '/' +
+                    employeeId +
+                    '/avatar/' +
+                    getAvatar
+                  "
+                  width="100%"
+                  height="100%"
+                  class="rounded-circle"
+                  alt="avatar"
+                />
+              </span>
+              <span v-if="isExAvatar == false">
+                <i class="fa-solid fa-user font-3 mt-3 color-gray"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -14,66 +30,80 @@
       <!--  -->
       <div class="row mt-4" v-if="resumeEdit">
         <div class="col mt-3">
-          <div class="d-flex justify-content-center">
-            <span class="avatar-pic">
-              <span class="avatar-upload-btn">
-                <i class="fa-solid fa-camera font-85 me-2"></i>
-                <span class="font-73" @click="uploadAvatar()"
-                  >افزودن تصویر</span
-                >
+          <template v-if="getAvatar == ''">
+            <form class="d-flex justify-content-center">
+              <span class="avatar-pic">
+                <span class="avatar-upload-btn">
+                  <i class="fa-solid fa-camera font-85 me-2"></i>
+                  <span class="font-73" @click="browseAvatarFile()"
+                    >افزودن تصویر</span
+                  >
+                </span>
+                <input
+                  ref="avatarUploadBtn"
+                  accept=".jpg,.jpeg,.png"
+                  type="file"
+                  class="cursor-pointer opacity-0 w-100"
+                  name="uploadAvatar"
+                  @change="uploadAvatar"
+                />
+                <span v-if="!$v.avatar.fileSize" class="invalid-feedback">
+                  حداکثر 2 مگابایت
+                </span>
               </span>
-              <input
-                ref="avatarUploadBtn"
-                type="file"
-                class="cursor-pointer opacity-0 w-100"
-                name="uploadAvatar"
-                @change="getNameOfFile"
-              />
-            </span>
-          </div>
-          <div v-if="true" class="d-flex justify-content-center mt-1">
-            <span class="avatar-pic">
-              <span class="avatar-upload-btn remove-avatar">
-                <i class="fa-solid fa-trash-can font-85 me-2"></i>
-                <span class="font-73" 
-                  > حذف تصویر</span
+            </form>
+          </template>
+          <template v-if="getAvatar != ''">
+            <div class="d-flex justify-content-center mt-1">
+              <span class="avatar-pic">
+                <span
+                  @click="removeAvatar()"
+                  class="avatar-upload-btn remove-avatar"
                 >
+                  <i class="fa-solid fa-trash-can font-85 me-2"></i>
+                  <span class="font-73"> حذف تصویر</span>
+                </span>
+                <!-- <input
+                  ref="avatarUploadBtn"
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  class="cursor-pointer opacity-0 w-100"
+                  name="uploadAvatar"
+                  @change="getNameOfFile"
+                /> -->
               </span>
-              <input
-                ref="avatarUploadBtn"
-                type="file"
-                class="cursor-pointer opacity-0 w-100"
-                name="uploadAvatar"
-                @change="getNameOfFile"
-              />
-            </span>
-          </div>
+            </div>
+          </template>
           <div class="border-bm-dashed-c mt-2"></div>
         </div>
       </div>
-      <div :class="['row mb-2',{'mt-5' : !resumeEdit},{'mt-3' : resumeEdit}]">
+      <div
+        :class="['row mb-2', { 'mt-5': !resumeEdit }, { 'mt-3': resumeEdit }]"
+      >
         <div class="col-12">
           <div class="ms-4 mb-3">
-            <span class="font-90 mt-1">نام و نام خانوادگی :</span>
+            <span class="font-90 mt-1">نام و نام خانوادگی : </span>
             <span class="font-xs-80 font-bd-is font-sm-90 mt-1"
-              >محمد حیدری مقدم</span
+              >{{getResumeLeftSideInfo.name +' '+getResumeLeftSideInfo.family}}</span
             >
           </div>
           <div class="ms-4 mb-3">
-            <span class="font-90 mt-1 ">عنوان شغلی :</span>
+            <span class="font-90 mt-1">عنوان شغلی : </span>
             <span class="font-xs-80 font-bd-is font-sm-90 mt-1"
-              >برنامه نویس فرانت اند</span
+              >{{getResumeLeftSideInfo.jobTitle}}</span
             >
           </div>
           <div class="ms-4 mb-3">
-            <span class="font-90 mt-1 ">وضعیت رزومه :</span>
-            <span class="font-xs-80  font-sm-90 mt-1"
+            <span class="font-90 mt-1">وضعیت رزومه :</span>
+            <span class="font-xs-80 font-sm-90 mt-1"
               ><span class="font-num-bd-is color-sky font-bd-is">80%</span>
               تکمیل</span
             >
           </div>
           <div class="ms-4 mb-3" v-if="!resumeEdit">
-            <router-link :to="{name:'Resume'}" class="font-90 mt-1 color-sky font-bd-is text-underline"
+            <router-link
+              :to="{ name: 'Resume' }"
+              class="font-90 mt-1 color-sky font-bd-is text-underline"
               >بروز رسانی رزومه</router-link
             >
           </div>
@@ -81,13 +111,18 @@
             <div class="form-check">
               <input
                 @click="enableDisableUploadResume"
-                class="form-check-input upload-resume-checkbox remove-outline cursor-pointer"
+                class="
+                  form-check-input
+                  upload-resume-checkbox
+                  remove-outline
+                  cursor-pointer
+                "
                 type="checkbox"
                 value=""
                 id="flexCheckChecked"
               />
               <label
-                class="form-check-label font-90  cursor-pointer"
+                class="form-check-label font-90 cursor-pointer"
                 for="flexCheckChecked"
               >
                 آپلود رزومه(ضمیمه)
@@ -97,13 +132,14 @@
           <div class="d-flex justify-content-center mb-3">
             <div class="w-75 custom-upload" ref="customUpload">
               <input
+                @change="uploadResumeAttach($event)"
                 ref="uploadResumeInp"
-                @change="getNameOfFile"
                 type="file"
                 id="upload-resume"
                 disabled="disabled"
                 name="uploadResume"
               />
+              <!-- @change="getNameOfFile" -->
               <div class="custom-upload-content">
                 <span class="font-80">انتخاب فایل رزومه</span>
                 <i class="fa-solid fa-upload font-80"></i>
@@ -112,21 +148,26 @@
           </div>
           <div class="d-flex justify-content-center">
             <p class="resume-upload-file-name font-73">
-              {{ uploadResumeFileName }}
+              {{ resumeAttachFile }}
             </p>
           </div>
-          <div v-if="resumeEdit" class="mb-3 px-2 d-flex justify-content-center">
+          <!-- <div v-if="resumeEdit" class="mb-3 px-2 d-flex justify-content-center">
             <button
               class="btn w-100 btn-success bg-green border-radius-05 px-5 py-2 shadow-c border-0 mt-1 font-1 text-white"
             >
               ذخیره
             </button>
-          </div>
+          </div> -->
           <template v-if="showBtn">
             <div class="ms-4 mb-3">
               <div class="form-check form-switch">
                 <input
-                  class="form-check-input upload-resume-checkbox remove-outline cursor-pointer"
+                  class="
+                    form-check-input
+                    upload-resume-checkbox
+                    remove-outline
+                    cursor-pointer
+                  "
                   type="checkbox"
                   id="flexSwitchCheckChecked"
                   checked
@@ -142,15 +183,28 @@
               <button
                 type="submit"
                 ref="ll"
-                class="btn w-75 btn-success bg-green border-radius-05 px-5 py-2 shadow-c border-0 mt-1 font-1 text-white"
+                class="
+                  btn
+                  w-75
+                  btn-success
+                  bg-green
+                  border-radius-05
+                  px-5
+                  py-2
+                  shadow-c
+                  border-0
+                  mt-1
+                  font-1
+                  text-white
+                "
               >
                 ارسال رزومه
               </button>
             </div>
             <div class="mt-3 d-flex justify-content-center">
               <p class="font-80" ref="f8">
-                فرصت ارسال رزومه تا <span class="font-num-bd-is">{{expireDate}}</span> روز
-                دیگر
+                فرصت ارسال رزومه تا
+                <span class="font-num-bd-is">{{ expireDate }}</span> روز دیگر
               </p>
             </div>
           </template>
@@ -161,7 +215,10 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
+import { mapGetters, mapActions } from "vuex";
 export default {
+  mixins: [validationMixin],
   props: {
     showBtn: {
       Boolean,
@@ -169,17 +226,80 @@ export default {
     resumeEdit: {
       Boolean,
     },
-    expireDate:{
-      String
-    }
+    expireDate: {
+      String,
+    },
   },
   data() {
     return {
-      uploadResumeFileName: "",
-      uploadAvatarFileName: "",
+      employeeId: 1,
+      isExAvatar: undefined,
+      avatar: "",
+      resumeAttach: "",
     };
   },
+  validations: {
+    avatar: {
+      fileSize: function (val) {
+        let fileSize = val.size;
+        if (fileSize > 2242880) {
+          return false;
+        }
+        return true;
+      },
+    },
+    resumeAttach: {
+      fileSize: function (val) {
+        let fileSize = val.size;
+        if (fileSize > 3242880) {
+          return false;
+        }
+        return true;
+      },
+    },
+  },
+  computed: {
+    ...mapGetters(["getAvatar", "getEmployeeFolder",'getResumeAttach','getResumeLeftSideInfo','getPersonalInfo']),
+      resumeAttachFile(){
+        let text = '';
+        if(this.getResumeAttach !='' && Object.keys(this.getResumeAttach).length != 0 && this.getResumeAttach.length > 0){
+ //text = this.getResumeAttach;
+text = this.getResumeAttach.substring(0,15)+'(...).pdf'
+        }
+        
+        return text;
+      }
+  },
   methods: {
+    ...mapActions([
+      "setEmployeeAvatarInServer",
+      "getEmployeeAvatarFromServer",
+      "removeAvatarFromServer",
+      "uploadResumeAttachToServer",
+      "getResumeAttachFileNameFromServer",
+      'getResumeLeftSideInfoFromServer'
+    ]),
+
+    uploadAvatar(event) {
+      // let avatar = event.target.files[0];
+      this.avatar = event.target.files[0];
+      if (this.$v.avatar.fileSize) {
+        this.setEmployeeAvatarInServer({
+          employeeId: 1,
+          avatar: this.avatar,
+        }).then(() => {
+          this.getEmployeeAvatarFromServer(this.employeeId);
+        });
+      }
+    },
+    removeAvatar() {
+      this.removeAvatarFromServer(this.employeeId).then(() => {
+        this.getEmployeeAvatarFromServer(this.employeeId);
+      });
+    },
+    browseAvatarFile() {
+      this.$refs.avatarUploadBtn.click();
+    },
     enableDisableUploadResume() {
       let uploadResumeInp = this.$refs.uploadResumeInp;
       let hasDisabled = uploadResumeInp.hasAttribute("disabled");
@@ -190,19 +310,43 @@ export default {
       }
       this.$refs.customUpload.classList.toggle("enable-upload-btn");
     },
-
-    getNameOfFile(event) {
-      if (event.target.name === "uploadResume") {
-        this.uploadResumeFileName = event.target.files[0].name;
-      } else if (event.target.name === "uploadAvatar") {
-        this.uploadAvatarFileName = event.target.files[0].name;
+    uploadResumeAttach(event) {
+      console.log(typeof event.target.files[0], "ev");
+      if (typeof event.target.files[0] == "object") {
+        this.resumeAttach = event.target.files[0];
+        if (this.$v.resumeAttach.fileSize) {
+          this.uploadResumeAttachToServer({
+            employeeId: 1,
+            resumeAttach: this.resumeAttach,
+          }).then(() => {
+            this.getResumeAttachFileNameFromServer(this.employeeId);
+          });
+        }
       }
     },
-    uploadAvatar() {
-      // let clickEvent = new Event('click');
-      // this.$refs.f8.dispatchEvent(clickEvent);
-      this.$refs.avatarUploadBtn.click();
+  },
+  created() {
+    this.getEmployeeAvatarFromServer(this.employeeId).then(() => {
+      if (this.getAvatar == "") {
+        this.isExAvatar = false;
+      } else if (this.getAvatar.length > 0) {
+        this.isExAvatar = true;
+      }
+    });
+    this.getResumeAttachFileNameFromServer(this.employeeId);
+    this.getResumeLeftSideInfoFromServer(this.employeeId);
+  },
+  watch: {
+    getAvatar(v) {
+      if (v == "") {
+        this.isExAvatar = false;
+      } else if (v.length > 0) {
+        this.isExAvatar = true;
+      }
     },
+    getPersonalInfo(){
+      this.getResumeLeftSideInfoFromServer(this.employeeId);
+    }
   },
 };
 </script>
@@ -253,6 +397,7 @@ export default {
 }
 .avatar-pic {
   width: 6rem;
+  height: 2rem;
   position: relative;
   display: inline-block;
 }
@@ -268,9 +413,9 @@ export default {
   color: #0fc0db;
   border-bottom: 1px dashed #0fc0db;
 }
-.remove-avatar span{
-   color: #D6080C;
-  border-bottom: 1px dashed #D6080C;
+.remove-avatar span {
+  color: #d6080c;
+  border-bottom: 1px dashed #d6080c;
 }
 .avatar-pic input {
   height: 0 !important;

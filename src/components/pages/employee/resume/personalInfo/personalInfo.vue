@@ -144,6 +144,7 @@ export default {
   },
   watch:{
     getPersonalInfo(v){
+      console.log('piiiii');
       if (v=='') {
         this.btnType = 'add'
       }else if(Object.keys(v).length>0){
