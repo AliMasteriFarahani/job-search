@@ -45,11 +45,23 @@
                   type="file"
                   class="cursor-pointer opacity-0 w-100"
                   name="uploadAvatar"
-                  @change="uploadAvatar"
+                  @change="uploadAvatar($event)"
                 />
-                <span v-if="!$v.avatar.fileSize" class="invalid-feedback">
+                <span
+                  v-if="!$v.avatar.fileSize && $v.avatar.$dirty"
+                  class="font-num-is invalid-feedback"
+                >
                   حداکثر 2 مگابایت
                 </span>
+                <span
+                  v-if="
+                    !$v.avatar.imageType &&
+                    $v.avatar.$dirty &&
+                    $v.avatar.fileSize
+                  "
+                  class="invalid-feedback"
+                  >فرمت نامعتبر</span
+                >
               </span>
             </form>
           </template>
@@ -83,14 +95,25 @@
         <div class="col-12">
           <div class="ms-4 mb-3">
             <span class="font-90 mt-1">نام و نام خانوادگی : </span>
-            <span class="font-xs-80 font-bd-is font-sm-90 mt-1">{{
-              getResumeLeftSideInfo.name + " " + getResumeLeftSideInfo.family
-            }}</span>
+            <span class="font-xs-80 font-bd-is font-sm-90 mt-1"
+              >{{
+                getResumeLeftSideInfo.name != null
+                  ? getResumeLeftSideInfo.name + " "
+                  : "-"
+              }}
+              {{
+                getResumeLeftSideInfo.family != null
+                  ? getResumeLeftSideInfo.family
+                  : "-"
+              }}
+            </span>
           </div>
           <div class="ms-4 mb-3">
             <span class="font-90 mt-1">عنوان شغلی : </span>
             <span class="font-xs-80 font-bd-is font-sm-90 mt-1">{{
-              getResumeLeftSideInfo.jobTitle
+              getResumeLeftSideInfo.jobTitle != null
+                ? getResumeLeftSideInfo.jobTitle
+                : "-"
             }}</span>
           </div>
           <div class="ms-4 mb-3">
@@ -129,11 +152,12 @@
               </label>
             </div>
           </div>
-          <div class="d-flex justify-content-center mb-3">
+          <div class="d-flex justify-content-center">
             <div class="w-75 custom-upload" ref="customUpload">
               <input
                 @change="uploadResumeAttach($event)"
                 ref="uploadResumeInp"
+                accept=".pdf"
                 type="file"
                 id="upload-resume"
                 disabled="disabled"
@@ -147,6 +171,20 @@
             </div>
           </div>
           <div class="d-flex justify-content-center">
+               <span
+                v-if="!$v.resumeAttach.fileSize && $v.resumeAttach.$dirty"
+                class="text-center font-num-is invalid-feedback"
+              >
+                حداکثر 3 مگابایت
+              </span>
+               <span
+                v-if="!$v.resumeAttach.docType && $v.resumeAttach.fileSize && $v.resumeAttach.$dirty"
+                class="text-center font-num-is invalid-feedback"
+              >
+                فرمت نامعتبر
+              </span>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
             <p class="resume-upload-file-name font-73">
               {{ resumeAttachFile }}
             </p>
@@ -162,8 +200,8 @@
             <div class="ms-4 mb-3">
               <div class="form-check form-switch">
                 <input
-                v-model="sendSimilars"
-                :disabled="getIsJobApplied ==  1"
+                  v-model="sendSimilars"
+                  :disabled="getIsJobApplied == 1"
                   class="
                     form-check-input
                     upload-resume-checkbox
@@ -183,9 +221,9 @@
             </div>
             <div class="mb-3 d-flex justify-content-center">
               <button
-              v-if="getIsJobApplied ==  0"
+                v-if="getIsJobApplied == 0"
                 @click="sendResume()"
-                :disabled="getIsJobApplied ==  1"
+                :disabled="getIsJobApplied == 1 || getPersonalInfo == ''"
                 type="submit"
                 class="
                   btn
@@ -202,11 +240,11 @@
                   text-white
                 "
               >
-                 ارسال رزومه
+                ارسال رزومه
               </button>
               <button
-              v-if="getIsJobApplied ==  1"
-                :disabled="getIsJobApplied ==  1"
+                v-if="getIsJobApplied == 1"
+                :disabled="getIsJobApplied == 1"
                 class="
                   btn
                   w-75
@@ -222,8 +260,16 @@
                   text-white
                 "
               >
-                 رزومه ارسال شده
+                رزومه ارسال شده
               </button>
+            </div>
+            <div class="mt-3 d-flex justify-content-center">
+              <span
+                v-if="getPersonalInfo == ''"
+                class="text-center invalid-feedback"
+              >
+                لطفا رزومه خود را کامل کنید
+              </span>
             </div>
             <div class="mt-3 d-flex justify-content-center">
               <p class="font-80">
@@ -239,10 +285,11 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
 import { mapGetters, mapActions } from "vuex";
+import { validationMixin } from "vuelidate";
+import { fileSize, imageType,docType } from "@/Mixins/customValidators";
 export default {
-  mixins: [validationMixin],
+   mixins: [validationMixin],
   props: {
     showBtn: {
       Boolean,
@@ -257,7 +304,7 @@ export default {
   data() {
     return {
       employeeId: 1,
-      sendSimilars:false,
+      sendSimilars: false,
       isExAvatar: undefined,
       avatar: "",
       resumeAttach: "",
@@ -265,22 +312,12 @@ export default {
   },
   validations: {
     avatar: {
-      fileSize: function (val) {
-        let fileSize = val.size;
-        if (fileSize > 2242880) {
-          return false;
-        }
-        return true;
-      },
+      fileSize: fileSize(2),
+      imageType,
     },
     resumeAttach: {
-      fileSize: function (val) {
-        let fileSize = val.size;
-        if (fileSize > 3242880) {
-          return false;
-        }
-        return true;
-      },
+      fileSize: fileSize(2),
+      docType:docType('pdf')
     },
   },
   computed: {
@@ -290,8 +327,9 @@ export default {
       "getResumeAttach",
       "getResumeLeftSideInfo",
       "getPersonalInfo",
-      'getIsJobApplied',
-      'getSendSimilars'
+      "getIsJobApplied",
+      "getSendSimilars",
+      "getPersonalInfo",
     ]),
     resumeAttachFile() {
       let text = "";
@@ -300,10 +338,8 @@ export default {
         Object.keys(this.getResumeAttach).length != 0 &&
         this.getResumeAttach.length > 0
       ) {
-        //text = this.getResumeAttach;
         text = this.getResumeAttach.substring(0, 15) + "(...).pdf";
       }
-
       return text;
     },
   },
@@ -315,14 +351,15 @@ export default {
       "uploadResumeAttachToServer",
       "getResumeAttachFileNameFromServer",
       "getResumeLeftSideInfoFromServer",
-      'applyJobForCompanyInServer',
-      'getIsJobAppliedFromServer'
+      "applyJobForCompanyInServer",
+      "getIsJobAppliedFromServer",
+      "getPersonalInfoFromServer",
     ]),
 
     uploadAvatar(event) {
-      // let avatar = event.target.files[0];
       this.avatar = event.target.files[0];
-      if (this.$v.avatar.fileSize) {
+      this.$v.avatar.$touch();
+      if (this.$v.avatar.fileSize && this.$v.avatar.imageType) {
         this.setEmployeeAvatarInServer({
           employeeId: 1,
           avatar: this.avatar,
@@ -350,10 +387,10 @@ export default {
       this.$refs.customUpload.classList.toggle("enable-upload-btn");
     },
     uploadResumeAttach(event) {
-      console.log(typeof event.target.files[0], "ev");
       if (typeof event.target.files[0] == "object") {
         this.resumeAttach = event.target.files[0];
-        if (this.$v.resumeAttach.fileSize) {
+        this.$v.resumeAttach.$touch();
+        if (this.$v.resumeAttach.fileSize && this.$v.resumeAttach.docType) {
           this.uploadResumeAttachToServer({
             employeeId: 1,
             resumeAttach: this.resumeAttach,
@@ -365,11 +402,10 @@ export default {
     },
     sendResume() {
       if (this.showBtn && this.$route.name == "JobDescriptions") {
-        console.log(this.$route);
         this.applyJobForCompanyInServer({
           employeeId: this.employeeId,
           jobId: this.$route.params.id,
-          sendSimilars:this.sendSimilars
+          sendSimilars: this.sendSimilars,
         });
       }
     },
@@ -384,9 +420,13 @@ export default {
     });
     this.getResumeAttachFileNameFromServer(this.employeeId);
     this.getResumeLeftSideInfoFromServer(this.employeeId);
-    this.getIsJobAppliedFromServer({employeeId:this.employeeId,jobId:this.$route.params.id}).then(()=>{
-      this.sendSimilars = this.getSendSimilars == '1' ? true : false
+    this.getIsJobAppliedFromServer({
+      employeeId: this.employeeId,
+      jobId: this.$route.params.id,
+    }).then(() => {
+      this.sendSimilars = this.getSendSimilars == "1" ? true : false;
     });
+    this.getPersonalInfoFromServer(this.employeeId);
   },
   watch: {
     getAvatar(v) {
@@ -404,6 +444,10 @@ export default {
 </script>
 
 <style>
+.invalid-feedback {
+  display: block;
+  font-size: 0.75rem;
+}
 /*  custom upload :  */
 .upload-resume-checkbox:checked {
   background-color: #14cbe8 !important;

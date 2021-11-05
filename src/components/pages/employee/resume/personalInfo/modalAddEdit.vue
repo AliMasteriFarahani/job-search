@@ -191,7 +191,7 @@
                   </span>
                   <span
                     v-if="
-                      !$v.personalInfo.mobile.isMobile &&
+                      !$v.personalInfo.mobile.mobileFormat &&
                       $v.personalInfo.mobile.$dirty
                     "
                     class="invalid-feedback"
@@ -601,16 +601,11 @@
 </template>
 
 <script>
-//import { toCurrency } from "@/Mixins/toCurrency";
-import {
-  toCurrency,
-  isPersian,
-  dateFormat,
-  mobile,
-} from "@/Mixins/tinyFunctions";
 import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
+import { persianText,dashedDate,mobileFormat } from "@/Mixins/customValidators";
 import { selectedManual } from "@/Mixins/selectedManualCs";
+import { toCurrency } from "@/Mixins/toCurrency";
 import {
   required,
   email,
@@ -618,7 +613,7 @@ import {
   minLength,
 } from "vuelidate/lib/validators";
 export default {
-  mixins: [toCurrency, selectedManual,validationMixin, isPersian, dateFormat, mobile],
+  mixins: [toCurrency, selectedManual,validationMixin],
   props: {
     getPersonalInfo: {
       Object,
@@ -652,22 +647,16 @@ export default {
       name: {
         required,
         minLength: minLength(3),
-        persianText: function (val) {
-          return this.persianText(val);
-        },
+        persianText
       },
       family: {
         required,
         minLength: minLength(3),
-        persianText: function (val) {
-          return this.persianText(val);
-        },
+        persianText
       },
       birthdate: {
         required,
-        dashedDate: function (val) {
-          return this.dashedDate(val);
-        },
+        dashedDate
       },
       jobTitle: {
         required,
@@ -675,9 +664,7 @@ export default {
       },
       mobile: {
         required,
-        isMobile: function (val) {
-          return this.isMobile(val);
-        },
+        mobileFormat
       },
       address: {
         required,

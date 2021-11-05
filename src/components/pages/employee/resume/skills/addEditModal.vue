@@ -181,9 +181,11 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import { mapGetters, mapActions } from "vuex";
 export default {
+  mixins:[validationMixin],
   props: {
     isEdit: Object,
   },

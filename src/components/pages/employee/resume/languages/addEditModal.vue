@@ -145,11 +145,12 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import { mapGetters, mapActions } from "vuex";
 import { selectedManual } from "@/Mixins/selectedManualCs";
 export default {
-  mixins: [selectedManual],
+  mixins: [selectedManual,validationMixin],
   props: {
     isEdit: {
       Object,

@@ -7,7 +7,7 @@
           <span class="section-title">اطلاعات فردی</span>
         </div>
         <div class="col-12 pb-3">
-          <template v-if="btnType == 'add'">
+          <template v-if="btnType == 'add' || getPersonalInfo==''">
             <span
               data-bs-toggle="modal"
               data-bs-target="#personal-informations"
@@ -118,7 +118,7 @@
 <script>
 import appAddEditModal from "./modalAddEdit.vue";
 import appNotification from "@/components/pages/shared/notification.vue";
-import { toCurrency } from "@/Mixins/tinyFunctions";
+import { toCurrency } from "@/Mixins/toCurrency";
 import { mapGetters, mapActions } from "vuex";
 export default {
     components: {

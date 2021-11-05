@@ -297,12 +297,13 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import { mapGetters, mapActions } from "vuex";
 import { calender } from "@/Mixins/calender";
 import { selectedManual } from "@/Mixins/selectedManualCs";
 export default {
-  mixins: [calender, selectedManual],
+  mixins: [calender, selectedManual,validationMixin],
   props: {
     isEdit: {
       Object,
