@@ -83,15 +83,15 @@
         <div class="col-12">
           <div class="ms-4 mb-3">
             <span class="font-90 mt-1">نام و نام خانوادگی : </span>
-            <span class="font-xs-80 font-bd-is font-sm-90 mt-1"
-              >{{getResumeLeftSideInfo.name +' '+getResumeLeftSideInfo.family}}</span
-            >
+            <span class="font-xs-80 font-bd-is font-sm-90 mt-1">{{
+              getResumeLeftSideInfo.name + " " + getResumeLeftSideInfo.family
+            }}</span>
           </div>
           <div class="ms-4 mb-3">
             <span class="font-90 mt-1">عنوان شغلی : </span>
-            <span class="font-xs-80 font-bd-is font-sm-90 mt-1"
-              >{{getResumeLeftSideInfo.jobTitle}}</span
-            >
+            <span class="font-xs-80 font-bd-is font-sm-90 mt-1">{{
+              getResumeLeftSideInfo.jobTitle
+            }}</span>
           </div>
           <div class="ms-4 mb-3">
             <span class="font-90 mt-1">وضعیت رزومه :</span>
@@ -162,6 +162,8 @@
             <div class="ms-4 mb-3">
               <div class="form-check form-switch">
                 <input
+                v-model="sendSimilars"
+                :disabled="getIsJobApplied ==  1"
                   class="
                     form-check-input
                     upload-resume-checkbox
@@ -170,7 +172,7 @@
                   "
                   type="checkbox"
                   id="flexSwitchCheckChecked"
-                  checked
+                  :checked="sendSimilars"
                 />
                 <label
                   class="form-check-label font-80"
@@ -181,8 +183,10 @@
             </div>
             <div class="mb-3 d-flex justify-content-center">
               <button
+              v-if="getIsJobApplied ==  0"
+                @click="sendResume()"
+                :disabled="getIsJobApplied ==  1"
                 type="submit"
-                ref="ll"
                 class="
                   btn
                   w-75
@@ -198,11 +202,31 @@
                   text-white
                 "
               >
-                ارسال رزومه
+                 ارسال رزومه
+              </button>
+              <button
+              v-if="getIsJobApplied ==  1"
+                :disabled="getIsJobApplied ==  1"
+                class="
+                  btn
+                  w-75
+                  btn-success
+                  bg-green
+                  border-radius-05
+                  px-5
+                  py-2
+                  shadow-c
+                  border-0
+                  mt-1
+                  font-70
+                  text-white
+                "
+              >
+                 رزومه ارسال شده
               </button>
             </div>
             <div class="mt-3 d-flex justify-content-center">
-              <p class="font-80" ref="f8">
+              <p class="font-80">
                 فرصت ارسال رزومه تا
                 <span class="font-num-bd-is">{{ expireDate }}</span> روز دیگر
               </p>
@@ -233,6 +257,7 @@ export default {
   data() {
     return {
       employeeId: 1,
+      sendSimilars:false,
       isExAvatar: undefined,
       avatar: "",
       resumeAttach: "",
@@ -259,16 +284,28 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getAvatar", "getEmployeeFolder",'getResumeAttach','getResumeLeftSideInfo','getPersonalInfo']),
-      resumeAttachFile(){
-        let text = '';
-        if(this.getResumeAttach !='' && Object.keys(this.getResumeAttach).length != 0 && this.getResumeAttach.length > 0){
- //text = this.getResumeAttach;
-text = this.getResumeAttach.substring(0,15)+'(...).pdf'
-        }
-        
-        return text;
+    ...mapGetters([
+      "getAvatar",
+      "getEmployeeFolder",
+      "getResumeAttach",
+      "getResumeLeftSideInfo",
+      "getPersonalInfo",
+      'getIsJobApplied',
+      'getSendSimilars'
+    ]),
+    resumeAttachFile() {
+      let text = "";
+      if (
+        this.getResumeAttach != "" &&
+        Object.keys(this.getResumeAttach).length != 0 &&
+        this.getResumeAttach.length > 0
+      ) {
+        //text = this.getResumeAttach;
+        text = this.getResumeAttach.substring(0, 15) + "(...).pdf";
       }
+
+      return text;
+    },
   },
   methods: {
     ...mapActions([
@@ -277,7 +314,9 @@ text = this.getResumeAttach.substring(0,15)+'(...).pdf'
       "removeAvatarFromServer",
       "uploadResumeAttachToServer",
       "getResumeAttachFileNameFromServer",
-      'getResumeLeftSideInfoFromServer'
+      "getResumeLeftSideInfoFromServer",
+      'applyJobForCompanyInServer',
+      'getIsJobAppliedFromServer'
     ]),
 
     uploadAvatar(event) {
@@ -324,6 +363,16 @@ text = this.getResumeAttach.substring(0,15)+'(...).pdf'
         }
       }
     },
+    sendResume() {
+      if (this.showBtn && this.$route.name == "JobDescriptions") {
+        console.log(this.$route);
+        this.applyJobForCompanyInServer({
+          employeeId: this.employeeId,
+          jobId: this.$route.params.id,
+          sendSimilars:this.sendSimilars
+        });
+      }
+    },
   },
   created() {
     this.getEmployeeAvatarFromServer(this.employeeId).then(() => {
@@ -335,6 +384,9 @@ text = this.getResumeAttach.substring(0,15)+'(...).pdf'
     });
     this.getResumeAttachFileNameFromServer(this.employeeId);
     this.getResumeLeftSideInfoFromServer(this.employeeId);
+    this.getIsJobAppliedFromServer({employeeId:this.employeeId,jobId:this.$route.params.id}).then(()=>{
+      this.sendSimilars = this.getSendSimilars == '1' ? true : false
+    });
   },
   watch: {
     getAvatar(v) {
@@ -344,9 +396,9 @@ text = this.getResumeAttach.substring(0,15)+'(...).pdf'
         this.isExAvatar = true;
       }
     },
-    getPersonalInfo(){
+    getPersonalInfo() {
       this.getResumeLeftSideInfoFromServer(this.employeeId);
-    }
+    },
   },
 };
 </script>

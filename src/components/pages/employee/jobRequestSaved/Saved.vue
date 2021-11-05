@@ -69,7 +69,7 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </span>
-            <button
+            <!-- <button
               class="
                 btn btn-success btn-similar-position
                 bg-green
@@ -84,7 +84,7 @@
               "
             >
               ارسال رزومه
-            </button>
+            </button> -->
           </div>
         </span>
       </div>
@@ -92,11 +92,8 @@
     <!-- end of result of job search  -->
   </div>
 </template>
-
-
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 import { saveJobCollectMixin } from "@/Mixins/saveJobCollectMixin";
 import { makeSlug } from "@/Mixins/makeSlug";
 export default {

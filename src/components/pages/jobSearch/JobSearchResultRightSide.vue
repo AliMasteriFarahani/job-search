@@ -170,7 +170,7 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </span>
-                <button
+                <!-- <button
                   class="
                     btn btn-success btn-similar-position
                     bg-green
@@ -185,7 +185,7 @@
                   "
                 >
                   ارسال رزومه
-                </button>
+                </button> -->
               </div>
             </span>
           </div>

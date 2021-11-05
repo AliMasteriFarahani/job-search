@@ -5,6 +5,8 @@ const state = {
   resumeAttach: [],
   employeeFolder: "http://job-search.test/public/employee",
   resumeLeftSideInfo: {},
+  isJobApplied:[],
+  sendSimilars:[]
 };
 const getters = {
   getAvatar() {
@@ -19,6 +21,12 @@ const getters = {
   getResumeLeftSideInfo() {
     return state.resumeLeftSideInfo;
   },
+  getIsJobApplied(){
+    return state.isJobApplied;
+  },
+  getSendSimilars(){
+    return state.sendSimilars;
+  }
 };
 
 const mutations = {
@@ -31,6 +39,12 @@ const mutations = {
   setResumeLeftSideInfo(state, info) {
     state.resumeLeftSideInfo = info;
   },
+  setIsJobApplied(state,status){
+    state.isJobApplied = status;
+  },
+  setSendSimilars(state,status){
+    state.sendSimilars = status;
+  }
 };
 
 const actions = {
@@ -69,7 +83,6 @@ const actions = {
     });
   },
   uploadResumeAttachToServer({ commit }, data) {
-    console.log(data, "data");
     return new Promise((resolve) => {
       let formData = new FormData();
       formData.append("resumeAttach", data.resumeAttach);
@@ -84,7 +97,6 @@ const actions = {
           }
         )
         .then((response) => {
-          console.log(response, "res");
           commit("setStatus", response.data);
           resolve();
         });
@@ -105,13 +117,41 @@ const actions = {
       axios
         .get(`employee/getResumeLeftSideInfo/${employeeId}`)
         .then((response) => {
-          console.log(response.data,'lll');
           commit("setResumeLeftSideInfo", response.data);
           resolve();
         });
     });
     //
   },
+  applyJobForCompanyInServer({commit},data){
+    return new Promise((resolve) => {
+      axios
+        .post(`employee/applyJobForCompany/${data.employeeId}/${data.jobId}/${data.sendSimilars}`)
+        .then((response) => {
+        if (response.status == 200) {
+            if(response.data == 'applied'){
+              commit("setIsJobApplied", 1);
+              resolve(); 
+            }
+
+          }
+        });
+    });
+  },
+  getIsJobAppliedFromServer({commit},data){
+    return new Promise((resolve) => {
+      axios
+        .get(`employee/isJobApplied/${data.employeeId}/${data.jobId}`)
+        .then((response) => {
+          console.log(response,'is');
+          if (response.status == 200) {
+            commit("setIsJobApplied", response.data.isJobApplied);
+            commit("setSendSimilars", response.data.sendSimilars);
+            resolve(); 
+          }
+        });
+    });
+  }
 };
 
 export default {
