@@ -17,12 +17,12 @@
                 <div class="col-12" v-if="Object.keys(getAllJobExperience).length > 0">
                   <div v-for="(jobExp,i) in getAllJobExperience" :key="i" class="row mt-3 me-2 border-bm-c">
                     <div class="col">
-                      <p class="font-bd-is">
+                      <p class="font-bd-is d-inline-block">
                         {{jobExp.jobTitle}}
                       </p>
                       <p>
                         <span class="font-1 me-3">{{jobExp.orgTitle}}</span>
-                        <span dir="ltr" class="font-1 font-num-is"
+                        <span dir="ltr" class="font-1 d-inline-block font-num-is"
                           >از
                       {{ jobExp.startYear }} تا {{ jobExp.endYear=='now' ? 'اکنون': jobExp.endYear}}
                           

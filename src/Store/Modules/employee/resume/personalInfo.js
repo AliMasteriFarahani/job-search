@@ -26,7 +26,6 @@ const actions = {
   getPersonalInfoFromServer({ commit }, employeeId) {
     return new Promise((resolve) => {
       axios.get(`employee/getPersonalInfo/${employeeId}`).then((response) => {
-        console.log(response,'ooooo');
         commit("setPersonalInfo", response.data);
         resolve();
       });

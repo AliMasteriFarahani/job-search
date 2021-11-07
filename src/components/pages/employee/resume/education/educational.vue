@@ -33,8 +33,8 @@
                     {{ edu.grade }} - {{ edu.majorTitle }}
                   </p>
                   <p>
-                    <span class="font-1 me-3">{{ edu.uniTitle }}</span>
-                    <span class="font-1 font-num-is"
+                    <span class="font-1 d-inline-block me-3">{{ edu.uniTitle }}</span>
+                    <span class="font-1 d-inline-block font-num-is"
                       >از
                       {{ edu.startYear }} تا {{ edu.endYear=='now' ? 'اکنون': edu.endYear}}</span
                     >

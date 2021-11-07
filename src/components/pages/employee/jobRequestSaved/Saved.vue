@@ -40,7 +40,7 @@
             </h3>
           </router-link>
           <span class="text-dark font-73 d-block d-md-inline font-num-is"
-            >( 3 روز پیش )</span
+            >( {{job.created_at}} روز پیش )</span
           >
           <div class="mt-4 color-73 font-xs-73 font-sm-80 d-flex flex-wrap">
             <span class="me-3 mb-2 mb-md-0">
@@ -113,7 +113,8 @@ export default {
     ...mapGetters([
       "getEmployeeSavedJobs",
       "getIsJobSaved",
-      "getCompanyLogoFolder",
+      "getCompanyLogoFolder"
+      ,'getSavedPageId','getAllPagesSaved'
     ]),
   },
   methods: {
@@ -125,14 +126,14 @@ export default {
       pageId: 1,
     });
   },
-  watch: {
-    pageIdChanged(v) {
-      this.getEmployeeSavedJobsFromServer({
-        empId: this.employeeId,
-        pageId: v,
-      });
-    },
-  },
+  // watch: {
+  //   pageIdChanged(v) {
+  //     this.getEmployeeSavedJobsFromServer({
+  //       empId: this.employeeId,
+  //       pageId: v,
+  //     });
+  //   },
+  // },
 };
 </script>
 

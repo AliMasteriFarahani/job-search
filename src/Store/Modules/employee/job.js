@@ -7,7 +7,10 @@ const state = {
   isJobSaved: "",
   isCurrentJobSaved: "",
   allPagesSaved:1,
-  savedPageId:1
+  savedPageId:1,
+  employeeAppliedJob:[],
+  allAppliedPages:1,
+  appliedPageId:1
 };
 const getters = {
   getEmployeeSavedJobs() {
@@ -24,6 +27,15 @@ const getters = {
   },
   getSavedPageId(){
     return state.savedPageId;
+  },
+  geEmployeeAppliedJob(){
+      return state.employeeAppliedJob
+  },
+  getAllAppliedPages(){
+    return state.allAppliedPages;
+  },
+  getAppliedPageId(){
+    return state.appliedPageId
   }
 };
 
@@ -42,6 +54,15 @@ const mutations = {
   },
   setSavedPageId(state,id){
     state.savedPageId = id;
+  },
+  setEmployeeAppliedJob(state,applied){
+    state.employeeAppliedJob = applied;
+  },
+  setAllAppliedPages(state,pages){
+ state.allAppliedPages = pages;
+  },
+  setAppliedPageId(state,page){
+    state.appliedPageId = page;
   }
 };
 
@@ -77,12 +98,22 @@ const actions = {
     }
   },
   getEmployeeSavedJobsFromServer({ commit }, data) {
-    console.log('object');
-    axios.get(`employee/getSavedJobs/${data.empId}/${data.pageId}`).then((response) => {
-      console.log('ttttt',response);
-      commit("setEmployeeSavedJobs", response.data.result);
-      commit("setAllPagesSaved", response.data.allPages);
-      commit("setSavedPageId", response.data.pageId);
+    new Promise((resolve)=>{
+      axios.get(`employee/getSavedJobs/${data.empId}/${data.pageId}`).then((response) => {
+        console.log('saved',response);
+        commit("setEmployeeSavedJobs", response.data.result);
+        commit("setAllPagesSaved", response.data.allPages);
+        commit("setSavedPageId", response.data.pageId);
+        resolve();
+      });
+    })
+  },
+  getAppliedJobsFromServer({ commit }, data) {
+    axios.get(`employee/getAppliedJobs/${data.empId}/${data.pageId}`).then((response) => {
+      console.log('applied',response);
+       commit("setEmployeeAppliedJob", response.data.result);
+       commit("setAllAppliedPages", response.data.allPages);
+       commit("setAppliedPageId", response.data.pageId);
     });
   },
 };

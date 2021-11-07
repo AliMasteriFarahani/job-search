@@ -82,12 +82,12 @@ const actions = {
       });
   },
   // for job-description page :
-   async getJobDetailsFromServer(context, data) {
+   getJobDetailsFromServer(context, data) {
     return new Promise((resolve)=>{
           axios
       .get(`api/getJobDetails/${data.id}/${data.empId}`)
       .then((response) => {
-        context.commit("setJobDetails", response.data[0]);
+        context.commit("setJobDetails", response.data);
         resolve()
       });
     })

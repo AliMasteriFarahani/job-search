@@ -17,10 +17,8 @@
                 cursor-pointer
               "
               @click="changeSaveStatus($route.params.id)"
-              > 
-              <span v-html="saveIcon()">
-
-              </span>
+            >
+              <span v-html="saveIcon()"> </span>
               <div
                 v-if="getIsCurrentJobSaved === -1 && job == getJobDetails.jobId"
                 class="spinner-border spinner-save spinner-border-sm"
@@ -74,10 +72,9 @@
                   >
                   <span
                     class="job-desc-item p-1 px-md-2 font-bd-is flex-grow-5"
-                    >
-                    {{ getJobDetails.contract_type }}
-                    </span
                   >
+                    {{ getJobDetails.contract_type }}
+                  </span>
                 </div>
 
                 <div class="col-12 mb-2 px-4 d-flex">
@@ -322,7 +319,6 @@
                 <div class="col-12 mb-2 px-4 d-flex flex-wrap font-bd-is">
                   <p>{{ getJobDetails.company_intro }}</p>
                 </div>
-               
               </div>
             </div>
             <!-- end of introduce company -->
@@ -336,70 +332,82 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    metaInfo() {
-      return {
-          title: this.getMeta,
-      }
+  metaInfo() {
+    return {
+      title: this.getMeta,
+    };
   },
   data() {
-    return { 
-         defaultClass: 'fa-regular',
-         employeeId:1,
-         job:null
+    return {
+      defaultClass: "fa-regular",
+      employeeId: 1,
+      job: null,
     };
   },
   computed: {
     ...mapGetters(["getJobDetails", "getIsCurrentJobSaved"]),
-    saveIcon(){
-      return ()=>{
-        if (this.job==this.getJobDetails.jobId) {
-          this.getJobDetails.isSaved = this.getIsCurrentJobSaved;
+    saveIcon() {
+      return () => {
+        if (this.getJobDetails != "failed") {
+          if (this.job == this.getJobDetails.jobId) {
+            this.getJobDetails.isSaved = this.getIsCurrentJobSaved;
+          }
+          return `<i class="fa-bookmark align-middle  ${this.saveClass} "></i>`;
         }
-        return `<i class="fa-bookmark align-middle  ${this.saveClass} "></i>`;
-      }
+      };
     },
-    saveClass(){
-      let className ;
+    saveClass() {
+      let className;
       if (this.getJobDetails.isSaved == 1) {
-        className = 'fa-solid';
-      }else if(this.getJobDetails.isSaved == 0){
-        className = 'fa-regular';
-      }else{
-        className = this.defaultClass
+        className = "fa-solid";
+      } else if (this.getJobDetails.isSaved == 0) {
+        className = "fa-regular";
+      } else {
+        className = this.defaultClass;
       }
       return className;
     },
-    getMeta(){
-      return this.getJobDetails.jobTitle
-    }
+    getMeta() {
+      return this.getJobDetails.jobTitle;
+    },
   },
   methods: {
-      changeSaveStatus(jobId) {
-        console.log(this.getJobDetails.isSaved);
-        if (this.saveClass === 'fa-solid') {
-          this.defaultClass = 'fa-solid'
-        }else if(this.saveClass === 'fa-regular'){
-          this.defaultClass = 'fa-regular'
-        }
-       this.$store.dispatch("changeJobSaveStatusInServer", { jobId, empId:this.employeeId ,isSaved:this.getJobDetails.isSaved,isCurrent:1});
-       this.$store.commit("setIsCurrentJobSaved", -1);
-       this.job = this.getJobDetails.jobId 
+    changeSaveStatus(jobId) {
+      if (this.saveClass === "fa-solid") {
+        this.defaultClass = "fa-solid";
+      } else if (this.saveClass === "fa-regular") {
+        this.defaultClass = "fa-regular";
+      }
+      this.$store.dispatch("changeJobSaveStatusInServer", {
+        jobId,
+        empId: this.employeeId,
+        isSaved: this.getJobDetails.isSaved,
+        isCurrent: 1,
+      });
+      this.$store.commit("setIsCurrentJobSaved", -1);
+      this.job = this.getJobDetails.jobId;
     },
-
   },
-
+  watch: {
+    getJobDetails(v) {
+      alert(v);
+      if (v == "failed") {
+        this.$router.push("/");
+      }
+    },
+  },
 };
 </script>
 
 <style>
 .spinner-save {
-    position: absolute;
-    left: 0.1rem;
-    top: 0.5rem;
-    border-color: #6bf9c5;
-    border-left-color: transparent;
+  position: absolute;
+  left: 0.1rem;
+  top: 0.5rem;
+  border-color: #6bf9c5;
+  border-left-color: transparent;
 }
 .spinner-border-sm {
-   border-width: .14em;
+  border-width: 0.14em;
 }
 </style>

@@ -26,7 +26,6 @@ const actions = {
     });
   },
   sendSkillsToServer({ commit }, data) {
-    console.log("data:", data);
     return new Promise((resolve) => {
       axios
         .patch(`employee/saveSkills/${data.employeeId}`, {

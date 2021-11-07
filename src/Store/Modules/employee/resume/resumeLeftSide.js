@@ -143,7 +143,6 @@ const actions = {
       axios
         .get(`employee/isJobApplied/${data.employeeId}/${data.jobId}`)
         .then((response) => {
-          console.log(response,'is');
           if (response.status == 200) {
             commit("setIsJobApplied", response.data.isJobApplied);
             commit("setSendSimilars", response.data.sendSimilars);

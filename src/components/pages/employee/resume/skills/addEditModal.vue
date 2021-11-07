@@ -228,7 +228,6 @@ export default {
     sendSkills() {
       this.$store.commit("setStatus", "pending");
       if (Object.keys(this.skills).length > 0) {
-        console.log((Object.keys(this.skills).length,'lelelele'));
               this.sendSkillsToServer({
         employeeId: this.employeeId,
         skills: this.skills,
@@ -236,7 +235,6 @@ export default {
         this.getSkillsFromServer(this.employeeId);
       });
       }else if(Object.keys(this.skills).length == 0){
-          console.log((Object.keys(this.skills).length,'tttttt'));
                         this.updateSkillsInServer({
         employeeId: this.employeeId,
         skills: this.skills,

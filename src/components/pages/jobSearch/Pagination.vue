@@ -163,7 +163,6 @@ export default {
       this.currentPage = pageId;
       window.scrollTo(0,0)
       this.$emit('pageChanged',this.currentPage)
-      console.log('ccc',this.currentPage);
     },
   },
   watch:{

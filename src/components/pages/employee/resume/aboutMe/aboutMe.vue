@@ -99,10 +99,8 @@ export default {
   watch: {
     getAboutMe(v) {
       if (v == '') {
-        console.log('adddd');
         this.btnType = "add";
       } else if ( Object.keys(v).length > 0) {
-        console.log('editt');
         this.btnType = "edit";
       }
     },

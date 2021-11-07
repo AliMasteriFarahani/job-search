@@ -136,6 +136,9 @@ export default {
       numOfBtn:3,
     };
   },
+  created(){
+alert(this.allPages)
+  },
   computed: {
     startPage() {
       if (this.currentPage == 1) {
