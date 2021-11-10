@@ -55,17 +55,19 @@ export const Routes = [
     ],
     // beforeEnter(to,from,next){
     //   alert('ooo')
-
     //   next()
     // }
   },
-  { path: "/resume", component: Resume, name: "Resume"},  
+  { path: "/resume", component: Resume, name: "Resume",
     // beforeEnter(to,from,next){
 
     //   next(vm=>{
-    //    alert( vm);
+    //    console.log(vm,'toot');
     //   })
-    // } },
+    // } 
+  //},
+},  
+
   {
     path: "/company/:id/positions/:slug",
     component: CompanyPositions,

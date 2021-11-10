@@ -63,12 +63,13 @@ const actions = {
         }, 3000);
       });
   },
-  loginEmployeeInServer({ commit }, loginEmployee) {
+   loginEmployeeInServer({ commit }, loginEmployee) {
     axios
       .post("api/loginEmployee", loginEmployee)
       .then((response) => {
         console.log(response, "objectppppp");
         if (response.status == 200) {
+          console.log(response, "ccccccccccccc");
           commit("setStatus", response.data.status);
           commit("setAuthCookie", response.data.userInfo);
           commit("setUsername", response.data.userInfo.username);
@@ -85,8 +86,8 @@ const actions = {
         }
       });
   },
-  async checkIsUserAuthenticated({commit}){
-   await axios
+   checkIsUserAuthenticated({commit}){
+    axios
     .get("api/isEmployeeAuthenticated")
     .then((response) => {
       console.log(response, "isAuth");

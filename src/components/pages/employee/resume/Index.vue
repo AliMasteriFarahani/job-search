@@ -20,6 +20,9 @@
 </template>
 
 <script>
+// import Vue from "vue";
+// import axios from "axios";
+// axios.defaults.headers.common['Authorization'] =`Bearer ${Vue.cookie.get('JSS_AUTH_TOKEN')}`
 import AppHeader from "../../shared/Header.vue";
 import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../../shared/ResumeSectionLeft.vue";
@@ -45,26 +48,26 @@ export default {
     ...mapActions(['checkIsUserAuthenticated']),
   },
   created(){
-    console.log(this,'this1');
+   // console.log(this,'this1');
   },
-  beforeRouteEnter(to,from,next){
-   // alert(this.$store.getters.getIsUserAuthenticated,'pp');
-       // console.log(vm=>vm);
-      //  alert(this.employeeId);
-        //  this.checkIsUserAuthenticated().then(()=>{
-        //    next()
-        //  })
-        next(vm=>{
-          //let u = vm.$store.getters
-          vm.sss = 'sss'
-          vm._data.employeeId=111
-          let y = JSON.parse(JSON.stringify(vm._data.employeeId))
-          console.log(y,'iio')
-          });
-     // alert('sss');
-       next();
+  // beforeRouteEnter(to,from,next){
+  //  // alert(this.$store.getters.getIsUserAuthenticated,'pp');
+  //      // console.log(vm=>vm);
+  //     //  alert(this.employeeId);
+  //       //  this.checkIsUserAuthenticated().then(()=>{
+  //       //    next()
+  //       //  })
+  //       next(vm=>{
+  //         //let u = vm.$store.getters
+  //         vm.sss = 'sss'
+  //         vm._data.employeeId=111
+  //         let y = JSON.parse(JSON.stringify(vm._data.employeeId))
+  //         console.log(y,'iio')
+  //         });
+  //    // alert('sss');
+  //      next();
 
-  }
+  // }
 
 
 };

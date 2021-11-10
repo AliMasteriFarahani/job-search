@@ -15,18 +15,16 @@ Vue.config.productionTip = false;
 
 
 //==============================================
-///axios.defaults.headers.common['Authorization'] = `Bearer gggg`;
-// axios.interceptors.request.use(function (config) {
-//   // Do something before request is sent
-// //config.headers.Authorization = 'Bearer '+'yeeeesss'
-//   console.log(config,'conf');
-//   return config;
-// }, function (error) {
-//   // Do something with request error
-//   alert('hello')
-//   console.log(error,'err');
-//   return Promise.reject(error);
-// });
+//axios.defaults.headers.common['Authorization'] = `Bearer gggg`;
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+config.headers.Authorization = 'Bearer '+Vue.cookie.get('JSS_AUTH_TOKEN')
+  return config;
+}, function (error) {
+  // Do something with request error
+  console.log(error,'err');
+  return Promise.reject(error);
+});
 // // //-----------
 // axios.interceptors.response.use(function (response) {
 //   // Any status code that lie within the range of 2xx cause this function to trigger
@@ -57,7 +55,7 @@ import { Routes } from "./Routes/Routes.js";
 Vue.use(VueRouter);
 Vue.use(axios);
 Vue.use(VueCookie);
-axios.defaults.headers.common['Authorization'] =`Bearer ${Vue.cookie.get('JSS_AUTH_TOKEN')}`
+//axios.defaults.headers.common['Authorization'] ='Bearer '+Vue.cookie.get('JSS_AUTH_TOKEN')
 // Vue.cookie.get('JSS_AUTH_TOKEN');
 //Vue.use(Vuelidate);
 
@@ -79,6 +77,16 @@ export const router = new VueRouter({
     }
 }
 });
+ 
+let publicPath = ['Home','JobSearch','JobDescriptions','CompanyPositions','Login','Register']
+router.beforeEach(async (to,from,next)=>{
+  if (!publicPath.includes(to.name)) {
+    if (!store.getters.getIsUserAuthenticated) {
+      router.push('/')
+    }
+  }
+  next()
+})
 
 new Vue({
   render: (h) => h(App),

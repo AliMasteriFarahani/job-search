@@ -180,14 +180,14 @@ export default {
   },
   methods: {
     ...mapActions(["loginEmployeeInServer"]),
-    loginEmployee() {
-      this.loginEmployeeInServer(this.loginInfo);
+    async loginEmployee() {
+      await this.loginEmployeeInServer(this.loginInfo);
     },
   },
-  beforeRouteEnter(to,from,next){
-   // console.log(this.$store.getters.getloginError,'ooo');
-    next();
-  }
+  // beforeRouteEnter(to,from,next){
+  //  // console.log(this.$store.getters.getloginError,'ooo');
+  //   next();
+  // }
 };
 </script>
 

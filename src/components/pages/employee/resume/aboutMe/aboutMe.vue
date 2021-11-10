@@ -95,6 +95,7 @@ export default {
   },
   created() {
     this.getAboutMeFromServer(this.getEmployeeId);
+    this.employeeId = this.$cookie.get('JSS_AUTH_TOKEN')
   },
   watch: {
     getAboutMe(v) {
