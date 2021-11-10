@@ -140,13 +140,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getAllEducations", "getStatus"]),
+    ...mapGetters(["getAllEducations", "getStatus",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getAllEducationsFromServer"]),
   },
   created() {
-    this.getAllEducationsFromServer(this.employeeId)
+    this.getAllEducationsFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

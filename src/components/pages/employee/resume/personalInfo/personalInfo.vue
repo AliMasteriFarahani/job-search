@@ -134,13 +134,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getPersonalInfo", "getStatus"]),
+    ...mapGetters(["getPersonalInfo", "getStatus",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getPersonalInfoFromServer"]),
   },
   created() {
-    this.getPersonalInfoFromServer(this.employeeId);
+    this.getPersonalInfoFromServer(this.getEmployeeId);
+     console.log(this,'this2');
   },
   watch:{
     getPersonalInfo(v){

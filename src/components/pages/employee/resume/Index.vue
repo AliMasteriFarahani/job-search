@@ -24,10 +24,12 @@ import AppHeader from "../../shared/Header.vue";
 import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../../shared/ResumeSectionLeft.vue";
 import AppFooter from "../../shared/Footer.vue";
+import { mapGetters,mapActions } from 'vuex';
 export default {
   data(){
     return{
-      employeeId:1
+      employeeId:55,
+      sty:''
     }
   },
   components: {
@@ -36,6 +38,33 @@ export default {
     AppResumeLeftSide,
     AppRightSide
   },
+  computed:{
+      ...mapGetters(['getIsUserAuthenticated'])
+  },
+  methods:{
+    ...mapActions(['checkIsUserAuthenticated']),
+  },
+  created(){
+    console.log(this,'this1');
+  },
+  beforeRouteEnter(to,from,next){
+   // alert(this.$store.getters.getIsUserAuthenticated,'pp');
+       // console.log(vm=>vm);
+      //  alert(this.employeeId);
+        //  this.checkIsUserAuthenticated().then(()=>{
+        //    next()
+        //  })
+        next(vm=>{
+          //let u = vm.$store.getters
+          vm.sss = 'sss'
+          vm._data.employeeId=111
+          let y = JSON.parse(JSON.stringify(vm._data.employeeId))
+          console.log(y,'iio')
+          });
+     // alert('sss');
+       next();
+
+  }
 
 
 };

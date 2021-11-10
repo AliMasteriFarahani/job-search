@@ -11,7 +11,7 @@ export const saveJobCollectMixin = {
         changeSaveStatus(jobId, isSaved, key) {
           this.$store.dispatch("changeJobSaveStatusInServer", {
             jobId,
-            empId:this.employeeId,
+            empId:this.$store.getters.getEmployeeId,
             isSaved,
             isCurrent: 0,
           });

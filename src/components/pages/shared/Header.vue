@@ -7,7 +7,7 @@
         <nav class="navbar navbar-expand-lg pb-0 navbar-light bg-white ">
           <div class="container-fluid d-flex flex-row-reverse">
             <div id="logo" class="d-flex order-lg-1">
-              <div v-if="isLogin" class="dropdown me-lg-5 drop-acc">
+              <div v-if="getIsUserAuthenticated" class="dropdown me-lg-5 drop-acc">
                 <button 
                   class="btn btn-secondary dropdown-toggle rounded-5 p-2 px-3 font-73  d-none d-lg-block"
                   type="button"
@@ -15,7 +15,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  محمد محمدی فر
+                  {{getUsername}}
                 </button>
 
                 <button
@@ -65,13 +65,13 @@
                       >تنظیمات حساب کاربری</router-link
                     >
                   </li>
-                  <li><a class="dropdown-item pe-4 p-2" href="#">خروج</a></li>
+                  <li><a class="dropdown-item pe-4 p-2" @click="signOutUser()">خروج</a></li>
                 </ul>
               </div>
 
               <router-link
                 v-else
-                :to="{ name: 'LoginRegister' }"
+                :to="{ name: 'Login' }"
                 class="btn  btn-sm btn-secondary rounded-5 p-2 px-3 font-80 me-lg-5 d-none d-lg-block"
                 >ورود / ثبت نام</router-link
               >
@@ -105,8 +105,8 @@
                 <router-link :to="{ name: 'JobSearch' }" class="nav-link m-2"
                   >جست و جوی مشاغل
                 </router-link>
-                <router-link :to="{ name: 'Resume' }" class="nav-link m-2" >ساخت رزومه</router-link>
-                <a class="nav-link m-2" href="#">بخش کارفرمایان</a>
+                <router-link v-if="getIsUserAuthenticated" :to="{ name: 'Resume' }" class="nav-link m-2" >ساخت رزومه</router-link>
+                <a v-if="!getIsUserAuthenticated" class="nav-link m-2" href="#">بخش کارفرمایان</a>
               </div>
             </div>
           </div>
@@ -118,21 +118,32 @@
 </template>
 
 <script>
+import { mapGetters,mapActions } from 'vuex';
 export default {
   
   data() {
     return {
-      isLogin: true,
-      shadow:''
+      isLogin: false,
+      shadow:'',
+      tt:''
     };
   },
+  computed:{
+    ...mapGetters(['getIsUserAuthenticated','getUsername','getEmployeeId'])
+  },
   methods:{
+    ...mapActions(['checkIsUserAuthenticated','signOutUser']),
     shadowShow(){
       this.shadow === ''  ? this.shadow = 'shadow-mlg-0-c' : this.shadow = '';
     }
     // if (document.querySelector('.navbar-collapse').classList.contains('show')) {
     //   document.querySelector('header > div').classList.add('shadow-mlg-0-c')
     // }
+  },
+  created(){
+    this.tt = 'ttt'
+    console.log('pppsss');
+   // this.checkIsUserAuthenticated();
   }
 };
 </script>

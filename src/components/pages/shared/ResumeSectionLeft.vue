@@ -330,6 +330,7 @@ export default {
       "getIsJobApplied",
       "getSendSimilars",
       "getPersonalInfo",
+      'getEmployeeId'
     ]),
     resumeAttachFile() {
       let text = "";
@@ -361,16 +362,16 @@ export default {
       this.$v.avatar.$touch();
       if (this.$v.avatar.fileSize && this.$v.avatar.imageType) {
         this.setEmployeeAvatarInServer({
-          employeeId: 1,
+          employeeId: this.getEmployeeId,
           avatar: this.avatar,
         }).then(() => {
-          this.getEmployeeAvatarFromServer(this.employeeId);
+          this.getEmployeeAvatarFromServer(this.getEmployeeId);
         });
       }
     },
     removeAvatar() {
-      this.removeAvatarFromServer(this.employeeId).then(() => {
-        this.getEmployeeAvatarFromServer(this.employeeId);
+      this.removeAvatarFromServer(this.getEmployeeId).then(() => {
+        this.getEmployeeAvatarFromServer(this.getEmployeeId);
       });
     },
     browseAvatarFile() {
@@ -392,10 +393,10 @@ export default {
         this.$v.resumeAttach.$touch();
         if (this.$v.resumeAttach.fileSize && this.$v.resumeAttach.docType) {
           this.uploadResumeAttachToServer({
-            employeeId: 1,
+            employeeId: this.getEmployeeId,
             resumeAttach: this.resumeAttach,
           }).then(() => {
-            this.getResumeAttachFileNameFromServer(this.employeeId);
+            this.getResumeAttachFileNameFromServer(this.getEmployeeId);
           });
         }
       }
@@ -403,7 +404,7 @@ export default {
     sendResume() {
       if (this.showBtn && this.$route.name == "JobDescriptions") {
         this.applyJobForCompanyInServer({
-          employeeId: this.employeeId,
+          employeeId: this.getEmployeeId,
           jobId: this.$route.params.id,
           sendSimilars: this.sendSimilars,
         });
@@ -411,22 +412,22 @@ export default {
     },
   },
   created() {
-    this.getEmployeeAvatarFromServer(this.employeeId).then(() => {
+    this.getEmployeeAvatarFromServer(this.getEmployeeId).then(() => {
       if (this.getAvatar == "") {
         this.isExAvatar = false;
       } else if (this.getAvatar.length > 0) {
         this.isExAvatar = true;
       }
     });
-    this.getResumeAttachFileNameFromServer(this.employeeId);
-    this.getResumeLeftSideInfoFromServer(this.employeeId);
+    this.getResumeAttachFileNameFromServer(this.getEmployeeId);
+    this.getResumeLeftSideInfoFromServer(this.getEmployeeId);
     this.getIsJobAppliedFromServer({
-      employeeId: this.employeeId,
+      employeeId: this.getEmployeeId,
       jobId: this.$route.params.id,
     }).then(() => {
       this.sendSimilars = this.getSendSimilars == "1" ? true : false;
     });
-    this.getPersonalInfoFromServer(this.employeeId);
+   // this.getPersonalInfoFromServer(this.employeeId);
   },
   watch: {
     getAvatar(v) {
@@ -437,7 +438,7 @@ export default {
       }
     },
     getPersonalInfo() {
-      this.getResumeLeftSideInfoFromServer(this.employeeId);
+      this.getResumeLeftSideInfoFromServer(this.getEmployeeId);
     },
   },
 };

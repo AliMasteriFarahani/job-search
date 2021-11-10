@@ -87,10 +87,10 @@ return{
 }
 },
 methods:{
-     ...mapActions(['removeLanguageSkillFromServer','getAllLanguageSkillsFromServer']),
+     ...mapActions(['removeLanguageSkillFromServer','getAllLanguageSkillsFromServer','getEmployeeId']),
     removeLanguageSkill(){
         this.removeLanguageSkillFromServer(this.langId).then(()=>{
-            this.getAllLanguageSkillsFromServer(this.employeeId);
+            this.getAllLanguageSkillsFromServer(this.getEmployeeId);
         })
     }
 }

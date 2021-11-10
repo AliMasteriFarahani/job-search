@@ -8,6 +8,7 @@ import emloyeeJob from "./Modules/employee/job";
 import Categories from "./Modules/Categories";
 import Resume from "./Modules/employee/resume/resume";
 import searchOptions from "./Modules/searchOptions";
+import account from "./Modules/employee/account";
 export const store = new Vuex.Store({
   state: {},
   getters: {},
@@ -20,5 +21,6 @@ export const store = new Vuex.Store({
     Resume,
     emloyeeJob,
     searchOptions,
+    account
   },
 });

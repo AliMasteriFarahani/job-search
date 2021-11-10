@@ -52,7 +52,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getAllPagesSaved", "getSavedPageId",'getAppliedPageId','getAllAppliedPages']),
+    ...mapGetters(["getAllPagesSaved", "getSavedPageId",'getAppliedPageId','getAllAppliedPages','getEmployeeId']),
     allpeges() {
       let all;
       if (this.$route.name == "Saved") {
@@ -90,12 +90,12 @@ export default {
     pageIdChanged(v) {
       if (this.$route.name == "Saved") {
         this.getEmployeeSavedJobsFromServer({
-          empId: this.employeeId,
+          empId: this.getEmployeeId,
           pageId: v,
         });
       }else if (this.$route.name == "Requests") {
         this.getAppliedJobsFromServer({
-          empId: this.employeeId,
+          empId: this.getEmployeeId,
           pageId: v,
         });
       }

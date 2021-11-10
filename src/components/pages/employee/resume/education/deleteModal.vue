@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
 props:{
     eduId:{
@@ -86,11 +86,14 @@ return{
     employeeId:1
 }
 },
+computed:{
+...mapGetters(['getEmployeeId'])
+},
 methods:{
     ...mapActions(['removeEducationFromServer','getAllEducationsFromServer']),
     removeEducation(){
         this.removeEducationFromServer(this.eduId).then(()=>{
-            this.getAllEducationsFromServer(this.employeeId);
+            this.getAllEducationsFromServer(this.getEmployeeId);
         })
     }
 }

@@ -177,7 +177,7 @@ export default {
     },
   },
       computed: {
-      ...mapGetters(["getStatus", "getJobExperience", "getAllJobExperience",'getLanguageSkill']),
+      ...mapGetters(["getStatus", "getJobExperience", "getAllJobExperience",'getLanguageSkill','getEmployeeId']),
     },
     methods: {
       ...mapActions([
@@ -193,18 +193,18 @@ export default {
           this.$store.commit("setStatus", "pending");
           if (this.isEdit.value == true) {
             this.updateLanguageSkillInServer({
-              employeeId: this.employeeId,
+              employeeId: this.getEmployeeId,
               languageSkill: this.languageSkill,
               id: this.isEdit.id,
             }).then(() => {
-              this.getAllLanguageSkillsFromServer(this.employeeId);
+              this.getAllLanguageSkillsFromServer(this.getEmployeeId);
             });
           } else if (this.isEdit.value == false) {
             this.sendLanguageToServer({
-              employeeId: this.employeeId,
+              employeeId: this.getEmployeeId,
               languageSkill: this.languageSkill,
             }).then(() => {
-              this.getAllLanguageSkillsFromServer(this.employeeId);
+              this.getAllLanguageSkillsFromServer(this.getEmployeeId);
             });
           }
         }
@@ -216,7 +216,7 @@ export default {
       if (v.value == true) {
         this.$store
           .dispatch("getLanguageSkillFromServer", {
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             id: v.id,
           })
           .then(() => {

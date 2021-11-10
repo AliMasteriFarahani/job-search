@@ -346,7 +346,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getStatus", "getJobExperience", "getAllJobExperience"]),
+    ...mapGetters(["getStatus", "getJobExperience", "getAllJobExperience",'getEmployeeId']),
     thisYear() {
       return this.calender().getYear();
     },
@@ -369,18 +369,18 @@ export default {
         this.$store.commit("setStatus", "pending");
         if (this.isEdit.value == true) {
           this.updateJobExperienceInServer({
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             jobExperience: this.jobExperience,
             id: this.isEdit.id,
           }).then(() => {
-            this.getAllJobExperienceFromServer(this.employeeId);
+            this.getAllJobExperienceFromServer(this.getEmployeeId);
           });
         } else if (this.isEdit.value == false) {
           this.sendJobExperienceToServer({
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             jobExperience: this.jobExperience,
           }).then(() => {
-            this.getAllJobExperienceFromServer(this.employeeId);
+            this.getAllJobExperienceFromServer(this.getEmployeeId);
           });
         }
       }
@@ -392,7 +392,7 @@ export default {
       if (v.value == true) {
         this.$store
           .dispatch("getJobExperienceFromServer", {
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             id: v.id,
           })
           .then(() => {

@@ -345,7 +345,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getJobDetails", "getIsCurrentJobSaved"]),
+    ...mapGetters(["getJobDetails", "getIsCurrentJobSaved",'getEmployeeId']),
     saveIcon() {
       return () => {
         if (this.getJobDetails != "failed") {
@@ -380,7 +380,7 @@ export default {
       }
       this.$store.dispatch("changeJobSaveStatusInServer", {
         jobId,
-        empId: this.employeeId,
+        empId: this.getEmployeeId,
         isSaved: this.getJobDetails.isSaved,
         isCurrent: 1,
       });
@@ -390,7 +390,6 @@ export default {
   },
   watch: {
     getJobDetails(v) {
-      alert(v);
       if (v == "failed") {
         this.$router.push("/");
       }

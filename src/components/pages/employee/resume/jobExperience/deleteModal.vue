@@ -87,10 +87,10 @@ return{
 }
 },
 methods:{
-    ...mapActions(['removeJobExperienceFromServer','getAllJobExperienceFromServer']),
+    ...mapActions(['removeJobExperienceFromServer','getAllJobExperienceFromServer','getEmployeeId']),
     removeJobExperience(){
         this.removeJobExperienceFromServer(this.jobExpId).then(()=>{
-            this.getAllJobExperienceFromServer(this.employeeId);
+            this.getAllJobExperienceFromServer(this.getEmployeeId);
         })
     }
 }

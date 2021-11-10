@@ -13,9 +13,6 @@
       <!-- end of left side  -->
       <!-- end of left and right for jobsection -->
 
-      <!-- pagination : -->
-      <app-pagination></app-pagination>
-      <!-- end of pagination  -->
     </section>
     <!-- footer  -->
     <app-footer></app-footer>
@@ -27,13 +24,11 @@
 import AppHeader from "../../shared/Header.vue";
 import AppRightSide from "./RightSide.vue";
 import AppResumeLeftSide from "../../shared/ResumeSectionLeft.vue";
-import AppPagination from "./Pagination.vue";
 import AppFooter from "../../shared/Footer.vue";
 export default {
   components: {
     AppFooter,
     AppHeader,
-    AppPagination,
     AppResumeLeftSide,
     AppRightSide
   }

@@ -352,6 +352,7 @@ export default {
       "getStatus",
       "getEducation",
       "getAllEducations",
+      'getEmployeeId'
     ]),
     thisYear() {
       return this.calender().getYear();
@@ -375,18 +376,18 @@ export default {
         this.$store.commit("setStatus", "pending");
         if (this.isEdit.value == true) {
           this.updateEducationInServer({
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             education: this.education,
             id:this.isEdit.id
           }).then(() => {
-            this.getAllEducationsFromServer(this.employeeId);
+            this.getAllEducationsFromServer(this.getEmployeeId);
           });
         } else if (this.isEdit.value == false) {
           this.sendEducationToServer({
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             education: this.education,
           }).then(() => {
-            this.getAllEducationsFromServer(this.employeeId);
+            this.getAllEducationsFromServer(this.getEmployeeId);
           });
         }
       }
@@ -402,7 +403,7 @@ export default {
       if (v.value == true) {
         this.$store
           .dispatch("getEducationFromServer", {
-            employeeId: this.employeeId,
+            employeeId: this.getEmployeeId,
             id: v.id,
           })
           .then(() => {

@@ -97,7 +97,7 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </span>
-                <button
+                <!-- <button
                   class="
                     btn btn-success btn-similar-position
                     bg-green
@@ -112,7 +112,7 @@
                   "
                 >
                   ارسال رزومه
-                </button>
+                </button> -->
               </div>
             </span>
           </div>
@@ -144,6 +144,7 @@ export default {
       "getCompanyJobPositions",
       "getIsJobSaved",
       "getCompanyLogoFolder",
+      'getEmployeeId'
     ]),
   },
   methods:{
@@ -152,7 +153,7 @@ export default {
   created() {
     this.$store.dispatch("getCompanyJobPositionsFromServer", {
       companyId: this.$route.params.id,
-      empId: this.employeeId,
+      empId: this.getEmployeeId,
       pageId: 1,
     });
   },
@@ -160,7 +161,7 @@ export default {
     pageIdChanged(v) {
       this.getCompanyJobPositionsFromServer({
         companyId: this.$route.params.id,
-        empId: this.employeeId,
+        empId: this.getEmployeeId,
         pageId: v,
       });
     },

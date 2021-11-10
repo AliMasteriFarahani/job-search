@@ -116,13 +116,13 @@ export default {
     }
   },
     computed: {
-    ...mapGetters(["getAllLanguageSkills", "getStatus"]),
+    ...mapGetters(["getAllLanguageSkills", "getStatus",'getEmployeeId']),
   },
     methods: {
     ...mapActions(["getAllLanguageSkillsFromServer"]),
   },
   created() {
-    this.getAllLanguageSkillsFromServer(this.employeeId)
+    this.getAllLanguageSkillsFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

@@ -114,7 +114,7 @@ export default {
       "getEmployeeSavedJobs",
       "getIsJobSaved",
       "getCompanyLogoFolder"
-      ,'getSavedPageId','getAllPagesSaved'
+      ,'getSavedPageId','getAllPagesSaved','getEmployeeId'
     ]),
   },
   methods: {
@@ -122,7 +122,7 @@ export default {
   },
   created() {
     this.getEmployeeSavedJobsFromServer({
-      empId: this.employeeId,
+      empId: this.getEmployeeId,
       pageId: 1,
     });
   },

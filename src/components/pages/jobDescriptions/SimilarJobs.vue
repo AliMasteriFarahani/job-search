@@ -151,7 +151,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder"]),
+    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getSimilarPositionsFromServer"]),
@@ -159,14 +159,14 @@ export default {
   created() {
     this.getSimilarPositionsFromServer({
       jobId: this.$route.params.id,
-      empId: this.employeeId,
+      empId: this.getEmployeeId,
     });
   },
   watch: {
     $route() {
       this.getSimilarPositionsFromServer({
         jobId: this.$route.params.id,
-        empId: this.employeeId,
+        empId: this.getEmployeeId,
       });
     },
   },

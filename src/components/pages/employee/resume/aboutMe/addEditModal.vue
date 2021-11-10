@@ -137,7 +137,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getStatus"]),
+    ...mapGetters(["getStatus",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["sendAboutMeToServer", "getAboutMeFromServer"]),
@@ -148,10 +148,10 @@ export default {
         this.hasError = false;
         this.$store.commit("setStatus", "pending");
         this.sendAboutMeToServer({
-          employeeId: this.employeeId,
+          employeeId: this.getEmployeeId,
           aboutMe: this.aboutMe,
         }).then(() => {
-          this.getAboutMeFromServer(this.employeeId);
+          this.getAboutMeFromServer(this.getEmployeeId);
         });
       }
     },
@@ -160,7 +160,7 @@ export default {
         isEdit(v) {
       if (v.value == true) {
         this.$store
-          .dispatch("getAboutMeFromServer", this.employeeId)
+          .dispatch("getAboutMeFromServer", this.getEmployeeId)
           .then(() => {
             this.aboutMe = this.$store.getters.getAboutMe.aboutMe;
           }); // then

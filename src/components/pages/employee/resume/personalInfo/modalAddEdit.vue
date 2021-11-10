@@ -698,6 +698,7 @@ export default {
       "getProvinces",
       "getMilitaryStatus",
       "getStatus",
+      'getEmployeeId'
     ]),
   },
   methods: {
@@ -715,10 +716,10 @@ export default {
         this.hasError = false;
         this.$store.commit("setStatus", "pending");
         this.sendPersonalInfoToserver({
-          employeeId: this.employeeId,
+          employeeId: this.getEmployeeId,
           personalInfo: this.personalInfo,
         }).then(() => {
-          this.getPersonalInfoFromServer(this.employeeId);
+         // this.getPersonalInfoFromServer(this.employeeId);
         });
       }
     },
@@ -739,7 +740,7 @@ export default {
     isEdit(v) {
       if (v.value == true) {
         this.$store
-          .dispatch("getPersonalInfoByIdFromServer", this.employeeId)
+          .dispatch("getPersonalInfoByIdFromServer", this.getEmployeeId)
           .then(() => {
             this.personalInfo = this.$store.getters.getPersonalInfoById;
 

@@ -88,13 +88,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getAboutMe", "getStatus"]),
+    ...mapGetters(["getAboutMe", "getStatus",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getAboutMeFromServer"]),
   },
   created() {
-    this.getAboutMeFromServer(this.employeeId);
+    this.getAboutMeFromServer(this.getEmployeeId);
   },
   watch: {
     getAboutMe(v) {

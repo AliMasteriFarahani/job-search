@@ -120,13 +120,13 @@ export default {
     }
   },
     computed: {
-    ...mapGetters(["getAllJobExperience", "getStatus"]),
+    ...mapGetters(["getAllJobExperience", "getStatus",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getAllJobExperienceFromServer"]),
   },
   created() {
-    this.getAllJobExperienceFromServer(this.employeeId)
+    this.getAllJobExperienceFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

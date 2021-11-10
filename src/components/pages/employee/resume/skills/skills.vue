@@ -79,13 +79,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSkills"]),
+    ...mapGetters(["getSkills",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getSkillsFromServer"]),
   },
   created() {
-    this.getSkillsFromServer(this.employeeId);
+    this.getSkillsFromServer(this.getEmployeeId);
   },
   watch: {
     getSkills(v) {

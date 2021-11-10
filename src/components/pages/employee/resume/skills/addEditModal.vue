@@ -211,7 +211,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getStatus", "getSkills"]),
+    ...mapGetters(["getStatus", "getSkills",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["sendSkillsToServer", "getSkillsFromServer",'updateSkillsInServer']),
@@ -229,17 +229,17 @@ export default {
       this.$store.commit("setStatus", "pending");
       if (Object.keys(this.skills).length > 0) {
               this.sendSkillsToServer({
-        employeeId: this.employeeId,
+        employeeId: this.getEmployeeId,
         skills: this.skills,
       }).then(() => {
-        this.getSkillsFromServer(this.employeeId);
+        this.getSkillsFromServer(this.getEmployeeId);
       });
       }else if(Object.keys(this.skills).length == 0){
                         this.updateSkillsInServer({
-        employeeId: this.employeeId,
+        employeeId: this.getEmployeeId,
         skills: this.skills,
       }).then(() => {
-        this.getSkillsFromServer(this.employeeId);
+        this.getSkillsFromServer(this.getEmployeeId);
       });
       }
 
@@ -252,7 +252,7 @@ export default {
     isEdit(v) {
       if (v.value == true) {
         this.$store
-          .dispatch("getSkillsFromServer", this.employeeId)
+          .dispatch("getSkillsFromServer", this.getEmployeeId)
           .then(() => {
             //  let skl = this.$store.getters.getSkills
             this.skills = Object.assign([], this.getSkills);

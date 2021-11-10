@@ -49,12 +49,23 @@ export const Routes = [
     path: "/employee",
     component: Employee,
     children: [
-      { path: "", redirect: "/" },
+      { path: "", redirect: "login" },
       { path: "login", component: Login, name: "Login" },
       { path: "register", component: Register, name: "Register" },
     ],
+    // beforeEnter(to,from,next){
+    //   alert('ooo')
+
+    //   next()
+    // }
   },
-  { path: "/resume", component: Resume, name: "Resume" },
+  { path: "/resume", component: Resume, name: "Resume"},  
+    // beforeEnter(to,from,next){
+
+    //   next(vm=>{
+    //    alert( vm);
+    //   })
+    // } },
   {
     path: "/company/:id/positions/:slug",
     component: CompanyPositions,

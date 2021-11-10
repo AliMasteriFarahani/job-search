@@ -94,6 +94,7 @@ export default {
       "getAllAppliedPages",
       "getAppliedPageId",
       "geEmployeeAppliedJob",
+      'getEmployeeId'
     ]),
     statusClass() {
       return (st) => {
@@ -114,7 +115,7 @@ export default {
   },
   created() {
     this.getAppliedJobsFromServer({
-      empId: this.employeeId,
+      empId: this.getEmployeeId,
       pageId: 1,
     });
   },

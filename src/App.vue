@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 //import AppHome from './components/pages/index/Home.vue'
 
 export default {
@@ -17,6 +18,13 @@ export default {
       }
 
   },
+  methods:{
+    ...mapActions(['checkIsUserAuthenticated']),
+  },
+  created(){
+    this.checkIsUserAuthenticated();
+    console.log('oooooooooooooooooooooooooo');
+  }
 
 };
 </script>

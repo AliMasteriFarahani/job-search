@@ -44,10 +44,10 @@
           appear
           enter-active-class="animate__animated animate__fadeIn"
         >
-          <keep-alive>
+          <!-- <keep-alive> -->
             <!-- <component :is="selectedComponent"></component> -->
             <router-view></router-view>
-          </keep-alive>
+          <!-- </keep-alive> -->
         </transition>
       </div>
     </div>
@@ -82,16 +82,16 @@ export default {
    padding: 0.5rem 1rem;
    color: #000;
 }
-.login .router-link-exact-active .register .router-link-exact-active {
+.login .router-link-exact-active, .register .router-link-exact-active {
   color: #fff !important;
   background-color: #1e6fcf !important;
   font-family: "iransanse-md" !important;
 }
 .login .router-link-exact-active{
- border-radius: 0 0.5rem 0.5rem 0;
+ border-radius: 0 0.5rem 0.5rem 0 !important;
 }
 .register .router-link-exact-active{
- border-radius: 0.5rem 0 0 0.5rem;
+ border-radius: 0.5rem 0 0 0.5rem !important;
 }
 .circle-register-login {
   display: inline-block;
@@ -124,5 +124,9 @@ export default {
   cursor: pointer;
   border: 1px dashed #ccc;
   background-color: #eee;
+}
+.invalid-feedback {
+  display: block;
+  font-size: 0.75rem;
 }
 </style>

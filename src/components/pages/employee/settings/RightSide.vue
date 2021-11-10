@@ -74,7 +74,25 @@
 </template>
 
 <script>
-export default {};
+import { validationMixins } from "vuelidate";
+import { email } from "vuelidate/lib/validators";
+export default {
+  mixins:[validationMixins],
+  data(){
+    return {
+      registerInfo:{
+        email
+      }
+    }
+  },
+  validations:{
+    registerInfo:{
+      email:{
+        email
+      }
+    }
+  }
+};
 </script>
 
 <style>

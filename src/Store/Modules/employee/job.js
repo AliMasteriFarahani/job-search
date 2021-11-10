@@ -100,7 +100,6 @@ const actions = {
   getEmployeeSavedJobsFromServer({ commit }, data) {
     new Promise((resolve)=>{
       axios.get(`employee/getSavedJobs/${data.empId}/${data.pageId}`).then((response) => {
-        console.log('saved',response);
         commit("setEmployeeSavedJobs", response.data.result);
         commit("setAllPagesSaved", response.data.allPages);
         commit("setSavedPageId", response.data.pageId);
@@ -110,7 +109,6 @@ const actions = {
   },
   getAppliedJobsFromServer({ commit }, data) {
     axios.get(`employee/getAppliedJobs/${data.empId}/${data.pageId}`).then((response) => {
-      console.log('applied',response);
        commit("setEmployeeAppliedJob", response.data.result);
        commit("setAllAppliedPages", response.data.allPages);
        commit("setAppliedPageId", response.data.pageId);
