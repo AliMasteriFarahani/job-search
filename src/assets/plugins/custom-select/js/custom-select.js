@@ -49,7 +49,6 @@ class CustomSelect {
 
   createElements() {
     let customSelects = document.querySelectorAll(".custom-select");
-    console.log(customSelects)
     customSelects.forEach((element) => {
       let customOptionSelectedDiv = document.createElement("DIV");
       customOptionSelectedDiv.classList.add("custom-option-selected");

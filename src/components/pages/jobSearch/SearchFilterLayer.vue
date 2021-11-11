@@ -254,6 +254,7 @@ export default {
       "getWorkExperince",
       "getContract",
       "getWhatSearch",
+      'getEmployeeId'
     ]),
   },
   methods: {
@@ -268,7 +269,7 @@ export default {
     searchJob() {
       this.getSearchJobsFromServer({
         filters: this.filters,
-        employeeId: this.employeeId,
+        employeeId: this.getEmployeeId,
         pageId: 1,
       });
       this.filtersTmp = Object.assign({}, this.filters);
@@ -288,7 +289,7 @@ export default {
     this.getContractFromServer();
     this.getSearchJobsFromServer({
       filters: this.filters,
-      employeeId: this.employeeId,
+      employeeId: this.getEmployeeId,
       pageId: 1,
     });
   },
@@ -298,7 +299,6 @@ export default {
       document.querySelectorAll(".custom-select .p2").forEach((element) => {        
           if (element.id == "province") {
             if (this.filters.province != "" && this.filters.province !=0 && this.filters.province != undefined) {
-              alert("empty not");
             let option = element.querySelector(
               `option[value='${this.filters.province}']`
             );
@@ -330,14 +330,14 @@ export default {
       this.filtersTmp.sortStatus = v;
       this.getSearchJobsFromServer({
         filters: this.filtersTmp,
-        employeeId: this.employeeId,
+        employeeId: this.getEmployeeId,
         pageId: 1,
       });
     },
     pageIdChanged(v) {
       this.getSearchJobsFromServer({
         filters: this.filtersTmp,
-        employeeId: this.employeeId,
+        employeeId: this.getEmployeeId,
         pageId: v,
       });
     },
@@ -346,7 +346,7 @@ export default {
         this.filtersTmp[v.value] = "";
         this.getSearchJobsFromServer({
           filters: this.filtersTmp,
-          employeeId: this.employeeId,
+          employeeId: this.getEmployeeId,
           pageId: 1,
         });
       } else if (v.value != null && v.value == "all") {
@@ -355,7 +355,7 @@ export default {
         }
         this.getSearchJobsFromServer({
           filters: this.filtersTmp,
-          employeeId: this.employeeId,
+          employeeId: this.getEmployeeId,
           pageId: 1,
         });
       }

@@ -157,7 +157,7 @@
                     }})
                   </span>
                 </span>
-                <span
+                <span v-if="getIsUserAuthenticated"
                   class="position-absolute similar-bookmark"
                   @click="changeSaveStatus(job.jobId, job.isSaved, index)"
                 >
@@ -170,7 +170,7 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </span>
-                <button
+                <!-- <button
                   class="
                     btn btn-success btn-similar-position
                     bg-green
@@ -185,7 +185,7 @@
                   "
                 >
                   ارسال رزومه
-                </button>
+                </button> -->
               </div>
             </span>
           </div>
@@ -217,6 +217,8 @@ export default {
       "getCompanyLogoFolder",
       "getWhatSearch",
       "getTotalJobs",
+      'getEmployeeId',
+      'getIsUserAuthenticated'
     ]),
     handleSearch() {
       return (itam) => {

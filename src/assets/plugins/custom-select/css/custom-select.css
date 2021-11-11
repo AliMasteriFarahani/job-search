@@ -8,7 +8,11 @@
     background: #c9c9c9;
     border-radius: 5px;
 }
-
+/* .custom-select-items {
+    overflow-y: scroll;
+    scrollbar-color: rgb(121, 120, 120) #c9c9c9 ;
+    scrollbar-width: thin;
+  } */
 /* Handle */
 .custom-select-items::-webkit-scrollbar-thumb {
     background: rgb(121, 120, 120);

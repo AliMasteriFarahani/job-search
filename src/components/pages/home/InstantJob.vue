@@ -12,7 +12,16 @@
       <div class="row">
         <!-- job items -->
         <div class="col-12" v-for="(job,index) in getImmediateJobs" :key="index">
-          <router-link :to="'/job-descriptions/' + job.id">
+          <router-link 
+                      target="_blank"
+            :to="{
+              name: 'JobDescriptions',
+              params: {
+                id: job.id,
+                slug: sanitizeTitleSlug(job.title),
+              },
+            }"
+          >
             <div class="float-start w-100 job-adv-imd p-2">
               <span class="float-start ms-2 w-100">
                 <div>
@@ -45,7 +54,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { makeSlug } from "@/Mixins/makeSlug";
 export default {
+  mixins:[makeSlug],
 data(){
   return{
   

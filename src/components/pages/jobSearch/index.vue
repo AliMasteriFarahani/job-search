@@ -59,7 +59,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['getAllPages','getPageId','getAllaa'])
+    ...mapGetters(['getAllPages','getPageId'])
   },
   watch:{
     getPageId(v){

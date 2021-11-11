@@ -108,7 +108,7 @@
                           <span class="visually-hidden">Loading...</span>
                         </div>
                       </span>
-                      <button
+                      <!-- <button
                         class="
                           btn btn-success btn-similar-position
                           bg-green
@@ -123,7 +123,7 @@
                         "
                       >
                         ارسال رزومه
-                      </button>
+                      </button> -->
                     </div>
                   </span>
                 </div>
@@ -151,7 +151,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder"]),
+    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder",'getEmployeeId']),
   },
   methods: {
     ...mapActions(["getSimilarPositionsFromServer"]),
@@ -159,14 +159,14 @@ export default {
   created() {
     this.getSimilarPositionsFromServer({
       jobId: this.$route.params.id,
-      empId: this.employeeId,
+      empId: this.getEmployeeId,
     });
   },
   watch: {
     $route() {
       this.getSimilarPositionsFromServer({
         jobId: this.$route.params.id,
-        empId: this.employeeId,
+        empId: this.getEmployeeId,
       });
     },
   },
