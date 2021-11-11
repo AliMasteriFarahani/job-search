@@ -112,6 +112,15 @@ const actions = {
         router.push("/");
       }
     })
+  },
+  changeEmployeePassword({commit},data){
+    axios.post(`api/changeEmployeePassword/${data.employeeId}`,data.pass).then(response=>{
+      console.log(response);
+      if (response.status !=401 && response.data.status) {
+        commit("setStatus", '');
+
+      }
+    })
   }
 };
 export default {
