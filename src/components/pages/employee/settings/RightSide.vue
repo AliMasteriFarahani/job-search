@@ -1,6 +1,7 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white">
+    <app-notification :getStatus="getStatus"></app-notification>
+    <div class="shadow-c border-radius-05 overflow-hidden bg-white">
       <div class="row px-lg-5 px-4 mt-4">
         <div class="col-12">
           <h3 class="font-1 font-bd-is pb-2">تنظیمات حساب کاربری</h3>
@@ -11,39 +12,56 @@
           <div class="border-dashed"></div>
         </div>
       </div>
-      <div class="row px-4 pb-4 min-h-70vh align-content-start">
+      <div
+        class="
+          row
+          col-md-8
+          offset-md-2
+          px-4
+          pb-4
+          min-h-100vh
+          align-content-start
+        "
+      >
         <div class="col-12">
           <div class="mb-4">
             <label
-              for="name"
+              for="email"
               class="form-check-label mb-2 font-90 font-md-is cursor-pointer"
-              >ایمیل :</label
+              >نام کاربری :</label
             >
             <input
               type="text"
-              id="name"
-              name="name"
+              name="email"
               disabled
               class="form-control input-textbox"
-              placeholder="alifarahani533@gmail.com"
+              :placeholder="getUsername"
             />
           </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12">
           <div class="mb-4">
             <label
-              for="name"
+              for="pass"
               class="form-check-label mb-2 font-90 font-md-is cursor-pointer"
               >رمز عبور :</label
             >
-            <input
-              v-model="$v.pass.password.$model"
-              type="text"
-              id="name"
-              name="name"
-              class="form-control input-textbox"
-              placeholder="رمز عبور جدید خود را وارد کنید"
-            />
+            <div class="position-relative">
+              <input
+                v-model="$v.pass.password.$model"
+                ref="password"
+                type="password"
+                id="pass"
+                name="name"
+                class="form-control input-textbox"
+                placeholder="رمز عبور جدید خود را وارد کنید"
+              />
+              <span
+                class="eye"
+                @click="changeStatus('pass')"
+                v-html="passEye"
+              ></span>
+            </div>
             <span
               class="invalid-feedback"
               v-if="
@@ -59,21 +77,31 @@
             </span>
           </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12">
           <div class="mb-4">
             <label
               for="family"
               class="form-check-label mb-2 font-90 font-md-is cursor-pointer"
               >تکرار رمز عبور :</label
             >
-            <input
-              v-model="$v.pass.rePassword.$model"
-              type="text"
-              id="family"
-              name="family"
-              class="form-control input-textbox"
-              placeholder="رمز عبور جدید را مجددا وارد کنید"
-            />
+            <div class="position-relative">
+              <input
+                v-model="$v.pass.rePassword.$model"
+                ref="rePassword"
+                type="password"
+                id="family"
+                name="family"
+                class="form-control input-textbox"
+                placeholder="رمز عبور جدید را مجددا وارد کنید"
+              />
+              <span
+                class="eye"
+                @click="changeStatus('rePass')"
+                v-html="rePassEye"
+              >
+              </span>
+            </div>
+
             <span
               class="invalid-feedback"
               v-if="
@@ -102,6 +130,7 @@
         </div>
         <div class="col-12">
           <button
+            @click="changePass()"
             :disabled="$v.pass.$invalid"
             class="
               btn
@@ -118,7 +147,14 @@
               text-white
             "
           >
-            ذخیره
+            <template v-if="getStatus == 'pending'">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </template>
+            <template v-else>ذخیره</template>
           </button>
         </div>
       </div>
@@ -127,13 +163,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import { required, minLength, sameAs } from "vuelidate/lib/validators";
+import appNotification from "@/components/pages/shared/notification.vue";
 export default {
   mixins: [validationMixin],
+  components: { appNotification },
   data() {
     return {
       hasError: false,
+      showPass: false,
+      showRepass: false,
       pass: {
         password: "",
         rePassword: "",
@@ -153,16 +194,56 @@ export default {
       },
     },
   },
+  computed: {
+    ...mapGetters(["getStatus",'getUsername']),
+    passEye() {
+      let icon = "";
+      if (this.showPass) {
+        icon = `<i class="fa-duotone fa-eye"></i>`;
+      } else {
+        icon = `<i class="fa-duotone fa-eye-slash"></i>`;
+      }
+      return icon;
+    },
+    rePassEye() {
+      let icon = "";
+      if (this.showRepass) {
+        icon = `<i class="fa-duotone fa-eye"></i>`;
+      } else {
+        icon = `<i class="fa-duotone fa-eye-slash"></i>`;
+      }
+      return icon;
+    },
+  },
   methods: {
+    ...mapActions(["changeEmployeePassword"]),
     changePass() {
       if (this.$v.$invalid) {
         this.hasError = true;
       }
       if (!this.$v.$invalid) {
+        this.$store.commit("setStatus", "pending");
         this.changeEmployeePassword({
           employeeId: this.$store.getters.getEmployeeId,
           pass: this.pass,
         });
+      }
+    },
+    changeStatus(type) {
+      if (type == "pass") {
+        this.showPass = !this.showPass;
+        if (this.showPass) {
+          this.$refs.password.setAttribute("type", "text");
+        } else if (this.showPass == false) {
+          this.$refs.password.setAttribute("type", "password");
+        }
+      } else if (type == "rePass") {
+        this.showRepass = !this.showRepass;
+        if (this.showRepass) {
+          this.$refs.rePassword.setAttribute("type", "text");
+        } else if (this.showRepass == false) {
+          this.$refs.rePassword.setAttribute("type", "password");
+        }
       }
     },
   },
@@ -170,4 +251,10 @@ export default {
 </script>
 
 <style>
+.eye {
+  position: absolute;
+  bottom: 6px;
+  left: 7px;
+  cursor: pointer;
+}
 </style>

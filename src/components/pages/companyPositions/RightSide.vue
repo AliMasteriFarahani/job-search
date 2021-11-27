@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white">
+    <div class="shadow-c border-radius-05 min-h-100vh overflow-hidden bg-white">
       <div class="row px-lg-5 px-4 mt-4">
         <div class="col-12">
           <h3 class="font-1 mb-3">موقعیت های شغلی</h3>
@@ -84,7 +84,7 @@
                     }})</span
                   >
                 </span>
-                <span
+                <span v-if="getIsUserAuthenticated"
                   class="position-absolute similar-bookmark"
                   @click="changeSaveStatus(job.jobId, job.isSaved, index)"
                 >
@@ -144,14 +144,15 @@ export default {
       "getCompanyJobPositions",
       "getIsJobSaved",
       "getCompanyLogoFolder",
-      'getEmployeeId'
+      'getEmployeeId',
+      'getIsUserAuthenticated'
     ]),
   },
   methods:{
       ...mapActions(['getCompanyJobPositionsFromServer'])
   },
-  created() {
-    this.$store.dispatch("getCompanyJobPositionsFromServer", {
+  async created() {
+    await this.$store.dispatch("getCompanyJobPositionsFromServer", {
       companyId: this.$route.params.id,
       empId: this.getEmployeeId,
       pageId: 1,

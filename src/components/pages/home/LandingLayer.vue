@@ -1,11 +1,5 @@
 <template>
-  <section class="container-fluid pb-4 pb-md-5 bg-sky">
-    <!-- <img
-      src="/top-view-person-writing-laptop-with-copy-space.jpg"
-      alt=""
-      sizes=""
-      srcset=""
-    /> -->
+  <section class="position-relative w-100 container-fluid pb-4 pb-md-5">
     <div class="row text-center">
       <div class="col mt-3 mt-md-5 pt-3">
         <h3>سامانه کاریابی آنلاین</h3>
@@ -16,8 +10,12 @@
         <h4>دانش ،مهارت = استخدام</h4>
       </div>
     </div>
-    <div class="row">
-      <div class="col-10 offset-1 mt-4 bg-white rounded-3 py-5 px-3 p-lg-5">
+                        <transition
+          appear
+          enter-active-class="animate__animated animate__pulse"
+        >
+            <div class="row w-100">
+      <div class="col-10 bg-alpha-8 offset-1 mt-4  rounded-3 py-5 px-3 p-lg-5">
         <form action="">
           <div class="row">
             <div
@@ -84,6 +82,26 @@
         </form>
       </div>
     </div>
+                        </transition>
+
+        <img class="search-bg-img d-none d-md-block"
+      src="/images/New Project.jpg"
+      alt=""
+      sizes=""
+      srcset=""
+    />
+        <img class="search-bg-img  d-sm-block d-md-none"
+      src="/images/New Project (1).jpg"
+      alt=""
+      sizes=""
+      srcset=""
+    />
+        <img class="search-bg-img  d-block d-sm-none"
+      src="/images/New Project (2).jpg"
+      alt=""
+      sizes=""
+      srcset=""
+    />
   </section>
 </template>
 
@@ -105,15 +123,25 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getCategories", "getProvinces"]),
+    ...mapGetters(["getCategories","getProvinces"]),
   },
-  created() {
+  async created() {
     if (Object.keys(this.getCategories).length == 0) {
-      this.$store.dispatch("getCategoriesFromServer");
-      this.$store.dispatch("getProvincesFromServer");
+     await this.$store.dispatch("getCategoriesFromServer");
+     await this.$store.dispatch("getProvincesFromServer");
     }
   },
 };
 </script>
 
-<style></style>
+<style>
+.search-bg-img{
+      width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+</style>

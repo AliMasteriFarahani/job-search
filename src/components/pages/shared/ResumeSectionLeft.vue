@@ -1,6 +1,28 @@
 <template>
   <div class="col-12 col-lg-3 col-lg-28 mt-3 mt-lg-0">
-    <div class="border-r left-side bg-white">
+    <div
+      v-if="!getIsUserAuthenticated"
+      class="shadow-c border-radius-05 overflow-hidden left-side bg-white"
+    >
+      <div class="">
+        <div class="d-flex justify-content-center mt-5 mb-2">
+          <router-link :to="{ name: 'Login' }" class="btn --btn-green-1 w-75"
+            >ورود</router-link
+          >
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+          <router-link
+            :to="{ name: 'Register' }"
+            class="btn --btn-orange-1 w-75"
+            >ثبت نام</router-link
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="getIsUserAuthenticated"
+      class="shadow-c border-radius-05 overflow-hidden left-side bg-white"
+    >
       <div class="row">
         <div class="col-12">
           <div class="bg-c1 p-3 float-start w-100 text-center">
@@ -8,9 +30,7 @@
               <span v-if="isExAvatar == true" key="avatar-emp">
                 <img
                   :src="
-                    getEmployeeFolder +
-                    '/' +
-                    employeeId +
+                    getEmployeeFolder+getEmployeeId +
                     '/avatar/' +
                     getAvatar
                   "
@@ -171,18 +191,22 @@
             </div>
           </div>
           <div class="d-flex justify-content-center">
-               <span
-                v-if="!$v.resumeAttach.fileSize && $v.resumeAttach.$dirty"
-                class="text-center font-num-is invalid-feedback"
-              >
-                حداکثر 3 مگابایت
-              </span>
-               <span
-                v-if="!$v.resumeAttach.docType && $v.resumeAttach.fileSize && $v.resumeAttach.$dirty"
-                class="text-center font-num-is invalid-feedback"
-              >
-                فرمت نامعتبر
-              </span>
+            <span
+              v-if="!$v.resumeAttach.fileSize && $v.resumeAttach.$dirty"
+              class="text-center font-num-is invalid-feedback"
+            >
+              حداکثر 3 مگابایت
+            </span>
+            <span
+              v-if="
+                !$v.resumeAttach.docType &&
+                $v.resumeAttach.fileSize &&
+                $v.resumeAttach.$dirty
+              "
+              class="text-center font-num-is invalid-feedback"
+            >
+              فرمت نامعتبر
+            </span>
           </div>
           <div class="d-flex justify-content-center mt-3">
             <p class="resume-upload-file-name font-73">
@@ -220,15 +244,50 @@
               </div>
             </div>
             <div class="mb-3 d-flex justify-content-center">
-              <button
-                v-if="getIsJobApplied == 0"
+              <button id="oot"
+                v-if="
+                  getIsJobApplied == 0 &&
+                  Object.keys(getPersonalInfo).length != 0
+                "
                 @click="sendResume()"
-                :disabled="getIsJobApplied == 1 || getPersonalInfo == ''"
+                :disabled="getIsJobApplied == 1"
                 type="submit"
                 class="
                   btn
                   w-75
                   btn-success
+                  bg-green
+                  border-radius-05
+                  px-5
+                  py-2
+                  shadow-c
+                  border-0
+                  mt-1
+                  font-1
+                  text-white
+                "
+              >
+                          <template v-if="getStatus == 'sending-resume'">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </template>
+            <template v-else>  ارسال رزومه </template>
+               
+              </button>
+              <button
+                v-if="
+                  Object.keys(personalInfo).length == 0 && getIsJobApplied == 0
+                "
+                data-bs-toggle="tooltip"
+                data-bs-html="true"
+                title="لطفا رزومه خود را کامل کنید"
+                type="submit"
+                class="
+                  btn
+                  w-75
                   bg-green
                   border-radius-05
                   px-5
@@ -264,12 +323,6 @@
               </button>
             </div>
             <div class="mt-3 d-flex justify-content-center">
-              <span
-                v-if="getPersonalInfo == ''"
-                class="text-center invalid-feedback"
-              >
-                لطفا رزومه خود را کامل کنید
-              </span>
             </div>
             <div class="mt-3 d-flex justify-content-center">
               <p class="font-80">
@@ -287,9 +340,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
-import { fileSize, imageType,docType } from "@/Mixins/customValidators";
+import { fileSize, imageType, docType } from "@/Mixins/customValidators";
 export default {
-   mixins: [validationMixin],
+  mixins: [validationMixin],
   props: {
     showBtn: {
       Boolean,
@@ -303,6 +356,7 @@ export default {
   },
   data() {
     return {
+      personalInfo: [],
       employeeId: 1,
       sendSimilars: false,
       isExAvatar: undefined,
@@ -317,10 +371,21 @@ export default {
     },
     resumeAttach: {
       fileSize: fileSize(2),
-      docType:docType('pdf')
+      docType: docType("pdf"),
     },
   },
   computed: {
+    toolTip() {
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      // eslint-disable-next-line no-unused-vars
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        // eslint-disable-next-line no-undef
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+      return 1;
+    },
     ...mapGetters([
       "getAvatar",
       "getEmployeeFolder",
@@ -330,7 +395,9 @@ export default {
       "getIsJobApplied",
       "getSendSimilars",
       "getPersonalInfo",
-      'getEmployeeId'
+      "getEmployeeId",
+      "getIsUserAuthenticated",
+      'getStatus'
     ]),
     resumeAttachFile() {
       let text = "";
@@ -403,6 +470,7 @@ export default {
     },
     sendResume() {
       if (this.showBtn && this.$route.name == "JobDescriptions") {
+        this.$store.commit('setStatus','sending-resume')
         this.applyJobForCompanyInServer({
           employeeId: this.getEmployeeId,
           jobId: this.$route.params.id,
@@ -411,23 +479,28 @@ export default {
       }
     },
   },
-  created() {
-    this.getEmployeeAvatarFromServer(this.getEmployeeId).then(() => {
-      if (this.getAvatar == "") {
-        this.isExAvatar = false;
-      } else if (this.getAvatar.length > 0) {
-        this.isExAvatar = true;
-      }
-    });
-    this.getResumeAttachFileNameFromServer(this.getEmployeeId);
-    this.getResumeLeftSideInfoFromServer(this.getEmployeeId);
-    this.getIsJobAppliedFromServer({
-      employeeId: this.getEmployeeId,
-      jobId: this.$route.params.id,
-    }).then(() => {
-      this.sendSimilars = this.getSendSimilars == "1" ? true : false;
-    });
-   // this.getPersonalInfoFromServer(this.employeeId);
+  async created() {
+    if (this.getIsUserAuthenticated) {
+      await this.getEmployeeAvatarFromServer(this.getEmployeeId).then(() => {
+        if (this.getAvatar == "") {
+          this.isExAvatar = false;
+        } else if (this.getAvatar.length > 0) {
+          this.isExAvatar = true;
+        }
+      });
+     await this.getResumeAttachFileNameFromServer(this.getEmployeeId);
+     await this.getResumeLeftSideInfoFromServer(this.getEmployeeId);
+     await this.getIsJobAppliedFromServer({
+        employeeId: this.getEmployeeId,
+        jobId: this.$route.params.id,
+      }).then(() => {
+        this.sendSimilars = this.getSendSimilars == "1" ? true : false;
+      });
+      await this.getPersonalInfoFromServer(this.getEmployeeId).then(() => {
+        this.personalInfo = this.getPersonalInfo;
+      });
+    }
+    this.toolTip;
   },
   watch: {
     getAvatar(v) {
@@ -516,5 +589,19 @@ export default {
 }
 .avatar-pic input {
   height: 0 !important;
+}
+.--btn-orange-1 {
+  background: #fcac3c;
+  color: #000;
+  border-radius: 10px;
+}
+.--btn-green-1 {
+  background: #07bac2;
+  color: #000;
+  border-radius: 10px;
+}
+.--btn-orange-1,
+.--btn-green-1:hover {
+  box-shadow: 0 0 1px 2px #eee;
 }
 </style>

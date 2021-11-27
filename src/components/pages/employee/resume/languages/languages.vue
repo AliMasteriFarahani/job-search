@@ -121,8 +121,8 @@ export default {
     methods: {
     ...mapActions(["getAllLanguageSkillsFromServer"]),
   },
-  created() {
-    this.getAllLanguageSkillsFromServer(this.getEmployeeId)
+  async created() {
+    await this.getAllLanguageSkillsFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

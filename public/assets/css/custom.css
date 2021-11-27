@@ -1,0 +1,485 @@
+@font-face {
+  font-family: "iransanse";
+  src: url("../fonts/IRANSansWeb.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/IRANSansWeb.woff") format("woff");
+}
+
+@font-face {
+  font-family: "iransanse-bd";
+  src: url("../fonts/IRANSansWeb_Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "iransanse-md";
+  src: url("../fonts/IRANSansWeb_Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "iransanse-num";
+  src: url("../fonts/IRANSansWeb\(FaNum\).woff") format("woff");
+}
+
+@font-face {
+  font-family: "iransanse-bd-num";
+  src: url("../fonts/IRANSansWeb\(FaNum\)_Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "iransanse-md-num";
+  src: url("../fonts/IRANSansWeb\(FaNum\)_Medium.woff") format("woff");
+}
+
+/*  global styles  */
+
+* {
+  font-family: "iransanse";
+}
+
+body {
+  background-color: #fff;
+  padding: 0 !important;
+  overflow-y: scroll !important;
+}
+.modal-backdrop {
+  z-index: 1310 !important;
+}
+.btn:focus,
+.navbar-toggler:focus,
+select {
+  outline: none !important;
+  box-shadow: none !important;
+}
+a {
+  text-decoration: none !important;
+}
+
+/*  media max 576px  */
+@media (max-width: 576px) {
+  .font-xs-73 {
+    font-size: 0.73rem !important;
+  }
+  .font-xs-80 {
+    font-size: 0.8rem !important;
+  }
+  .font-xs-95 {
+    font-size: 0.95rem !important;
+  }
+}
+/*  media 576px  */
+@media (min-width: 576px) {
+  .w-sm-100 {
+    width: 100% !important;
+  }
+  .font-sm-80 {
+    font-size: 0.8rem !important;
+  }
+  .font-sm-90 {
+    font-size: 0.9rem !important;
+  }
+  .w-sm-auto {
+    width: auto !important;
+  }
+}
+/*  media 768px  */
+@media (min-width: 768px) {
+  .w-md-auto {
+    width: auto !important;
+  }
+  .w-md-50 {
+    width: 50% !important;
+  }
+  .font-md-90 {
+    font-size: 0.9rem !important;
+  }
+  .font-md-80 {
+    font-size: 0.8rem !important;
+  }
+  .font-md-102 {
+    font-size: 1.2rem !important;
+  }
+  .border-md-0 {
+    border: 0 !important;
+  }
+}
+
+/*  media 992px  */
+@media (min-width: 992px) {
+  .w-lg-50 {
+    width: 50% !important;
+  }
+  .w-lg-60 {
+    width: 60% !important;
+  }
+  .col-lg-72 {
+    width: 72% !important;
+  }
+  .col-lg-28 {
+    width: 28% !important;
+  }
+  .w-lg-75 {
+    width: 75% !important;
+  }
+  .col-lg-col {
+    flex: 1 0 0% !important;
+  }
+  .shadow-lg-0-c {
+    box-shadow: 0 0 10px #ccc !important;
+  }
+}
+/*  media 992px  */
+@media (max-width: 992px) {
+  .shadow-mlg-0-c {
+    box-shadow: 0 0 10px #ccc !important;
+  }
+
+}
+
+/* --------------- */
+.remove-outline {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* --- heights --- */
+.min-h-70vh {
+  min-height: 70vh !important;
+}
+.min-h-100vh {
+  min-height: 100vh !important;
+}
+.min-h-100 {
+  min-height: 100% !important;
+}
+.min-h-1000p {
+  min-height: 1000px !important;
+}
+/* ---  fonts size : --- */
+.font-73 {
+  font-size: 0.73rem !important;
+}
+.font-75 {
+  font-size: 0.75rem !important;
+}
+.font-80 {
+  font-size: 0.8rem !important;
+}
+.font-85 {
+  font-size: 0.85rem !important;
+}
+.font-90 {
+  font-size: 0.9rem !important;
+}
+.font-95 {
+  font-size: 0.95rem !important;
+}
+.font-1 {
+  font-size: 1rem !important;
+}
+.font-102 {
+  font-size: 1.2rem !important;
+}
+.font-105 {
+  font-size: 1.5rem !important;
+}
+.font-2 {
+  font-size: 2rem !important;
+}
+.font-3 {
+  font-size: 3rem !important;
+}
+
+/* --- font family : --- */
+.font-bd-is {
+  font-family: "iransanse-bd" !important;
+}
+.font-num-bd-is {
+  font-family: "iransanse-bd-num" !important;
+}
+.font-num-is {
+  font-family: "iransanse-num" !important;
+}
+.font-md-is {
+  font-family: "iransanse-md" !important;
+}
+
+/* ---  z-index :  --- */
+.z-index-lv-1{
+  z-index: -1 !important;
+}
+.z-index-lv0 {
+  z-index: 1350 !important;
+}
+.z-index-lv1 {
+  z-index: 1300 !important;
+}
+.z-index-lv2 {
+  z-index: 1200 !important;
+}
+.z-index-lv3 {
+  z-index: 1150 !important;
+}
+.z-index-lv4 {
+  z-index: 1100 !important;
+}
+.color-73 {
+  color: #737373 !important;
+}
+
+/* --- colors : --- */
+.color-gray {
+  color: #a3a0a1 !important;
+}
+.color-sky {
+  color: #0ea5cc !important;
+}
+
+.color-9 {
+  color: #999 !important;
+}
+.color-9 {
+  color: #eee !important;
+}
+.color--success {
+  color: #559500 !important;
+}
+.color--danger {
+  color: #d6080c !important;
+}
+.border-radius-1 {
+  border-radius: 1rem !important;
+}
+.border-radius-05 {
+  border-radius: 0.5rem !important;
+}
+.border-radius-04 {
+  border-radius: 0.4rem !important;
+}
+/* --- bgColors : --- */
+.bg--green-04 {
+  background: #048c9c !important;
+}
+.bg-cascade {
+  background: #95a5a6 !important;
+}
+.bg-c1 {
+  background-color: #c1c1c1 !important;
+}
+.--bg-dc {
+  background-color: #DCCAA9 !important;
+}
+.--bg-f9 {
+  background: #F9B404 !important;
+}
+.bg-green {
+  background-color: #559500 !important;
+}
+.bg--green-36 {
+  background-color: #36cbb6 !important;
+}
+.bg-sky {
+  background-color: #0ea5cc !important;
+}
+.bg--danger {
+  background-color: #d6080c !important;
+}
+.bg-e3{
+  background-color: #E3D493 !important;
+}
+.--bg-bb{
+  background-color: #BBCBD0 !important;
+}
+/* ------ */
+.btn--close {
+  background-color: #d6080c !important;
+  color: #fff !important;
+}
+.bg-alpha-8{
+  background: rgba(255, 255, 255, .8) !important;
+}
+.btn--close:hover {
+  color: #fff !important;
+  background-color: #bf1b0a !important;
+  border-color: #565e64;
+}
+.btn--success {
+  background-color: #559500 !important;
+  color: #fff;
+}
+.btn--success:hover {
+  background-color: #528e02 !important;
+  color: #fff;
+}
+.btn--cancel {
+  background-color: #656e78 !important;
+  color: #fff;
+}
+.btn--cancel:hover {
+  background-color: #525b64 !important;
+  color: #fff;
+}
+.--btn-black-- {
+  background: #000000 !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+.--btn-orange-2 {
+  background: #F47C34 !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+.--btn-blue-1 {
+  background: #0484CC !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+.--btn-cyan-1 {
+  background: #04747C !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+.--btn-orange-2,.--btn-blue-1:hover {
+  box-shadow: 0 0 1px 2px #eee;
+}
+.--btn-hover-shadow:hover{
+  box-shadow: 0 0 1px 2px #eee;
+}
+/* --- shadows : --- */
+.shadow-c {
+  box-shadow: 1px 1px 10px #ccc;
+}
+.shadow-0-c {
+  box-shadow: 0 0 10px #ccc;
+}
+/* --- margins --- */
+.mr-1- {
+  margin-right: -1rem !important;
+}
+.mt-05- {
+  margin-top: -0.5rem !important;
+}
+/* ------ */
+.top-15 {
+  top: 15% !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+.vertical-line {
+  border-left: 0.15rem solid #000;
+}
+.object-cover{
+  object-fit: cover;
+}
+.flex-bases-40 {
+  flex-basis: 40%;
+}
+.flex-grow-5 {
+  flex-grow: 5;
+}
+.text-underline {
+  text-decoration: underline !important;
+}
+.flex-none {
+  flex: none !important;
+}
+/* ------ */
+.border-r {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.border-dashed {
+  border: 1px dashed #ccc;
+}
+.border-bm-c {
+  border-bottom: 1px solid #ccc;
+}
+.border-bm-dashed-c {
+  border-bottom: 1px dashed #ccc;
+}
+.ltr {
+  direction: ltr !important;
+}
+.line-height-2 {
+  line-height: 2 !important;
+}
+.line-height-3 {
+  line-height: 3 !important;
+}
+.line-height-5 {
+  line-height: 5 !important;
+}
+/*  index page : */
+.input-textbox {
+  height: 40px;
+  font-size: 0.9rem;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6 !important;
+  color: #7d7d7d !important;
+}
+
+/* search box - index page */
+.job-logo-palce {
+  background: #fff;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  box-shadow: 1px 1px 14px #ccc;
+  margin-right: -17px;
+  float: right;
+}
+.job-logo-palce img {
+  width: 48px;
+  height: 48px;
+}
+/*  */
+.job-adv {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  transition: all 300ms;
+}
+.job-adv a:focus,
+a:hover {
+  color: #1988b8;
+}
+
+.job-adv:hover {
+  box-shadow: 1px 1px 10px #ccc;
+  border: none;
+  transform: scale(1.01);
+  float: right !important;
+}
+
+/* similar jobs  */
+
+.job-adv.similar-job:hover {
+  box-shadow: none;
+  border: 1px solid #ccc;
+  transform: none;
+  float: right !important;
+}
+
+.job-adv.similar-job a:hover {
+  text-decoration: underline !important;
+}
+.similar-bookmark {
+  top: 0.5rem;
+  left: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-similar-position {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0, -50%);
+}
+
+.custom-option-item {
+  font-family: "iransanse-num" !important;
+}
+
+/* shared */
+/* end of jod descriptions  */

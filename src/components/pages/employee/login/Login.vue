@@ -1,42 +1,60 @@
 <template>
   <div class="row">
     <div class="col-md-6 px-3 ps-4 px-lg-5 col-12">
-      <form>
+      <form autocomplete="off">
         <div class="mb-5">
           <label
-            for="email"
+            for="username"
             class="form-check-label mb-2 font-1 font-bd-is cursor-pointer"
-            >ایمیل :</label
+            >نام کاربری :</label
           >
           <input
-            v-model="loginInfo.username"
+            v-model="$v.loginInfo.username.$model"
             type="text"
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             class="form-control input-textbox"
-            placeholder="ایمیل یا نام کاربری خود را وارد کنید"
+            placeholder="نام کاربری یا ایمیل خود را وارد کنید"
           />
+          <span
+            class="invalid-feedback"
+            v-if="
+              (!$v.loginInfo.username.required &&
+                $v.loginInfo.username.$dirty) ||
+              (hasError && !$v.loginInfo.username.$dirty)
+            "
+            >فیلد نام کاربری الزامی است</span
+          >
         </div>
         <div class="mb-5">
           <label
-            for="email"
+            for="password"
             class="form-check-label mb-2 font-1 font-bd-is cursor-pointer"
             >رمز عبور :</label
           >
-          <input
-            v-model="loginInfo.password"
-            type="text"
-            id="email"
-            name="email"
-            class="form-control input-textbox"
-            placeholder="رمز عبور خود را وارد کنید"
-          />
-                    <span
+          <div class="position-relative">
+            <input
+              v-model="$v.loginInfo.password.$model"
+              ref="password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control input-textbox"
+              placeholder="رمز عبور خود را وارد کنید"
+            />
+            <span class="eye" @click="changeStatus()" v-html="eye"> </span>
+          </div>
+          <span
             class="invalid-feedback"
-            v-if="getloginError"
-            >
-           نام کاربری یا رمز عبور اشتباه است
-
+            v-if="
+              (!$v.loginInfo.password.required &&
+                $v.loginInfo.password.$dirty) ||
+              (hasError && !$v.loginInfo.password.$dirty && !getloginError)
+            "
+            >فیلد نام کاربری الزامی است</span
+          >
+          <span class="invalid-feedback" v-if="getloginError">
+            نام کاربری یا رمز عبور اشتباه است
           </span>
         </div>
         <!-- <div class="mb-3">
@@ -56,11 +74,27 @@
           </div>
         </div> -->
         <div class="mb-5">
-          <button @click.prevent="loginEmployee()" class="btn btn-primary w-100 mb-3">ورود</button>
-          <a class="font-90 d-block mb-2 font-bd-is text-underline" href="">
-            رمز عبور خود را فراموش کرده اید ؟</a
+          <button
+            :disabled="$v.$invalid"
+            @click.prevent="loginEmployee()"
+            class="btn btn-primary w-100 mb-3"
           >
-          <a class="font-90 font-bd-is text-underline" href=""> ورود کارفرما</a>
+            <template v-if="getStatus == 'pending'">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </template>
+            <template v-else> ورود </template>
+          </button>
+          <router-link
+            :to="{ name: 'EmailResetPassword' }"
+            class="font-80 d-block mb-2 font-bd-is text-underline"
+          >
+            رمز عبور خود را فراموش کرده اید ؟</router-link
+          >
+          <a class="font-80 font-bd-is text-underline" href=""> ورود کارفرما</a>
         </div>
       </form>
     </div>
@@ -127,7 +161,7 @@
           </span>
         </div>
       </div>
-      <div class="row d-block d-md-none">
+      <div class="row mb-3 d-block d-md-none">
         <div class="col d-flex justify-content-center">
           <a class="me-1" href="">
             <img
@@ -164,30 +198,66 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
 //import { store } from "../../../../Store/Store";
 export default {
+  mixins: [validationMixin],
   data() {
     return {
-      gg:'ali masteri',
+      hasError: false,
+      showPass: false,
       loginInfo: {
         username: "",
         password: "",
       },
     };
   },
-  computed:{
-    ...mapGetters(['getloginError'])
+  validations: {
+    loginInfo: {
+      username: { required },
+      password: { required },
+    },
+  },
+  computed: {
+    ...mapGetters(["getloginError", "getStatus"]),
+    eye() {
+      let icon = "";
+      if (this.showPass) {
+        icon = `<i class="fa-duotone fa-eye"></i>`;
+      } else {
+        icon = `<i class="fa-duotone fa-eye-slash"></i>`;
+      }
+      return icon;
+    },
   },
   methods: {
     ...mapActions(["loginEmployeeInServer"]),
     async loginEmployee() {
-      await this.loginEmployeeInServer(this.loginInfo);
+      if (this.$v.$invalid) {
+        this.hasError = true;
+      }
+      if (!this.$v.$invalid) {
+        await this.loginEmployeeInServer(this.loginInfo);
+        this.$store.commit("setStatus", "pending");
+      }
+    },
+    changeStatus() {
+      this.showPass = !this.showPass;
+      if (this.showPass) {
+        this.$refs.password.setAttribute("type", "text");
+      } else if (this.showPass == false) {
+        this.$refs.password.setAttribute("type", "password");
+      }
     },
   },
-  // beforeRouteEnter(to,from,next){
-  //  // console.log(this.$store.getters.getloginError,'ooo');
-  //   next();
-  // }
+  watch: {
+    "loginInfo.password"(v) {
+      if (v == "") {
+        this.$store.commit("setLoginError", false);
+      }
+    },
+  },
 };
 </script>
 

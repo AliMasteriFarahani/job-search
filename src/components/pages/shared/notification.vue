@@ -45,7 +45,7 @@ export default {
   props: { getStatus: { String } },
     watch: {
     getStatus(v) {
-      if (v == "ok" || v == "failed" || v == 'deleted') {
+      if (v == "ok" || v == "failed" || v == 'deleted' || v==null) {
         setTimeout(() => {
           this.$store.commit("setStatus", null);
         }, 3000);

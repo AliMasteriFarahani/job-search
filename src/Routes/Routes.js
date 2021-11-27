@@ -15,6 +15,10 @@ let CompanyPositions = () =>
   import("../components/pages/companyPositions/Index.vue");
 let EmployeeSettings = () =>
   import("../components/pages/employee/settings/Index.vue");
+let EmailResetPassword = () =>
+  import("../components/pages/employee/resetPassword/resetPass.vue");
+let ResetPassword = () =>
+  import("../components/pages/employee/resetPassword/changePass.vue");
 // employer :
 let EmployerLoginRegister = ()=>import('../components/pages/employer/login/Index.vue');
 let EmployerLogin = ()=>import('../components/pages/employer/login/Login.vue');
@@ -30,6 +34,8 @@ let ResumeDetails = ()=>import('../components/pages/employer/resumeDetails/Index
 export const Routes = [
   { path: "/", component: Home, name: "Home" },
   { path: "/job-search", component: JobSearch, name: "JobSearch" },
+  { path: "/reset-password-request", component: EmailResetPassword, name: "EmailResetPassword" },
+  { path: "/reset-password", component: ResetPassword, name: "ResetPassword" },
   {
     path: "/job-descriptions/:id/:slug",
     component: JobDescriptions,
@@ -53,14 +59,9 @@ export const Routes = [
       { path: "login", component: Login, name: "Login" },
       { path: "register", component: Register, name: "Register" },
     ],
-    // beforeEnter(to,from,next){
-    //   alert('ooo')
-    //   next()
-    // }
   },
   { path: "/resume", component: Resume, name: "Resume",
     // beforeEnter(to,from,next){
-
     //   next(vm=>{
     //    console.log(vm,'toot');
     //   })
@@ -78,7 +79,7 @@ export const Routes = [
     component: EmployeeSettings,
     name: "EmployeeSettings",
   },
-  { path: "*", redirect: "/" },
+ // { path: "*", redirect: "/" },
   { path: "/404", redirect: "/" },
 
   // employer :

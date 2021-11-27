@@ -44,15 +44,15 @@
         </div>
         <div class="mb-5">
           <label
-            for="email"
+            for="username"
             class="form-check-label mb-2 font-1 font-bd-is cursor-pointer"
             >نام کاربری :</label
           >
           <input
             v-model="$v.registerInfo.username.$model"
             type="text"
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             class="form-control input-textbox"
             placeholder=" نام کاربری خود را وارد کنید"
           />
@@ -73,12 +73,12 @@
             "
             >طول نام کاربری کم است
           </span>
-                              <span
+          <span
             class="invalid-feedback d-block"
             v-if="
               !$v.registerInfo.username.unique &&
               $v.registerInfo.username.minLength &&
-              $v.registerInfo.username.$dirty && 
+              $v.registerInfo.username.$dirty &&
               !$v.registerInfo.username.$pending
             "
             >نام کاربری وجود دارد</span
@@ -86,18 +86,23 @@
         </div>
         <div class="mb-5">
           <label
-            for="email"
+            for="passwordReg"
             class="form-check-label mb-2 font-1 font-bd-is cursor-pointer"
             >رمز عبور :</label
           >
-          <input
-            v-model="$v.registerInfo.password.$model"
-            type="text"
-            id="email"
-            name="email"
-            class="form-control input-textbox"
-            placeholder="رمز عبور خود را وارد کنید"
-          />
+          <div class="position-relative">
+            <input
+              ref="password"
+              v-model="$v.registerInfo.password.$model"
+              type="text"
+              id="passwordReg"
+              name="passwordReg"
+              class="form-control input-textbox"
+              placeholder="رمز عبور خود را وارد کنید"
+            />
+            <span class="eye" @click="changeStatus('pass')" v-html="passEye">
+            </span>
+          </div>
           <span
             class="invalid-feedback"
             v-if="
@@ -118,18 +123,24 @@
         </div>
         <div class="mb-5">
           <label
-            for="email"
+            for="rePassword"
             class="form-check-label mb-2 font-1 font-bd-is cursor-pointer"
             >تکرار رمز عبور :</label
           >
-          <input
-            v-model="$v.registerInfo.rePassword.$model"
-            type="text"
-            id="email"
-            name="email"
-            class="form-control input-textbox"
-            placeholder="رمز عبور خود را مجدد وارد کنید"
-          />
+          <div class="position-relative">
+            <input
+              ref="rePassword"
+              v-model="$v.registerInfo.rePassword.$model"
+              type="text"
+              id="rePassword"
+              name="rePassword"
+              class="form-control input-textbox"
+              placeholder="رمز عبور خود را مجدد وارد کنید"
+            />
+            <span class="eye" @click="changeStatus('rePass')" v-html="rePassEye">
+            </span>
+          </div>
+
           <span
             class="invalid-feedback"
             v-if="
@@ -160,13 +171,22 @@
           </span>
         </div>
         <div class="mb-5">
-          <button
+          <button :disabled="$v.$invalid"
             @click.prevent="registerEmployee()"
             class="btn btn-primary w-100 mb-3"
           >
-            ثبت نام
+                      <template v-if="getStatus == 'pending'">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </template>
+            <template v-else>
+              ثبت نام
+            </template>
           </button>
-          <a class="font-90 font-bd-is text-underline" href=""
+          <a class="font-80 font-bd-is text-underline" href=""
             >ثبت نام کارفرما</a
           >
         </div>
@@ -235,7 +255,7 @@
           </span>
         </div>
       </div>
-      <div class="row d-block d-md-none">
+      <div class="row mb-3 d-block d-md-none">
         <div class="col d-flex justify-content-center">
           <a class="me-1" href="">
             <img
@@ -284,6 +304,8 @@ export default {
   data() {
     return {
       hasError: false,
+      showPass: false,
+      showRepass: false,
       registerInfo: {
         email: "",
         username: "",
@@ -327,20 +349,36 @@ export default {
   },
   computed: {
     ...mapGetters(["getStatus"]),
+    passEye() {
+      let icon = "";
+      if (this.showPass) {
+        icon = `<i class="fa-duotone fa-eye"></i>`;
+      } else {
+        icon = `<i class="fa-duotone fa-eye-slash"></i>`;
+      }
+      return icon;
+    },
+    rePassEye() {
+      let icon = "";
+      if (this.showRepass) {
+        icon = `<i class="fa-duotone fa-eye"></i>`;
+      } else {
+        icon = `<i class="fa-duotone fa-eye-slash"></i>`;
+      }
+      return icon;
+    },
   },
   methods: {
     ...mapActions(["registerEmployeeInServer"]),
     isEmailUnique(val) {
       return axios.get(`api/checkEmailExist/${val}`).then((response) => {
-        console.log(response);
         if (response.status != 401 && response.status == 200) {
           return !response.data.status;
         }
       });
     },
-    isUsernameUnique(val){
-              return axios.get(`api/checkUsernameExist/${val}`).then((response) => {
-        console.log(response);
+    isUsernameUnique(val) {
+      return axios.get(`api/checkUsernameExist/${val}`).then((response) => {
         if (response.status != 401 && response.status == 200) {
           return !response.data.status;
         }
@@ -352,22 +390,27 @@ export default {
       }
       if (!this.$v.$invalid) {
         this.registerEmployeeInServer({ registerInfo: this.registerInfo });
+            this.$store.commit("setStatus", "pending");
+      }
+    },
+    changeStatus(type) {
+      if (type == "pass") {
+        this.showPass = !this.showPass;
+        if (this.showPass) {
+          this.$refs.password.setAttribute("type", "text");
+        } else if (this.showPass == false) {
+          this.$refs.password.setAttribute("type", "password");
+        }
+      }else if(type == "rePass"){
+        this.showRepass = !this.showRepass;
+        if (this.showRepass) {
+          this.$refs.rePassword.setAttribute("type", "text");
+        } else if (this.showRepass == false) {
+          this.$refs.rePassword.setAttribute("type", "password");
+        }
       }
     },
   },
-  // deactivated(){
-  //    this.$v.$reset()
-  //   console.log('object');
-  // },
-  // created(){
-  //        this.$v.$reset()
-  //   console.log('object2');
-  // },
-  // beforeRouteLeave(from,to,next){
-  //        this.$v.$reset()
-  //   console.log(to,'object3');
-  //   next()
-  // }
 };
 </script>
 

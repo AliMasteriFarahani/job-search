@@ -7,7 +7,7 @@
                             <div class="row w-md-auto w-sm-100 align-self-center">
                                 <div class="col-3">
                                     <span class="job-logo-palce align-self-center">
-                                        <img src="/images/hex-lab-5.png" class="img-fluid figure-img" alt="">
+                                        <img :src="getCompanyLogoFolder+'/'+getJobDetails.logo" class="img-fluid figure-img" alt="">
                                     </span>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
 import { mapGetters } from "vuex";
 export default {
 computed:{
-     ...mapGetters(['getJobDetails']),
+     ...mapGetters(['getJobDetails','getCompanyLogoFolder']),
 }
 }
 </script>

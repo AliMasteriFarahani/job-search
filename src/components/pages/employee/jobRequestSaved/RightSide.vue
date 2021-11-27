@@ -1,6 +1,6 @@
 <template>
           <div class="col-12 col-lg-9 col-lg-72">
-          <div class="border-r bg-white">
+          <div class="shadow-c border-radius-05 overflow-hidden bg-white">
             <div class="row px-lg-5 px-4 mt-4">
               <div class="col-12">
                 <span :class="['font-80 job-sa me-3 d-inline-block',{'active' : this.$route.path === '/job/requests'}]">

@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <div class="shadow-c pb-5 rounded-3 p-3 bg-white min-h-70vh">
+    <div class="shadow-c pb-5 rounded-3 p-3 bg-white min-h-100vh">
       <div class="row">
         <div class="col-12">
           <div class="row">

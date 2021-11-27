@@ -125,8 +125,8 @@ export default {
   methods: {
     ...mapActions(["getAllJobExperienceFromServer"]),
   },
-  created() {
-    this.getAllJobExperienceFromServer(this.getEmployeeId)
+  async created() {
+    await this.getAllJobExperienceFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

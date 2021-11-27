@@ -1,5 +1,5 @@
 <template>
-  <div class="row px-lg-5 min-h-70vh align-content-start px-4">
+  <div class="row px-lg-5 min-h-100vh align-content-start px-4">
     <!-- result of job search : -->
     <div
       v-for="(applied, i) in geEmployeeAppliedJob"
@@ -19,7 +19,7 @@
       >
         <span class="job-logo-palce flex-none align-self-center">
           <img
-            src="/images/hex-lab-5.png"
+            :src="getCompanyLogoFolder+'/'+applied.logo"
             class="img-fluid figure-img"
             alt=""
           />
@@ -94,7 +94,8 @@ export default {
       "getAllAppliedPages",
       "getAppliedPageId",
       "geEmployeeAppliedJob",
-      'getEmployeeId'
+      'getEmployeeId',
+      'getCompanyLogoFolder'
     ]),
     statusClass() {
       return (st) => {
@@ -113,8 +114,8 @@ export default {
   methods: {
     ...mapActions(["getAppliedJobsFromServer"]),
   },
-  created() {
-    this.getAppliedJobsFromServer({
+  async created() {
+    await this.getAppliedJobsFromServer({
       empId: this.getEmployeeId,
       pageId: 1,
     });
