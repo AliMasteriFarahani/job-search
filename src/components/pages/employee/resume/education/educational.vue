@@ -145,8 +145,8 @@ export default {
   methods: {
     ...mapActions(["getAllEducationsFromServer"]),
   },
-  created() {
-    this.getAllEducationsFromServer(this.getEmployeeId)
+  async created() {
+    await this.getAllEducationsFromServer(this.getEmployeeId)
   },
   watch: {
     getStatus(v) {

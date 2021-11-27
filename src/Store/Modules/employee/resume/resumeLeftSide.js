@@ -3,7 +3,8 @@ import axios from "axios";
 const state = {
   avatarFileName: [],
   resumeAttach: [],
-  employeeFolder: "http://job-search.test/public/employee",
+  //employeeFolder: "http://job-search.test/public/employee/",
+  employeeFolder: "https://api.jobout.ir/public/employee/",
   resumeLeftSideInfo: {},
   isJobApplied:[],
   sendSimilars:[]
@@ -130,6 +131,9 @@ const actions = {
         .then((response) => {
         if (response.status == 200) {
             if(response.data == 'applied'){
+              setTimeout(() => {
+                commit("setStatus", '');
+              }, 200);
               commit("setIsJobApplied", 1);
               resolve(); 
             }

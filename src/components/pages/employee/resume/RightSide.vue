@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white">
+    <div class="shadow-c border-radius-05 overflow-hidden bg-white">
       <!-- personal information : -->
       <app-personal-info></app-personal-info>
       <!-- about me : -->
@@ -78,7 +78,7 @@ export default {
 
 .skill,
 .skill-level {
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   text-align: center;
   display: inline-block;
   font-family: "iransanse-bd";

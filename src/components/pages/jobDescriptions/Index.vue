@@ -13,7 +13,10 @@
         <!-- right side : -->
         <app-job-details></app-job-details>
         <!-- left side : -->
-        <app-resume-section :showBtn="true"  :expireDate="getJobDetails.expire_date"></app-resume-section>
+        <app-resume-section
+          :showBtn="true"
+          :expireDate="getJobDetails.expire_date"
+        ></app-resume-section>
       </div>
       <!-- end of left side  -->
       <!-- end of left and right for jobsection -->
@@ -36,14 +39,13 @@ import AppJobDetails from "./JobDetails.vue";
 import AppResumeSection from "../shared/ResumeSectionLeft.vue";
 import AppSimilarJobs from "./SimilarJobs.vue";
 import AppFooter from "../shared/Footer.vue";
- import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-
-  data(){
-    return{
-      employeeId:1
-    }
+  data() {
+    return {
+      employeeId: 1,
+    };
   },
   components: {
     AppHeader,
@@ -54,25 +56,29 @@ export default {
     AppJobDetails,
     AppResumeSection,
   },
-  computed:{
-      ...mapGetters(['getJobDetails']),
+  computed: {
+    ...mapGetters(["getJobDetails", "getIsUserAuthenticated", "getEmployeeId"]),
   },
-  created(){
-    
-      this.$store.dispatch('getJobDetailsFromServer',{id:this.$route.params.id,empId:this.employeeId})
- 
+  created() {
+    //  if (this.getIsUserAuthenticated) {
+    this.$store.dispatch("getJobDetailsFromServer", {
+      id: this.$route.params.id,
+      empId: this.getEmployeeId,
+    });
+    //  }
   },
-  watch:{
-    $route(){
-       this.$store.dispatch('getJobDetailsFromServer',{id:this.$route.params.id,empId:this.employeeId})
- 
-    }
-  }
+  watch: {
+    $route() {
+      // if (this.getIsUserAuthenticated) {
+      //   alert('sss')
+      //  this.$store.dispatch('getJobDetailsFromServer',{id:this.$route.params.id,empId:this.employeeId})
+      //  }
+    },
+  },
 };
 </script>
 
 <style>
-
 .header-bg {
   background: url("/images/job-banner.jpg");
   max-width: 100%;

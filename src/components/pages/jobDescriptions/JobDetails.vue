@@ -1,13 +1,13 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white">
+    <div class="shadow-c border-radius-05 overflow-hidden bg-white">
       <div class="row">
         <div class="col-12">
           <div class="px-md-3 py-md-3 p-2 px-3 bg-c1 float-start w-100">
             <h3 class="m-0 mt-2 float-start font-xs-95 font-md-102">
               استخدام {{ getJobDetails.jobTitle }}
             </h3>
-            <span
+            <span v-if="getIsUserAuthenticated"
               class="
                 float-end
                 position-relative
@@ -16,7 +16,7 @@
                 fw-bold
                 cursor-pointer
               "
-              @click="changeSaveStatus($route.params.id)"
+              @click="changeSaveStatus(getJobDetails.jobId)"
             >
               <span v-html="saveIcon()"> </span>
               <div
@@ -27,7 +27,6 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </span>
-            {{ getIsCurrentJobSaved }}
           </div>
         </div>
       </div>
@@ -345,7 +344,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getJobDetails", "getIsCurrentJobSaved",'getEmployeeId']),
+    ...mapGetters(["getJobDetails", "getIsCurrentJobSaved",'getEmployeeId','getIsUserAuthenticated']),
     saveIcon() {
       return () => {
         if (this.getJobDetails != "failed") {

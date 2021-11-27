@@ -1,6 +1,6 @@
 /* width */
 .custom-select-items::-webkit-scrollbar {
-    width: .4rem;
+    width: .2rem;
 }
 
 /* Track */
@@ -121,7 +121,7 @@
 
 .custom-option-selected::after {
     content: '\276F';
-    font-size: 1rem;
+    font-size: .8rem;
     color: #a7a7a7;
     transform: rotate(-90deg) !important;
     margin-left: .60rem;

@@ -422,7 +422,7 @@
                     >وضعیت خدمت سربازی :</label
                   >
                   <div
-                    class="custom-select z-index-lv2"
+                    class="custom-select"
                     title="انتخاب کنید ..."
                     data-search-box="false"
                   >
@@ -719,7 +719,7 @@ export default {
           employeeId: this.getEmployeeId,
           personalInfo: this.personalInfo,
         }).then(() => {
-         // this.getPersonalInfoFromServer(this.employeeId);
+          this.getPersonalInfoFromServer(this.getEmployeeId);
         });
       }
     },

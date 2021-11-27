@@ -1,7 +1,7 @@
 <template>
   <div class="row mt-5">
     <div class="col-12 col-lg-72">
-      <div class="border-r bg-white">
+      <div class="shadow-c border-radius-05 overflow-hidden bg-white">
         <div class="row pt-4 pb-3 px-lg-5 px-4">
           <div class="col-12">
             <div class="row">
@@ -93,7 +93,7 @@
                           }})</span
                         >
                       </span>
-                      <span
+                      <span v-if="getIsUserAuthenticated"
                         class="position-absolute similar-bookmark"
                         @click="
                           changeSaveStatus(simJob.jobId, simJob.isSaved, index)
@@ -151,7 +151,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder",'getEmployeeId']),
+    ...mapGetters(["getSimilarPositions", "getIsJobSaved","getCompanyLogoFolder",'getEmployeeId','getIsUserAuthenticated']),
   },
   methods: {
     ...mapActions(["getSimilarPositionsFromServer"]),

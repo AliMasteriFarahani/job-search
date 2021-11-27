@@ -1,12 +1,12 @@
 <template>
   <div class="row mt-5">
     <div class="col-12">
-      <div class="border-r bg-white">
+      <div class="shadow-c border-radius-05 overflow-hidden bg-white">
         <div class="row pt-4 pb-3 px-lg-5 px-4">
           <div class="col-12">
             <div class="row ">
               <div class="col-12">
-                <h3 class="font-102">جدید ترین مطالب در بلاک جابروب</h3>
+                <h3 class="font-102">جدید ترین مطالب در جاباوت </h3>
               </div>
             </div>
           </div>

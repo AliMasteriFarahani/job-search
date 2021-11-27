@@ -84,8 +84,8 @@ export default {
   methods: {
     ...mapActions(["getSkillsFromServer"]),
   },
-  created() {
-    this.getSkillsFromServer(this.getEmployeeId);
+  async created() {
+   await this.getSkillsFromServer(this.getEmployeeId);
   },
   watch: {
     getSkills(v) {

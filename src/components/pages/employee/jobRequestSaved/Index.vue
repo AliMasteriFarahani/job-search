@@ -6,7 +6,7 @@
     <section class="container mt-5">
       <div class="row">
         <!-- right-side -->
-        <app-right-side ></app-right-side>
+        <app-right-side></app-right-side>
         <!-- :pageIdChanged="pageIdChanged" -->
         <!-- left side : -->
         <app-resume-left-side :showBtn="false"></app-resume-left-side>
@@ -47,12 +47,18 @@ export default {
     return {
       employeeId: 1,
       pageIdChanged: 1,
-    //  pageId: 1,
+      //  pageId: 1,
       //  allPages:1
     };
   },
   computed: {
-    ...mapGetters(["getAllPagesSaved", "getSavedPageId",'getAppliedPageId','getAllAppliedPages','getEmployeeId']),
+    ...mapGetters([
+      "getAllPagesSaved",
+      "getSavedPageId",
+      "getAppliedPageId",
+      "getAllAppliedPages",
+      "getEmployeeId",
+    ]),
     allpeges() {
       let all;
       if (this.$route.name == "Saved") {
@@ -62,8 +68,7 @@ export default {
       }
       return all;
     },
-     pageId(){
-
+    pageId() {
       let id;
       if (this.$route.name == "Saved") {
         id = this.getSavedPageId;
@@ -71,11 +76,13 @@ export default {
         id = this.getAppliedPageId;
       }
       return id;
-      
-     }
+    },
   },
   methods: {
-    ...mapActions(["getEmployeeSavedJobsFromServer",'getAppliedJobsFromServer']),
+    ...mapActions([
+      "getEmployeeSavedJobsFromServer",
+      "getAppliedJobsFromServer",
+    ]),
   },
   // created() {
   //   this.getEmployeeSavedJobsFromServer({
@@ -85,7 +92,7 @@ export default {
   // },
   watch: {
     $route() {
-        this.pageIdChanged = 1
+      this.pageIdChanged = 1;
     },
     pageIdChanged(v) {
       if (this.$route.name == "Saved") {
@@ -93,7 +100,7 @@ export default {
           empId: this.getEmployeeId,
           pageId: v,
         });
-      }else if (this.$route.name == "Requests") {
+      } else if (this.$route.name == "Requests") {
         this.getAppliedJobsFromServer({
           empId: this.getEmployeeId,
           pageId: v,

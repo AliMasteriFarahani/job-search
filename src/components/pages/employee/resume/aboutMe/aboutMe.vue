@@ -93,8 +93,8 @@ export default {
   methods: {
     ...mapActions(["getAboutMeFromServer"]),
   },
-  created() {
-    this.getAboutMeFromServer(this.getEmployeeId);
+ async created() {
+    await this.getAboutMeFromServer(this.getEmployeeId);
   },
   watch: {
     getAboutMe(v) {

@@ -1,7 +1,6 @@
 <template>
-  <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white min-h-70vh">
-      <a href="" id="search"></a>
+  <div class="col-12 col-lg-9 col-lg-72" id="search">
+    <div class="shadow-c border-radius-05 overflow-hidden bg-white min-h-100vh">
       <div class="row filters my-3 px-md-4">
         <div class="col-12 col-md-9 ps-4 ps-md-2 order-1 order-md-0">
           <template v-if="Object.keys(getWhatSearch).length > 0">
@@ -82,7 +81,7 @@
       <div class="row px-lg-5 px-4">
         <!-- result of job search : -->
         <div class="col">
-          <div v-if="getJobs.length == 0" class="alert alert-danger">
+          <div v-if="getJobs.length == 0" class="text-center">
             هیچ شغلی یافت نشد
           </div>
         </div>
@@ -100,7 +99,7 @@
           >
             <span class="job-logo-palce flex-none align-self-center">
               <img
-                src="/images/hex-lab-5.png"
+                :src="getCompanyLogoFolder+'/'+job.logo"
                 class="img-fluid figure-img"
                 alt=""
               />

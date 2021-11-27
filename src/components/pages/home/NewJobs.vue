@@ -1,10 +1,10 @@
 <template>
   <div class="col-12 col-lg-9 col-lg-72">
-    <div class="border-r bg-white">
+    <div class="shadow-c border-radius-05 overflow-hidden min-h-100vh bg-white">
       <div class="row">
         <div class="col-12">
-          <div class="bg-warning p-3 bg-c1 float-start w-100">
-            <h3 class="m-0 float-start font-1">فرصت های شغلی امروز</h3>
+          <div class="p-3 --bg-bb float-start w-100">
+            <h3 class="m-0 float-start font-1">فرصت های شغلی جدید</h3>
             <!-- <span class="float-end font-80 fw-bold">1400-11-11</span> -->
           </div>
         </div>
@@ -35,20 +35,25 @@
                 />
               </span>
               <span class="float-start ms-3">
-                <h3 class="font-90 mt-1">{{ newJobs.title }}</h3>
+                <h3 class="font-90 mt-1 text-black">{{ newJobs.title }}</h3>
                 <div class="mt-4 color-73">
                   <span class="me-3">
                     <i class="fa-solid fa-building font-80"></i>
-                    <span class="font-80 ms-1">{{ newJobs.companyName }}</span>
+                    <span class="font-80 ms-1 d-inline-block">{{ newJobs.companyName }}</span>
                   </span>
                   <span>
                     <i class="fa-solid fa-location-dot font-80"></i>
-                    <span class="font-80 ms-1">{{ newJobs.provinceName }}</span>
+                    <span class="font-80 ms-1 d-inline-block">{{ newJobs.provinceName }}</span>
                   </span>
                 </div>
               </span>
             </div>
           </router-link>
+        </div>
+        <div class="row">
+          <div class="col">
+            <router-link :to="{name:'JobSearch',hash:'#search'}" class="text-underline" href="">مشاهده همه آگهی ها</router-link>
+          </div>
         </div>
         <!-- end of  job advertisment  -->
       </div>
@@ -67,9 +72,9 @@ export default {
     },
     ...mapGetters(["getCompanyLogoFolder"]),
   },
-  created() {
+  async created() {
     if (this.getNewJobs.length == null) {
-      this.$store.dispatch("getNewJobsFromServer");
+      await this.$store.dispatch("getNewJobsFromServer");
     }
   },
 };

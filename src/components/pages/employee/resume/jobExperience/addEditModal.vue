@@ -167,7 +167,7 @@
               >
               <div
                 ref="endYear"
-                class="custom-select simple-scroll z-index-lv2"
+                class="custom-select simple-scroll"
                 title="انتخاب کنید ..."
                 data-search-box="false"
               >

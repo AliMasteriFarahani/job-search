@@ -1,5 +1,5 @@
 <template>
-  <div class="row min-h-70vh px-lg-5 px-4">
+  <div class="row min-h-100vh px-lg-5 px-4">
     <!-- result of job search : -->
     <div
       v-for="(job, index) in getEmployeeSavedJobs"
@@ -19,7 +19,7 @@
       >
         <span class="job-logo-palce flex-none align-self-center">
           <img
-            src="/images/hex-lab-5.png"
+            :src="getCompanyLogoFolder+'/'+job.logo"
             class="img-fluid figure-img"
             alt=""
           />
@@ -120,8 +120,8 @@ export default {
   methods: {
     ...mapActions(["getEmployeeSavedJobsFromServer"]),
   },
-  created() {
-    this.getEmployeeSavedJobsFromServer({
+  async created() {
+    await this.getEmployeeSavedJobsFromServer({
       empId: this.getEmployeeId,
       pageId: 1,
     });

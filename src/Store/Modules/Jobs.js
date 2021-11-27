@@ -2,7 +2,8 @@ import axios from "axios";
 
 //import Vue from 'vue'
 const state = {
-  companyLogoFolder: "http://job-search.test/public/images/companies-logo/",
+  //companyLogoFolder: "http://job-search.test/public/images/companies-logo/",
+  companyLogoFolder: "https://api.jobout.ir/public/images/companies-logo/",
   immediateJobs: {},
   newJobs: {},
   jobDetails: [],
@@ -88,21 +89,22 @@ const actions = {
       .get(`api/getJobDetails/${data.id}/${data.empId}`)
       .then((response) => {
         context.commit("setJobDetails", response.data);
-        resolve()
+        resolve();
       });
+      
     })
-
   },
   getSimilarPositionsFromServer({ commit },data) {
     axios
       .get(`api/getSimilarPositions/${data.jobId}/${data.empId}`)
       .then((response) => {
         commit("setSimilarPositions", response.data);
+
       });
   },
   getCompanyJobPositionsFromServer({commit},data){
     axios
-      .get(`api/getCompanyJobPositions/${data.companyId}/${data.empId}/${data.pageId}`)
+      .get(`api/getCompanyJobPositions/${data.companyId}/${data.pageId}/${data.empId}`)
       .then((response) => {
         commit("setCompanyJobPositions", response.data.result);
         commit("setAllPagesCompanyJob", response.data.allPages);

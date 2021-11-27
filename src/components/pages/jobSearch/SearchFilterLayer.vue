@@ -1,9 +1,9 @@
 <template>
-  <section class="container-fluid landing-layer bg-sky pb-4 pb-md-5">
-    <div class="row">
-      <div class="col-10 offset-1 mt-4 bg-white rounded-3 px-3 py-5 p-lg-5">
-        <form action="">
-          <div class="row">
+  <section class="container-fluid landing-layer position-relative px-0  pb-4 pb-md-5">
+    <img class="z-index-lv-1 h-100 w-100 position-absolute object-cover" src="/images/Meteor-bg.svg" alt="">
+    <div class="row w-100 m-0">
+      <div class="col-10 offset-1 mt-5 bg-alpha-8 rounded-3 px-3 py-5 p-lg-5">
+          <form class="row">
             <div class="col-lg-10 col-12">
               <div class="row">
                 <div
@@ -11,8 +11,7 @@
                     col-md-12 col-lg-5
                     mb-2 mb-lg-0
                     col-12
-                    position-relative
-                  "
+                    position-relative"
                 >
                   <input
                     v-model="filters.searchText"
@@ -85,7 +84,7 @@
                       position-relative
                     "
                   >
-                    <div class="custom-select z-index-lv2" title="جنسیت">
+                    <div class="custom-select simple z-index-lv2" title="جنسیت">
                       <select v-model="filters.gender">
                         <option value="0">مهم نیست</option>
                         <option value="1">آقا</option>
@@ -101,7 +100,7 @@
                     "
                   >
                     <div
-                      class="custom-select"
+                      class="custom-select simple-scroll"
                       title="حقوق"
                       data-search-box="false"
                     >
@@ -131,7 +130,7 @@
                     "
                   >
                     <div
-                      class="custom-select"
+                      class="custom-select simple-scroll"
                       title="سابقه کار"
                       data-search-box="false"
                     >
@@ -154,7 +153,7 @@
                     "
                   >
                     <div
-                      class="custom-select"
+                      class="custom-select simple-scroll"
                       title="نوع قرارداد"
                       data-search-box="false"
                     >
@@ -184,7 +183,7 @@
                     ></span>
                     <span class="font-73 mx-1">جست و جوی پیشرفته</span>
                     <span>
-                      <i class="angle align-middle fa-solid fa-angle-down"></i>
+                      <i :class="['angle align-middle fa-solid',{'fa-angle-down':!showAdvancedFilterItems},{'fa-angle-up':showAdvancedFilterItems}]"></i>
                     </span>
                   </span>
                 </div>
@@ -197,13 +196,20 @@
                     @click.prevent="searchJob()"
                     class="btn btn-warning h-100 w-100 font-95"
                   >
-                    جست و جو
+                    <!-- <template v-if="getStatus == 'pending'">
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </template> -->
+                    <!-- <template v-if="!getStatus"> </template> -->
+                     جست و جو
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
       </div>
     </div>
   </section>
@@ -240,7 +246,6 @@ export default {
         contractType: "",
         sortStatus: 1,
       },
-      fff: "",
       filtersTmp: [],
       employeeId: 1,
       showAdvancedFilterItems: false,
@@ -254,7 +259,8 @@ export default {
       "getWorkExperince",
       "getContract",
       "getWhatSearch",
-      'getEmployeeId'
+      "getEmployeeId",
+      'getStatus'
     ]),
   },
   methods: {
@@ -266,28 +272,28 @@ export default {
       "getContractFromServer",
       "getSearchJobsFromServer",
     ]),
-    searchJob() {
-      this.getSearchJobsFromServer({
+    async searchJob() {
+      await this.getSearchJobsFromServer({
         filters: this.filters,
         employeeId: this.getEmployeeId,
         pageId: 1,
       });
+      this.$store.commit('setStatus','main-pending')
       this.filtersTmp = Object.assign({}, this.filters);
     },
   },
-  created() {
+  async created() {
     this.filtersTmp = Object.assign({}, this.filters);
     if (this.$route.params["filters"] !== undefined) {
       this.filters = this.$route.params.filters;
       this.filtersTmp = Object.assign({}, this.filters);
-     // this.fff = this.$route.params.filters;
     }
     this.getProvincesFromServer();
     this.getCategoriesFromServer();
     this.getSalaryFromServer();
     this.getWorkExperienceFromServer();
     this.getContractFromServer();
-    this.getSearchJobsFromServer({
+    await this.getSearchJobsFromServer({
       filters: this.filters,
       employeeId: this.getEmployeeId,
       pageId: 1,
@@ -296,9 +302,13 @@ export default {
   watch: {
     filters() {
       let clickEvent = new Event("change");
-      document.querySelectorAll(".custom-select .p2").forEach((element) => {        
-          if (element.id == "province") {
-            if (this.filters.province != "" && this.filters.province !=0 && this.filters.province != undefined) {
+      document.querySelectorAll(".custom-select .p2").forEach((element) => {
+        if (element.id == "province") {
+          if (
+            this.filters.province != "" &&
+            this.filters.province != 0 &&
+            this.filters.province != undefined
+          ) {
             let option = element.querySelector(
               `option[value='${this.filters.province}']`
             );
@@ -310,8 +320,12 @@ export default {
           }
         }
 
-          if (element.id == "category") {
-            if (this.filters.category != "" && this.filters.category !=0 && this.filters.category != undefined) {
+        if (element.id == "category") {
+          if (
+            this.filters.category != "" &&
+            this.filters.category != 0 &&
+            this.filters.category != undefined
+          ) {
             let option = element.querySelector(
               `option[value='${this.filters.category}']`
             );
@@ -326,6 +340,7 @@ export default {
       });
     },
     sortStatus(v) {
+       this.$store.commit('setStatus','main-pending')
       this.filters.sortStatus = v;
       this.filtersTmp.sortStatus = v;
       this.getSearchJobsFromServer({
@@ -335,14 +350,16 @@ export default {
       });
     },
     pageIdChanged(v) {
+       this.$store.commit('setStatus','main-pending')
       this.getSearchJobsFromServer({
         filters: this.filtersTmp,
         employeeId: this.getEmployeeId,
         pageId: v,
-      });
+      })
     },
     removeFilter(v) {
       if (v.value != null && v.value != "all") {
+        this.$store.commit('setStatus','main-pending')
         this.filtersTmp[v.value] = "";
         this.getSearchJobsFromServer({
           filters: this.filtersTmp,
@@ -350,6 +367,7 @@ export default {
           pageId: 1,
         });
       } else if (v.value != null && v.value == "all") {
+        this.$store.commit('setStatus','main-pending')
         for (let x in this.filtersTmp) {
           this.filtersTmp[x] = "";
         }
@@ -360,11 +378,12 @@ export default {
         });
       }
     },
-
   }, // watch
-
 };
 </script>
 
 <style>
+.custom-option-selected {
+  font-family: "iransanse-num" !important;
+}
 </style>

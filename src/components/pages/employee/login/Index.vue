@@ -6,7 +6,7 @@
           <div class="col">
             <span class="job-logo-register-login">
               <router-link to="/" class="w-100 h-100" href="">
-                <img class="w-100 h-100" src="/images/job-logo-2.png" alt="" />
+                <img class="w-100 h-100" src="/images/logo2.png" alt="" />
               </router-link>
             </span>
           </div>
@@ -84,7 +84,7 @@ export default {
 }
 .login .router-link-exact-active, .register .router-link-exact-active {
   color: #fff !important;
-  background-color: #1e6fcf !important;
+  background-color: #FC7C1C !important;
   font-family: "iransanse-md" !important;
 }
 .login .router-link-exact-active{
@@ -114,6 +114,10 @@ export default {
   position: relative;
   top: -2.5rem;
 }
+.job-logo-register-login img{
+  background: #fff;
+    border-radius: 50%;
+}
 .btn-l-r {
   background-color: #eee;
   padding: 0.5rem 1rem;
@@ -128,5 +132,11 @@ export default {
 .invalid-feedback {
   display: block;
   font-size: 0.75rem;
+}
+.eye {
+  position: absolute;
+  bottom: 6px;
+  left: 7px;
+  cursor: pointer;
 }
 </style>

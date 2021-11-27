@@ -27,10 +27,8 @@ const actions = {
     return new Promise((resolve) => {
       axios.get(`employee/getPersonalInfo/${employeeId}`).then((response) => {
         commit("setPersonalInfo", response.data);
-        console.log(response,'lloopp');
         resolve();
       }).catch((error) => {
-        console.log(error.response, "ppp");
         if (error.response.status == 401) {
           console.log(error.response, "ppp");
         }

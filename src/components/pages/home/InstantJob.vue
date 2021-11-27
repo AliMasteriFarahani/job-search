@@ -1,9 +1,9 @@
 <template>
   <div class="col-12 col-lg-3 col-lg-28 mt-3 mt-lg-0">
-    <div class="border-r bg-white">
+    <div class="shadow-c border-radius-05 overflow-hidden bg-white min-h-100vh">
       <div class="row">
         <div class="col-12">
-          <div class="bg-warning bg-c1 p-3 float-start w-100">
+          <div class="--bg-bb p-3 float-start w-100">
             <h3 class="m-0 float-start font-1">فرصت های شغلی فوری</h3>
           </div>
         </div>
@@ -35,11 +35,11 @@
                 <div class="mt-3 color-73">
                   <span class="me-2">
                     <i class="fa-solid fa-building font-80"></i>
-                    <span class="font-73 ms-1">{{job.companyName}}</span>
+                    <span class="font-73 ms-1 d-inline-block">{{job.companyName}}</span>
                   </span>
                   <span>
                     <i class="fa-solid fa-location-dot font-80"></i>
-                    <span class="font-73 ms-1">{{job.provinceName}}</span>
+                    <span class="font-73 ms-1 d-inline-block">{{job.provinceName}}</span>
                   </span>
                 </div>
               </span>
@@ -65,9 +65,9 @@ data(){
 computed:{
   ...mapGetters(['getCompanyLogoFolder','getImmediateJobs'])
 },
-created(){
+async created(){
    if (this.getImmediateJobs.length == null) {
-     this.$store.dispatch('getImmediateJobsFromServer')
+    await this.$store.dispatch('getImmediateJobsFromServer')
    }
 }
 };
@@ -81,12 +81,16 @@ created(){
   border-left: 1px dashed transparent;
 }
 .job-adv-imd:hover {
-  background-color: #e3e3e3;
+  background-color: #e3efe8;
   color: #ff7700 !important;
   border-right: 1px dashed #a2a2a2;
   border-left: 1px dashed #a2a2a2;
 }
 .job-adv-imd:first-child {
   border-top: none !important;
+}
+.badge{
+  font-weight: 600 !important;
+      background: #F51D0E !important;
 }
 </style>

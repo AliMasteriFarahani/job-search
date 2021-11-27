@@ -54,14 +54,23 @@ const actions = {
     //  let info={id:1,name:'ali'}
      // let params = new URLSearchParams();
      // params.append('name','Ali')
+     new Promise((resolve)=>{
         axios.post(`api/getSearchJobs/${data.employeeId}/${data.pageId}`,data.filters)
         .then(response=>{
             commit('setJobs',response.data.result);
             commit('setAllPages',response.data.allPages);
             commit('setTotalJobs',response.data.totalJobs);
             commit('setPageId',response.data.pageId);
+            resolve();
+            return response;
+        }).then((response)=>{
+           setTimeout(() => {
+            commit('setStatus','');
             commit('setWhatSearch',response.data.whatSearch);
+           }, 200);
         })
+     })
+
     },
 };
 

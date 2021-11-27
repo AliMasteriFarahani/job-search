@@ -139,9 +139,8 @@ export default {
   methods: {
     ...mapActions(["getPersonalInfoFromServer"]),
   },
-  created() {
-    this.getPersonalInfoFromServer(this.getEmployeeId);
-     console.log(this,'this2');
+  async created() {
+    await this.getPersonalInfoFromServer(this.getEmployeeId);
   },
   watch:{
     getPersonalInfo(v){
